@@ -1,0 +1,5 @@
+<h1><%= @article.title %></h1>
+<% @article.body.split("\r\n\r\n").each do |paragraph| %>
+  <p><%= paragraph %></p>
+<% end %>
+<a href="<%= edit_admin_article_url(@article.id) %>">Edit Article</a>

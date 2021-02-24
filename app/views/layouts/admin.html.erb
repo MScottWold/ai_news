@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AiNews</title>
+    <title>Admin: AiNews</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'ai_news' %>
+    <%# if site_admin? %>
+    <script type="text/javascript">
+      window.deepApiKey = "<%= Rails.application.credentials.deepai[:api_key] %>"
+    </script>
+    <%# end %>
   </head>
 
   <body>
+    <h1>Admin site</h1>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,20 @@
+/* reset */
+
+html, body, header, footer, section, main, article, aside,
+div, h1, h2, h3, ul, li, a,
+figure, img, figcaption {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+ul {
+  list-style-type: none;
+}
