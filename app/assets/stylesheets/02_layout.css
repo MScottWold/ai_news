@@ -64,6 +64,11 @@ figcaption a {
   text-decoration: underline;
 }
 
+.author-name {
+  color: rgb(57, 57, 214);
+  text-decoration: underline;
+}
+
 /* Section-Specific Style */
 
 /* Header & Footer */

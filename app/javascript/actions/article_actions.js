@@ -7,7 +7,8 @@ export const RECEIVE_SINGLE_ARTICLE = 'RECEIVE_SINGLE_ARTICLE';
 // action creators
 export const receiveArticles = (payload) => ({
   type: RECEIVE_ARTICLES,
-  payload
+  articles: payload.articles,
+  articleFilter: payload.articleFilter
 });
 
 export const receiveSingleArticle = (article) => ({

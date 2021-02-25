@@ -9,6 +9,7 @@ json.articles do
       json.createdAt article.created_at
       json.body article.body if @filter_name == "featuredArticleId"
       json.authorName article.author.name
+      json.authorId article.author.id
       json.photo do
         json.partial! 'api/photos/photo', photo: article.photo
         # remove when AWS is set up
