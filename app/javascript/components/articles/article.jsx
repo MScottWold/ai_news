@@ -34,7 +34,7 @@ class Article extends React.Component {
       <article className="article">
         <h1 className="article-headline">{article.title}</h1>
         <div className="byline">
-          by {article.authorName}; {publishDate}
+          by <a href={`#/authors/${article.authorId}`} className="author-name">{article.authorName}</a>; {publishDate}
         </div>
         <ArticlePhoto photo={article.photo} />
         {paragraphs}

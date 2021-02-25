@@ -5,7 +5,6 @@ import { getArticles } from '../../actions/article_actions';
 import { selectArticles } from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps)
   const section = ownProps.match.params.sectionName;
   let articleIds = state.ui.filters[`${section}ArticleIds`]
   if (!articleIds) {

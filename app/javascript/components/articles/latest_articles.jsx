@@ -7,7 +7,9 @@ class LatestArticles extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getLatestArticles();
+    if (this.props.articles.length === 0) {
+      this.props.getLatestArticles();
+    }
   }
 
   render() {

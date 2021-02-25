@@ -14,7 +14,15 @@ class FeaturedArticle extends React.Component {
       return (<article><p>Loading...</p></article>);
     }
 
-    const { photo, title, authorName, section, body, createdAt} = article;
+    const { 
+      photo, 
+      title, 
+      authorId,
+      authorName, 
+      section, 
+      body, 
+      createdAt
+    } = article;
 
     const publishDate = new Date(createdAt).toDateString();
 
@@ -29,7 +37,7 @@ class FeaturedArticle extends React.Component {
         <div className={`${section}-tag`}>{section}</div>
         <h1 className="article-headline">{title}</h1>
         <div className="byline">
-          by {authorName}; {publishDate}
+          by <a href={`#/authors/${authorId}`} className="author-name">{authorName}</a>; {publishDate}
         </div>
         {paragraphs}
       </article>      

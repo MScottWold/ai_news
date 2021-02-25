@@ -11,5 +11,13 @@ export const getSingleArticle = id => {
     method: 'GET',
     url: `api/articles/${id}`,
     dataType: 'json'
-  })
+  });
+};
+
+export const getAuthor = id => {
+  return $.ajax({
+    method: 'GET',
+    url: `api/authors/${id}`,
+    dataType: 'json'
+  });
 };

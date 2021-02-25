@@ -3,8 +3,7 @@ import { RECEIVE_ARTICLES } from '../actions/article_actions';
 const _initialFilter = {
   latestArticleIds: [],
   trendingArticleIds: [],
-  featuredArticleId: [],
-  sections: {}
+  featuredArticleId: []
 };
 
 const filtersReducer = (state = _initialFilter, action) => {
@@ -12,7 +11,7 @@ const filtersReducer = (state = _initialFilter, action) => {
 
   switch (action.type) {
     case RECEIVE_ARTICLES:
-      return Object.assign({}, state, action.payload.articleFilter);
+      return Object.assign({}, state, action.articleFilter);
     default:
       return state;
   }
