@@ -4,9 +4,7 @@ class Api::ArticlesController < ApplicationController
       if @filter == "latest"
         @articles = Article.get_latest(params[:after])
       elsif @filter == "featured"
-        @articles = [Article.last]
-        # insert after featured column added
-        # @articles = Article.where(featured: true).eager_load(:author, :photo)
+        @articles = Article.get_featured_article
       elsif @filter == "trending"
         @articles = Article.order(created_at: :asc).limit(5).eager_load(:photo)
       elsif %w(us sports politics business).include?(@filter)

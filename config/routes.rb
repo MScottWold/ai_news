@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "static_pages#root"
   
   namespace :admin do
-    resources :articles, only: [:new, :edit, :show, :create, :update, :destroy]
+    resources :articles, only: [:new, :edit, :show, :index, :create, :update, :destroy]
     resource :session, only: [:new, :create, :destroy]
   end
 

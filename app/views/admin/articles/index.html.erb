@@ -1,0 +1,15 @@
+<br>
+<h1>All Articles</h1>
+<br>
+<ul>
+  <% @articles.each do |article| %>
+  <li>
+    <%= article.section %> - 
+    <a href="<%= admin_article_url(article) %>"><%= article.featured ? "FEATURED: " : "" %><%= article.title %></a>
+     -- <a href="<%= edit_admin_article_url(article) %>">Edit Article</a>
+  </li>
+  <% end %>
+</ul>
+<br>
+<br>
+<a href="<%= new_admin_article_url %>">New Article</a>
