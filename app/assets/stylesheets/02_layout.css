@@ -108,6 +108,15 @@ footer ul li {
 
 /* Article Lists */
 
+.latest-articles > a {
+  color: blue;
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
+  display: block;
+  text-align: end;
+}
+
 #sections {
   display: flex;
   padding: 5px 0;

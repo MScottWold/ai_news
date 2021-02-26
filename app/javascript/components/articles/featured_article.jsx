@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticlePhoto from '../photos/article_photo';
+import { sectionNames } from '../../util/ui_util';
 
 class FeaturedArticle extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class FeaturedArticle extends React.Component {
       createdAt
     } = article;
 
-    const publishDate = new Date(createdAt).toDateString();
+    const publishDate = new Date(createdAt).toUTCString();
 
     const paragraphs = body
       .split('\r\n\r\n')
@@ -34,10 +35,11 @@ class FeaturedArticle extends React.Component {
       <article>
         <h2>Featured</h2>
         <ArticlePhoto photo={photo} />
-        <div className={`${section}-tag`}>{section}</div>
+        <div className={`${section}-tag`}>{sectionNames[section]}</div>
         <h1 className="article-headline">{title}</h1>
         <div className="byline">
-          by <a href={`#/authors/${authorId}`} className="author-name">{authorName}</a>; {publishDate}
+          <div>By <a href={`#/authors/${authorId}`} className="author-name">{authorName}</a></div>
+          <div>{publishDate}</div>
         </div>
         {paragraphs}
       </article>      

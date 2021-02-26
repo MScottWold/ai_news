@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticlePhoto from '../photos/article_photo';
+import { sectionNames } from '../../util/ui_util';
 
 class Article extends React.Component {
   constructor(props) {
@@ -28,13 +29,15 @@ class Article extends React.Component {
       .split('\r\n\r\n')
       .map((para, idx) => <p key={idx} >{para}</p>)
 
-    const publishDate = new Date(article.createdAt).toDateString();
+    const publishDate = new Date(article.createdAt).toUTCString();
 
     return (
       <article className="article">
+        <div>{sectionNames[article.section]}</div>
         <h1 className="article-headline">{article.title}</h1>
         <div className="byline">
-          by <a href={`#/authors/${article.authorId}`} className="author-name">{article.authorName}</a>; {publishDate}
+          <div>By <a href={`#/authors/${article.authorId}`} className="author-name">{article.authorName}</a></div>
+          <div>{publishDate}</div>
         </div>
         <ArticlePhoto photo={article.photo} />
         {paragraphs}

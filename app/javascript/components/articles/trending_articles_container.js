@@ -5,7 +5,8 @@ import TrendingArticles from './trending_articles';
 
 
 const mapStateToProps = state => {
-  const articleIds = state.ui.filters.trendingArticleIds;
+  const articleIds = state.ui.filters.trending ? state.ui.filters.trending : [];
+
   return {
     articles: selectArticles(state.entities, articleIds)
   };

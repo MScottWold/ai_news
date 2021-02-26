@@ -1,6 +1,7 @@
 import React from 'react';
+import { sectionNames } from '../../util/ui_util';
 
-class LatestArticleItem extends React.Component {
+class ArticleListItem extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +13,7 @@ class LatestArticleItem extends React.Component {
       <div className="latest-art">
         <img className="small-photo" src={photo.photoUrl} alt={photo.altText} />
         <ul>
-          <li className={`${section}-tag`}>{section}</li>
+          <li className={`${section}-tag`}>{sectionNames[section]}</li>
           <li><a className="list-headline" href={`#/articles/${id}`}>{title}</a></li>
           {/* <li><p>{article.createAt}</p></li> */}
         </ul>
@@ -21,4 +22,4 @@ class LatestArticleItem extends React.Component {
   }
 };
 
-export default LatestArticleItem;
+export default ArticleListItem;

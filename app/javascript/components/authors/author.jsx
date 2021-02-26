@@ -1,5 +1,5 @@
 import React from 'react';
-import LatestArticleItem from '../articles/latest_article_item';
+import ArticleListItem from '../articles/article_list_item';
 
 class Author extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Author extends React.Component {
     }
 
     const articleList = articles.map(article => (
-      <LatestArticleItem 
+      <ArticleListItem 
       key={article.id}
       photo={article.photo}
       section={article.section}

@@ -10,5 +10,5 @@ export const receiveAuthor = payload => ({
 
 export const getAuthor = (id) => (dispatch) => {
   return API.getAuthor(id)
-    .then(author => dispatch(receiveAuthor(author)));
+    .then(payload => dispatch(receiveAuthor(payload)));
 };
