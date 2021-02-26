@@ -1,5 +1,8 @@
 <h1><%= @article.title %></h1>
+<p>Featured: <%= @article.featured ? "yes" : "no" %></p>
 <% @article.body.split("\r\n\r\n").each do |paragraph| %>
   <p><%= paragraph %></p>
 <% end %>
 <a href="<%= edit_admin_article_url(@article.id) %>">Edit Article</a>
+<br>
+<a href="<%= admin_articles_url %>">Back to Index</a>

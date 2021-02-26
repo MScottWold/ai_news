@@ -2,6 +2,12 @@ class Admin::ArticlesController < ApplicationController
   layout 'admin' 
   before_action :validate_login
 
+  def index
+    @articles = Article.order(section: :asc, id: :desc)
+
+    render :index
+  end
+
   def new
     @photos = Photo.select(:id, :title)
     @authors = Author.select(:id, :name, :education)
@@ -14,7 +20,7 @@ class Admin::ArticlesController < ApplicationController
     @article = Article.new(article_params)
     # fail
     if @article.save
-      redirect_to new_admin_article_url
+      redirect_to admin_article_url(@article)
     else
       render json: @article.errors.full_messages
     end
@@ -41,7 +47,7 @@ class Admin::ArticlesController < ApplicationController
     @article = Article.find_by(id: self.params[:id])
 
     if @article.update(article_params)
-      redirect_to new_admin_article_url
+      redirect_to admin_article_url(@article)
     else
       render json: @article.errors.full_messages
     end
@@ -50,6 +56,6 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def article_params
-    self.params.require(:article).permit(:title, :body, :section, :author_id, :photo_id)
+    self.params.require(:article).permit(:title, :body, :section, :author_id, :photo_id, :featured)
   end
 end

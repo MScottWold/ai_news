@@ -10,11 +10,13 @@
 #  photo_id   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  featured   :boolean          default(FALSE)
 #
 class Article < ApplicationRecord
   validates :title, :body, :author_id, :photo_id, presence: true
   validates :section, presence: true, inclusion: { in: %w(us politics sports business),
     message: "Can only be in the following sections: us politics sports business"}
+  validates :featured, inclusion: { in: [true, false] }
 
   belongs_to :author,
     class_name: :Author,
@@ -53,5 +55,13 @@ class Article < ApplicationRecord
     articles.order(created_at: :desc)
       .limit(BUCKET_SIZE)
       .includes(:photo, :author)
+  end
+
+  def self.get_featured_article
+    Article
+      .where(featured: true)
+      .order(id: :desc)
+      .limit(1)
+      .eager_load(:author, :photo)
   end
 end

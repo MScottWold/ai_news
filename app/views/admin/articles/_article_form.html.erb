@@ -40,6 +40,25 @@
     </select>
   </label>
   <br>
+  <label>Featured: 
+    <label>
+      <input 
+        type="radio" 
+        name="article[featured]" 
+        value="true" 
+        <%= article.featured ? "checked" : "" %>>
+      yes
+    </label>
+    <label>
+      <input 
+        type="radio" 
+        name="article[featured]" 
+        value="false" 
+        <%= article.featured ? "" : "checked" %>>
+      no
+    </label>
+  </label>
+  <br>
   <label>Article: 
     <textarea name="article[body]" id="ai-generated-article" cols="80" rows="25">
       <%= article.body %>
