@@ -1,23 +1,19 @@
 class Api::ArticlesController < ApplicationController
   def index
-    if filter = params[:filter]
-      if filter == "latest"
-        @articles = Article.order(created_at: :desc).limit(10).includes(:photo, :author)
-        @filter_name = "latestArticleIds"
-      elsif filter == "featured"
+    if @filter = params[:filter]
+      if @filter == "latest"
+        @articles = Article.get_latest(params[:after])
+      elsif @filter == "featured"
         @articles = [Article.last]
-        @filter_name = "featuredArticleId"
-      elsif filter == "trending"
-        @articles = Article.order(created_at: :asc).limit(5).includes(:photo, :author)
-        @filter_name = "trendingArticleIds"
-      elsif filter == "section"
-        section = params[:name]
-        @articles = Article.where(section: section).order(created_at: :desc).includes(:photo, :author)
-        @filter_name = "#{section}ArticleIds"
+        # insert after featured column added
+        # @articles = Article.where(featured: true).eager_load(:author, :photo)
+      elsif @filter == "trending"
+        @articles = Article.order(created_at: :asc).limit(5).eager_load(:photo)
+      elsif %w(us sports politics business).include?(@filter)
+        @articles = Article.get_section(@filter, params[:after])
       end
     else
       @articles = Article.order(created_at: :desc).limit(10).includes(:photo, :author)
-      @filter_name = :none
     end
 
     render :index

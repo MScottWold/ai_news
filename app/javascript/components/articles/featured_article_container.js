@@ -4,7 +4,7 @@ import { selectArticles } from '../../reducers/selectors';
 import FeaturedArticle from './featured_article';
 
 const mapStateToProps = state => {
-  const articleId = state.ui.filters.featuredArticleId;
+  const articleId = state.ui.filters.featured ? state.ui.filters.featured : [];
 
   return {
     article: selectArticles(state.entities, articleId)

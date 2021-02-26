@@ -4,7 +4,8 @@ import { getArticles } from '../../actions/article_actions';
 import LatestArticles from './latest_articles';
 
 const mapStateToProps = state => {
-  const articleIds = state.ui.filters.latestArticleIds;
+  let articleIds = state.ui.filters.latest 
+    ? state.ui.filters.latest.slice(0, 5) : [];
 
   return {
     articles: selectArticles(state.entities, articleIds)

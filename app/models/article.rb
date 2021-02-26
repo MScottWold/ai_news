@@ -26,4 +26,32 @@ class Article < ApplicationRecord
     foreign_key: :photo_id,
     primary_key: :id
 
+  # for pagination
+  BUCKET_SIZE = 5
+
+  def self.get_latest(after = nil)
+    if after
+      article = Article
+        .where('articles.id < ?', after)
+    else
+      article = Article
+    end
+
+    article.order(created_at: :desc)
+      .limit(BUCKET_SIZE)
+      .includes(:photo, :author)
+  end
+
+  def self.get_section(section, after = nil)
+    if after
+      articles = Article
+        .where("articles.section = ? AND articles.id < ?", section, after)
+    else
+      articles = Article
+        .where(section: section)
+    end
+    articles.order(created_at: :desc)
+      .limit(BUCKET_SIZE)
+      .includes(:photo, :author)
+  end
 end

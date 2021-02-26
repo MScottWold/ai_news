@@ -27,7 +27,7 @@ ActiveRecord::Base.transaction do
     
   Author.create(
     name: 'Rey McSriff',
-    bio: 'Willie covers all thing business and tech.',
+    bio: 'Rey covers all thing business and tech.',
     education: 'M.Bs.A, Pennbrook University'
   )
 
