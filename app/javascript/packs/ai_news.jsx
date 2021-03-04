@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
     store = configureStore({
-      session: {
-        id: window.currentUser.id
+      ui: {
+        currentUser: window.currentUser
       }
     });
   } else {

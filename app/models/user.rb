@@ -27,6 +27,16 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :favorites,
+    class_name: :Favorite,
+    foreign_key: :user_id,
+    primary_key: :id,
+    dependent: :destroy
+
+  has_many :favorite_articles,
+    through: :favorites,
+    source: :article
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64
   end

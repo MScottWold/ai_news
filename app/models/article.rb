@@ -28,8 +28,33 @@ class Article < ApplicationRecord
     foreign_key: :photo_id,
     primary_key: :id
 
+  has_many :favorites,
+    class_name: :Favorite,
+    foreign_key: :article_id,
+    primary_key: :id,
+    dependent: :destroy
+
+  has_many :readers,
+    through: :favorites,
+    source: :user
+
   # for pagination
   BUCKET_SIZE = 5
+
+  def self.get_user_favorites(user, after = nil)
+    if after
+      article = user
+        .favorite_articles
+        .where('articles.id < ?', after)
+    else
+      article = user
+        .favorite_articles
+    end
+
+    article.order(created_at: :desc)
+      .limit(BUCKET_SIZE)
+      .eager_load(:photo, :author)
+  end
 
   def self.get_latest(after = nil)
     if after
@@ -41,7 +66,7 @@ class Article < ApplicationRecord
 
     article.order(created_at: :desc)
       .limit(BUCKET_SIZE)
-      .includes(:photo, :author)
+      .eager_load(:photo, :author)
   end
 
   def self.get_section(section, after = nil)
@@ -63,5 +88,29 @@ class Article < ApplicationRecord
       .order(id: :desc)
       .limit(1)
       .eager_load(:author, :photo)
+  end
+
+  def self.with_user_favorite(user_id, article_id)
+    query = <<-SQL
+      SELECT
+        articles.*,
+        CASE
+          WHEN b.article_id IS NULL THEN false
+          ELSE true
+        END AS favorited
+      FROM
+        articles
+      LEFT OUTER JOIN (
+        SELECT
+          favorites.*
+        FROM
+          favorites
+        WHERE
+          favorites.user_id = ?
+      ) AS b ON articles.id = b.article_id 
+      WHERE
+        articles.id = ?
+    SQL
+    Article.find_by_sql([query, user_id, article_id])[0]
   end
 end

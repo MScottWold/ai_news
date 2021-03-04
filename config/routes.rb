@@ -8,7 +8,17 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    resources :articles, only: [:index, :show]
+    resources :articles, only: [:index, :show] do
+      collection do
+        get 'favorites'
+      end
+      member do 
+        post 'favorite'
+        post 'unfavorite'
+      end
+    end
     resources :authors, only: [:show]
+    resources :users, only: [:create, :destroy]
+    resource :session, only: [:create, :destroy]
   end
 end
