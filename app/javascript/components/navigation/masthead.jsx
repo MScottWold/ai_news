@@ -1,9 +1,11 @@
 import React from 'react';
+import GreetingContainer from './greeting_container';
 import { NavLink } from 'react-router-dom';
 
-const Navigation = () => {
+const Masthead = () => {
   return (
     <header>
+      <GreetingContainer />
       <h1 
         id="logo"
         onClick={() => location.hash = '/'}>
@@ -19,4 +21,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Masthead;

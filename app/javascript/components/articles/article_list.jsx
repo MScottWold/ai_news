@@ -8,31 +8,30 @@ class ArticleList extends React.Component {
     super(props);
     this.state = { haveAllArticles: false };
     this.handleClick = this.handleClick.bind(this);
+    this.additionalArticleCheck = this.additionalArticleCheck.bind(this);
+  }
+
+  additionalArticleCheck(numArticles) {
+    if (numArticles < BUCKET_SIZE) {
+      this.setState({
+        haveAllArticles: true
+      })
+    }
   }
 
   handleClick() {
     const { articleIds, getMoreArticles } = this.props;
     const lastId = articleIds[articleIds.length - 1];
 
-    getMoreArticles(lastId).then(ids => {
-      if (ids.length < BUCKET_SIZE) {
-        this.setState({
-          haveAllArticles: true
-        })
-      }
-    });
+    getMoreArticles(lastId)
+      .then(ids => this.additionalArticleCheck(ids.length));
   }
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    if (this.props.articleIds.length < BUCKET_SIZE) {
-      this.props.getInitialArticles().then(ids => {
-        if (ids.length < BUCKET_SIZE) {
-          this.setState({
-            haveAllArticles: true
-          })
-        }
-      });
+    if (this.props.articleIds.length === 0) {
+      this.props.getInitialArticles()
+        .then(ids => this.additionalArticleCheck(ids.length));
     }
   }
 
@@ -57,7 +56,7 @@ class ArticleList extends React.Component {
     ));
 
     const getMoreArticles = this.state.haveAllArticles ? (
-        null
+        <p>End of Archive</p>
       ) : (
         <button onClick={this.handleClick}>Load more articles</button>
       );

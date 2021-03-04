@@ -1,6 +1,6 @@
 class Admin::ArticlesController < ApplicationController
   layout 'admin' 
-  before_action :validate_login
+  before_action :validate_admin_login
 
   def index
     @articles = Article.order(section: :asc, id: :desc)

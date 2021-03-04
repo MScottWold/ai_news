@@ -8,6 +8,11 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <% if logged_in? %>
+      <script>
+        window.currentUser = "<%= current_user.username %>";
+      </script>
+    <% end %>
     <%= javascript_pack_tag 'application' %>
     <%= javascript_pack_tag 'ai_news' %>
   </head>

@@ -3,6 +3,7 @@
 #app {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 main {
@@ -71,6 +72,59 @@ figcaption a {
 
 /* Section-Specific Style */
 
+/* Modal */
+
+#modal-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-container {
+  width: 400px;
+  position: relative;
+  left: calc(50% - 200px);
+  top: 10%;
+}
+
+#modal-container > .error-message {
+  color: white;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+#hide-modal {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border: 3px solid gray;
+  border-radius: 15px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-family: sans-serif;
+  background-color: black;
+  cursor: pointer;
+}
+
+#session-form {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 50px;
+  width: 100%;
+  border-radius: 25px;
+  background-color: whitesmoke;
+  font-family: sans-serif;
+}
+
 /* Header & Footer */
 
 header {
@@ -80,6 +134,12 @@ header {
   align-items: center;
   background-color: black;
   color: white;
+}
+
+.greeting {
+  position: absolute;
+  align-self: flex-end;
+  margin: 25px 25px 0 0;
 }
 
 #logo {

@@ -13,7 +13,7 @@ class Admin::SessionsController < ApplicationController
       login(user)
       redirect_to new_admin_article_url
     else
-      render json: {error: 'Invalid Credentials'}, status: 401
+      render json: ['Invalid Credentials'], status: 401
     end
   end
 

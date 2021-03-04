@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  helper_method :logged_in?, :current_user
+
   def current_user
     @current_user ||= User.find_by(session_token: session[:session_token])
   end
@@ -16,7 +18,17 @@ class ApplicationController < ActionController::Base
     !!self.current_user
   end
 
-  def validate_login
-    redirect_to new_admin_session_url unless self.logged_in?
+  def require_login
+    unless logged_in?
+      render json: { error: 'must be logged in' }, status: 400 
+    end
+  end
+
+  def admin_logged_in?
+    self.current_user.admin
+  end
+
+  def validate_admin_login
+    redirect_to '/' unless self.admin_logged_in?
   end
 end
