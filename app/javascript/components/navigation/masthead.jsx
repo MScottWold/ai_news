@@ -12,10 +12,11 @@ const Masthead = () => {
         The Digital Herald
       </h1>
       <ul id="sections">
-        <li><NavLink to="/section/us" activeStyle={{ textDecoration: "underline" }}>U.S.</NavLink></li>
-        <li><NavLink to="/section/politics" activeStyle={{ textDecoration: "underline" }}>Politics</NavLink></li>
-        <li><NavLink to="/section/business" activeStyle={{ textDecoration: "underline" }}>Business</NavLink></li>
-        <li><NavLink to="/section/sports" activeStyle={{ textDecoration: "underline" }}>Sports</NavLink></li>
+        <li><NavLink to="/us" activeStyle={{ textDecoration: "underline" }}>U.S.</NavLink></li>
+        <li><NavLink to="/politics" activeStyle={{ textDecoration: "underline" }}>Politics</NavLink></li>
+        <li><NavLink to="/business" activeStyle={{ textDecoration: "underline" }}>Business</NavLink></li>
+        <li><NavLink to="/sports" activeStyle={{ textDecoration: "underline" }}>Sports</NavLink></li>
+        <li><NavLink to="/archives" activeStyle={{ textDecoration: "underline" }}>Archives</NavLink></li>
       </ul>
     </header>
   );

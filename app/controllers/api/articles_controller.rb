@@ -1,22 +1,48 @@
 class Api::ArticlesController < ApplicationController
+  before_action :protect_favorites, only: [:index]
+  before_action :simulate_loading
+
   def index
-    if @filter = params[:filter]
-      if @filter == "latest"
+    if collection = params[:collection]
+      if collection == "archives"
         @articles = Article.get_latest(params[:after])
-      elsif @filter == "featured"
+        @filter = "collection"
+      elsif collection == "featured"
         @articles = Article.get_featured_article
-      elsif @filter == "trending"
+        @filter = "featured"
+      elsif collection == "trending"
         @articles = Article.order(created_at: :asc).limit(5).eager_load(:photo)
-      elsif %w(us sports politics business).include?(@filter)
-        @articles = Article.get_section(@filter, params[:after])
-      elsif @filter == "favorites"
+        @filter = "trending"
+      elsif %w(us sports politics business).include?(collection)
+        @articles = Article.get_section(collection, params[:after])
+        @filter = "collection"
+      elsif collection == "favorites"
         @articles = Article.get_user_favorites(current_user, params[:after])
+        @filter = "collection"
       end
     else
-      @articles = Article.order(created_at: :desc).limit(10).includes(:photo, :author)
+      @filter = 'latest'
+      @articles = Article.get_latest(params[:after])
     end
 
     render :index
+  end
+
+  def author_articles
+    if last_id = params[:after]
+      @author_id = params[:id]
+      @articles = Article
+        .where(author_id: @author_id)
+        .where("articles.id < ?", last_id)
+        .order("articles.id DESC")
+        .limit(5)
+        .eager_load(:photo)
+        
+      render :author_articles
+    else
+      render json: {error: 'not found'}, status: 404
+    end
+
   end
 
   def show
@@ -57,5 +83,17 @@ class Api::ArticlesController < ApplicationController
     else
       render json: favorite.errors.full_messages, status: 422
     end
+  end
+
+  private
+
+  def protect_favorites
+    if params[:collection] == 'favorites' && !logged_in?
+      render json: { error: 'must be logged in' }, status: 400 
+    end
+  end
+
+  def simulate_loading
+    sleep(0.5)
   end
 end

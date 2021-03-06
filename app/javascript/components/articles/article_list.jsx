@@ -1,74 +1,36 @@
 import React from 'react';
-import ArticleListItem from './article_list_item';
+import { sectionNames } from '../../util/ui_util';
 
-const BUCKET_SIZE = 5;
+const ArticleList = ({ articles }) => {
+  const articleItems = articles.map(article => {
+    const { photo, section, title, id, createdAt } = article;
 
-class ArticleList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { haveAllArticles: false };
-    this.handleClick = this.handleClick.bind(this);
-    this.additionalArticleCheck = this.additionalArticleCheck.bind(this);
-  }
-
-  additionalArticleCheck(numArticles) {
-    if (numArticles < BUCKET_SIZE) {
-      this.setState({
-        haveAllArticles: true
-      })
-    }
-  }
-
-  handleClick() {
-    const { articleIds, getMoreArticles } = this.props;
-    const lastId = articleIds[articleIds.length - 1];
-
-    getMoreArticles(lastId)
-      .then(ids => this.additionalArticleCheck(ids.length));
-  }
-
-  componentDidMount() {
-    window.scrollTo(0, 0);
-    if (this.props.articleIds.length === 0) {
-      this.props.getInitialArticles()
-        .then(ids => this.additionalArticleCheck(ids.length));
-    }
-  }
-
-  render() {
-    const { sectionTitle, articles, articleIds } = this.props;
-
-    if (articleIds.length === 0) {
-      return (
-        <section className="section-archive">
-          <p>Loading...</p>
-        </section>
-      );
-    }
-
-    const articleList = articles.map(article => (
-      <ArticleListItem
-        key={article.id}
-        id={article.id}
-        section={article.section}
-        title={article.title}
-        photo={article.photo} />
-    ));
-
-    const getMoreArticles = this.state.haveAllArticles ? (
-        <p>End of Archive</p>
-      ) : (
-        <button onClick={this.handleClick}>Load more articles</button>
-      );
-      
     return (
-      <section className="section-archive">
-        <h2>{sectionTitle}</h2>
-        {articleList}
-        {getMoreArticles}
-      </section>
+      <li key={id} className="latest-art">
+        <img
+          className="small-photo"
+          src={photo.photoUrl}
+          alt={photo.altText} />
+        <ul>
+          <li className={`${section}-tag`}>
+            {sectionNames[section]}
+          </li>
+          <li>
+            <a className="list-headline" href={`#/articles/${id}`}>{title}</a>
+          </li>
+          <li>
+            {new Date(createdAt).toDateString().slice(4)}
+          </li>
+        </ul>
+      </li>
     );
-  }
-}
+  });
+
+  return (
+    <ul>
+      {articleItems}
+    </ul>
+  )
+};
 
 export default ArticleList;

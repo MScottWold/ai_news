@@ -1,6 +1,6 @@
 article_ids = []
 
-json.articles do 
+json.articles do
   @articles.each do |article|
     article_ids.push(article.id)
     json.set! article.id do
@@ -8,12 +8,5 @@ json.articles do
     end
   end
 end
-
 json.articleIds article_ids
-
-json.author do
-  json.set! @author.id do
-    json.extract! @author, :id, :name, :bio, :education
-    json.articleIds article_ids
-  end
-end
+json.authorId @author_id

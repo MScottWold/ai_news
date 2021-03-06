@@ -5,12 +5,12 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const RECEIVE_LOGIN_ERRORS = 'RECEIVE_LOGIN_ERRORS';
 
 // action creators
-export const receieveCurrentUser = username => ({
+const receieveCurrentUser = username => ({
   type: RECEIVE_CURRENT_USER,
   username
 });
 
-export const receiveLoginErrors = errors => ({
+const receiveLoginErrors = errors => ({
   type: RECEIVE_LOGIN_ERRORS,
   errors
 });

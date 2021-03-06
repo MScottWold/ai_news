@@ -4,7 +4,7 @@ import * as API from '../util/api_util';
 export const RECEIVE_AUTHOR = 'RECEIVE_AUTHOR';
 
 // action creators
-export const receiveAuthor = payload => ({
+const receiveAuthor = payload => ({
   type: RECEIVE_AUTHOR,
   author: payload.author,
   articles: payload.articles
@@ -13,5 +13,8 @@ export const receiveAuthor = payload => ({
 // action thunks
 export const getAuthor = (id) => (dispatch) => {
   return API.getAuthor(id)
-    .then(payload => dispatch(receiveAuthor(payload)));
+    .then(payload => {
+      dispatch(receiveAuthor(payload));
+      return payload.articleIds;
+    });
 };

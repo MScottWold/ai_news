@@ -1,32 +1,28 @@
 import React from 'react';
-import ArticleListItem from '../articles/article_list_item';
+import ListFeed from '../articles/list_feed';
 
 class Author extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.props.getAuthor();
   }
 
   render() {
-    const { author, articles } = this.props;
+    const { 
+      author, 
+      articles, 
+      articleIds,
+      getAuthor,
+      getMoreArticles 
+    } = this.props;
+
     if (!author) {
       return (
-        <section><h1>Loading...</h1></section>
+        <section>
+          <h2>Author Page</h2>
+          <p>Loading...</p>
+        </section>
       )
     }
-
-    const articleList = articles.map(article => (
-      <ArticleListItem 
-      key={article.id}
-      photo={article.photo}
-      section={article.section}
-      title={article.title}
-      id={article.id}/>
-    ));
 
     return (
       <section>
@@ -34,7 +30,11 @@ class Author extends React.Component {
         <p>Education: {author.education}</p>
         <p>Bio: {author.bio}</p>
         <h2>Articles from {author.name}</h2>
-        {articleList}
+        <ListFeed
+          getInitialArticles={getAuthor}
+          getMoreArticles={getMoreArticles}
+          articleIds={articleIds}
+          articles={articles} />
       </section>
     );
   }

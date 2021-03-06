@@ -3,7 +3,8 @@ import {
   RECEIVE_ADDITIONAL_ARTICLES, 
   RECEIVE_SINGLE_ARTICLE,
   FAVORITE_ARTICLE,
-  UNFAVORITE_ARTICLE 
+  UNFAVORITE_ARTICLE,
+  RECEIVE_AUTHOR_ARTICLES 
 } from '../actions/article_actions';
 import { RECEIVE_AUTHOR } from '../actions/author_actions';
 
@@ -22,6 +23,8 @@ const articlesReducer = (state = {}, action) => {
       return Object.assign({}, state, action.article);
     case RECEIVE_AUTHOR:
       return Object.assign({}, action.articles, state);
+    case RECEIVE_AUTHOR_ARTICLES:
+      return Object.assign({}, action.articles, state)
     case FAVORITE_ARTICLE: {
       const { articleId } = action;
       const article = Object.assign({}, state[articleId], { favorited: true });

@@ -2,6 +2,7 @@ import {
   RECEIVE_ARTICLES, 
   RECEIVE_ADDITIONAL_ARTICLES
 } from '../actions/article_actions';
+import { CLEAR_COLLECTION_FILTER } from '../actions/filter_actions';
 
 const filtersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -16,6 +17,8 @@ const filtersReducer = (state = {}, action) => {
       };
       return Object.assign({}, state, updatedFilter)
     }
+    case CLEAR_COLLECTION_FILTER:
+      return Object.assign({}, state, { collection: [] })
     default:
       return state;
   }

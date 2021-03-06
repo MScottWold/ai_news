@@ -22,6 +22,14 @@ export const getAuthor = id => {
   });
 };
 
+export const getAuthorArticles = (authorId, filter) => {
+  return $.ajax({
+    method: 'GET',
+    url: `api/authors/${authorId}/articles?${$.param(filter)}`,
+    dataType: 'json'
+  })
+};
+
 export const postSession = user => {
   return $.ajax({
     method: 'POST',
@@ -47,22 +55,6 @@ export const postUser = user => {
     data: user
   });
 }
-
-// export const postFavorite = articleId => {
-//   return $.ajax({
-//     method: 'POST',
-//     url: `api/articles/${articleId}/favorites`,
-//     dataType: 'json'
-//   });
-// };
-
-// export const deleteFavorite = articleId => {
-//   return $.ajax({
-//     method: 'DELETE',
-//     url: `api/articles/${articleId}/favorites`,
-//     dataType: 'json'
-//   });
-// };
 
 const changeFavoriteStatus = (articleId, favorite) => {
   return $.ajax({

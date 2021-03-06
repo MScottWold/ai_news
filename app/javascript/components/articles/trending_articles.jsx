@@ -1,10 +1,6 @@
 import React from 'react';
 
 class TrendingArticles extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getTrendingArticles();
   }
@@ -12,6 +8,14 @@ class TrendingArticles extends React.Component {
   render() {
     const { articles } = this.props;
 
+    if (articles.length === 0) {
+      return (
+        <aside className="trending-articles">
+          <h2>Trending</h2>
+          <p>Loading</p>
+        </aside>
+      );
+    }
 
     const trendingArticles = articles.map(article => {
       return (

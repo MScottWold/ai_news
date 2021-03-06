@@ -3,16 +3,24 @@ import ArticlePhoto from '../photos/article_photo';
 import { sectionNames } from '../../util/ui_util';
 
 class FeaturedArticle extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    const { article } = this.props;
+    
+    if (!article || !article.body) {
+      this.props.getFeaturedArticle();
+    }
   }
 
   render() {
     const article = this.props.article[0];
 
     if (!article || !article.body) {
-      this.props.getFeaturedArticle();
-      return (<article><p>Loading...</p></article>);
+      return (
+        <article>
+          <h2>Featured</h2>
+          <p>Loading...</p>
+        </article>
+      );
     }
 
     const { 
