@@ -2,5 +2,7 @@ export const sectionNames = {
   us: 'U.S.',
   politics: 'Politics',
   sports: 'Sports',
-  business: 'Business'
+  business: 'Business',
+  archives: 'Archived',
+  favorites: 'Favorite'
 };

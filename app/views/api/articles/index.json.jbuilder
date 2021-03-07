@@ -16,3 +16,4 @@ end
 json.set! :filter do
   json.set! @filter, article_ids
 end
+# json.byId article_ids

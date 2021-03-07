@@ -1,11 +1,7 @@
 import React from 'react';
-import ArticleListItem from './article_list_item';
+import ArticleList from './article_list';
 
 class LatestArticles extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     if (this.props.articles.length === 0) {
       this.props.getLatestArticles();
@@ -15,19 +11,15 @@ class LatestArticles extends React.Component {
   render() {
     const { articles } = this.props;
 
-    const latestArticles = articles.map(article => (
-      <ArticleListItem 
-        key={article.id}
-        id={article.id}
-        section={article.section}
-        title={article.title}
-        photo={article.photo} />
-    ));
-
-    return (
+    return articles.length === 0 ? (
       <aside className="latest-articles">
         <h2>Latest</h2>
-        {latestArticles}
+        <p>Loading...</p>
+      </aside>
+    ) : (
+      <aside className="latest-articles">
+        <h2>Latest</h2>
+        <ArticleList articles={articles} />
         <a href="#/archives">See more...</a>
       </aside>
     );

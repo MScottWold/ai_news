@@ -51,7 +51,7 @@ class Article < ApplicationRecord
         .favorite_articles
     end
 
-    article.order(created_at: :desc)
+    article.order(id: :desc)
       .limit(BUCKET_SIZE)
       .eager_load(:photo, :author)
   end

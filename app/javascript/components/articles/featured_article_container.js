@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getFeaturedArticle: () => dispatch(getArticles({ filter: 'featured' }))
+  getFeaturedArticle: () => dispatch(getArticles({ collection: 'featured' }))
 });
 
 const FeaturedArticleContainer = connect(

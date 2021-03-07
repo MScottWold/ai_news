@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { getAuthor } from '../../actions/author_actions';
+import { getAuthorArticles } from '../../actions/article_actions';
 import { selectAuthor, selectArticles } from '../../reducers/selectors';
 import Author from './author';
 
@@ -10,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     author,
+    articleIds: author.articleIds,
     articles
   };
 };
@@ -18,7 +20,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const authorId = ownProps.match.params.authorId;
 
   return {
-    getAuthor: () => dispatch(getAuthor(authorId))
+    getAuthor: () => dispatch(getAuthor(authorId)),
+    getMoreArticles: (id) => dispatch(getAuthorArticles(authorId, { after: id }))
   };
 };
 
