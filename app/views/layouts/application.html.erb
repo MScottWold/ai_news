@@ -7,7 +7,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- for dev purposes when there's no wifi -->
+    <script src="/packs/jquery-3.6.0.min.js"></script>
+    <!-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    -->
+    <!-- end of comment -->
     <% if logged_in? %>
       <script>
         window.currentUser = "<%= current_user.username %>";

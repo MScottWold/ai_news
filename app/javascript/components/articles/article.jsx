@@ -52,9 +52,11 @@ class Article extends React.Component {
     const publishDate = new Date(article.createdAt).toUTCString();
 
     const favoriteButton = loggedIn ? (
-      <button onClick={this.toggleFavoriteStatus}>
-        {article.favorited ? "unfavorite" : "favorite"}
-      </button>
+      <div 
+        className={`star${article.favorited ? "-favorite" : ""}`}
+        onClick={this.toggleFavoriteStatus}>
+        {/* {article.favorited ? "unfavorite" : "favorite"} */}
+      </div>
     ) : (
         null
     );
@@ -62,8 +64,10 @@ class Article extends React.Component {
     return (
       <article className="article">
         <div>{sectionNames[article.section]}</div>
-        <h1 className="article-headline">{article.title}</h1>
-        {favoriteButton}
+        <h1 className="article-headline">
+          {favoriteButton}
+          {article.title}
+        </h1>
         <div className="byline">
           <div>By <a href={`#/authors/${article.authorId}`} className="author-name">{article.authorName}</a></div>
           <div>{publishDate}</div>

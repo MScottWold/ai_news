@@ -72,11 +72,13 @@ export const getAuthorArticles = (authorId, filter) => dispatch => {
 };
 
 export const favoriteArticle = articleId => dispatch => {
+  dispatch(receiveFavoriteArticleId(articleId))
   return API.postFavorite(articleId)
-    .then(payload => dispatch(receiveFavoriteArticleId(payload)));
+    .then(null, () => dispatch(receiveUnfavoriteArticleId(articleId)));
 };
 
 export const unfavoriteArticle = articleId => dispatch => {
+  dispatch(receiveUnfavoriteArticleId(articleId))
   return API.deleteFavorite(articleId)
-    .then(payload => dispatch(receiveUnfavoriteArticleId(payload)));
+    .then(null, () => dispatch(receiveFavoriteArticleId(articleId)));
 }
