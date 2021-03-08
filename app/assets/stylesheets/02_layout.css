@@ -237,6 +237,31 @@ footer ul li {
   margin-bottom: 20px;
 }
 
+/* favorite button */
+
+[class^="star"] {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("/assets/favorite.svg");
+  background-repeat: no-repeat;
+  background-size: 40px 80px;
+  background-position: 0 0;
+}
+
+[class^="star"]:hover {
+  background-color: hsla(225, 100%, 50%, 0.1);
+  background-image: url("/assets/favorite.svg");
+  cursor: pointer;
+}
+
+[class$="favorite"] {
+  background-position: 0 -40px;
+}
+
 .list-headline {
   font-weight: bold;
   text-decoration: underline;
