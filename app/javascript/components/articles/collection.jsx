@@ -1,5 +1,5 @@
 import React from 'react';
-import ListFeed from './list_feed';
+import ArticleFeed from './article_feed';
 
 class Section extends React.Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ class Section extends React.Component {
     return (
       <section className="section-archive">
         <h2>{sectionTitle}</h2>
-        <ListFeed 
+        <ArticleFeed 
         getInitialArticles={getInitialArticles}
         getMoreArticles={getMoreArticles}
         articleIds={articleIds}
