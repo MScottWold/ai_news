@@ -14,7 +14,7 @@ class LatestArticles extends React.Component {
     return articles.length === 0 ? (
       <aside className="latest-articles">
         <h2>Latest</h2>
-        <p>Loading...</p>
+        <div className="loading-spinner"></div>
       </aside>
     ) : (
       <aside className="latest-articles">

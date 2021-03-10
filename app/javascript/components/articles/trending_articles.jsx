@@ -12,7 +12,7 @@ class TrendingArticles extends React.Component {
       return (
         <aside className="trending-articles">
           <h2>Trending</h2>
-          <p>Loading</p>
+          <div className="loading-spinner"></div>
         </aside>
       );
     }
