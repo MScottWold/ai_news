@@ -338,4 +338,25 @@ li[class^="business"] {
   background-color: khaki;
 }
 
+/* loading spinner */
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  margin: 10px auto;
+  border-radius: 50%;
+  border: 5px solid gray;
+  border-top: 5px solid rgb(76, 76, 255) ;
+  background-color: transparent;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
 
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

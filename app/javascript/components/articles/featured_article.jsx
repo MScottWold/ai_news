@@ -18,7 +18,7 @@ class FeaturedArticle extends React.Component {
       return (
         <article>
           <h2>Featured</h2>
-          <p>Loading...</p>
+          <div className="loading-spinner"></div>
         </article>
       );
     }

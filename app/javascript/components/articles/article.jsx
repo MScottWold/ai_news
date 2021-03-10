@@ -44,7 +44,7 @@ class Article extends React.Component {
     if (!article || !article.body) {
       return (
         <article className="article">
-          <p>Loading...</p>
+          <div className="loading-spinner"></div>
         </article>
       );
     }

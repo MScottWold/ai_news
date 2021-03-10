@@ -19,7 +19,7 @@ class Author extends React.Component {
       return (
         <section>
           <h2>Author Page</h2>
-          <p>Loading...</p>
+          <div className="loading-spinner"></div>
         </section>
       )
     }

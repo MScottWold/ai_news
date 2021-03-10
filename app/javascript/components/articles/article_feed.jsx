@@ -6,7 +6,8 @@ class ArticleFeed extends React.Component {
     super(props);
     this.state = { 
       hasAllArticles: false,
-      loading: true 
+      loading: true,
+      loadingMoreArticles: false 
     };
     this.bucketSize = 5;
     this.handleClick = this.handleClick.bind(this);
@@ -17,27 +18,25 @@ class ArticleFeed extends React.Component {
     if (articleIds.length < this.bucketSize) {
       this.setState({ 
         hasAllArticles: true,
-        loading: false
+        loading: false,
+        loadingMoreArticles: false
       });
     } else {
       this.setState({
-        loading: false
+        loading: false,
+        loadingMoreArticles: false
       });
     }
   }
 
-  handleClick(e) {
-    const button = e.currentTarget;
-    button.disabled = true;
+  handleClick() {
+    this.setState({ loadingMoreArticles: true });
 
     const { articleIds, getMoreArticles } = this.props;
     const lastId = articleIds[articleIds.length - 1];
 
     getMoreArticles(lastId)
-      .then(ids => {
-        button.disabled = false;
-        this.additionalArticleCheck(ids);
-      });
+      .then(this.additionalArticleCheck);
   }
 
   componentDidMount() {
@@ -47,9 +46,10 @@ class ArticleFeed extends React.Component {
 
   render() {
     const { articles } = this.props;
+    const loadingSpinner = <div className="loading-spinner"></div>;
 
     if (this.state.loading) {
-      return <p>Loading...</p>;
+      return loadingSpinner;
     }
 
     const getMoreArticlesButton = this.state.hasAllArticles ? (
@@ -61,7 +61,7 @@ class ArticleFeed extends React.Component {
     return (
       <div>
         <ArticleList articles={articles} />
-        {getMoreArticlesButton}
+        {this.state.loadingMoreArticles ? loadingSpinner : getMoreArticlesButton}
       </div>
     );
   }

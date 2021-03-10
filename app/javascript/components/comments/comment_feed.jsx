@@ -6,7 +6,9 @@ class CommentFeed extends React.Component {
     super(props);
     this.state = { 
       hasAllComments: false,
-      loading: true
+      loadingAll: true,
+      loadingNewer: false,
+      loadingOlder: false
      }
     this.bucketSize = 10;
     this.additionalCommentCheck = this.additionalCommentCheck.bind(this);
@@ -16,11 +18,14 @@ class CommentFeed extends React.Component {
     if (comments.length < this.bucketSize) {
       this.setState({ 
         hasAllComments: true,
-        loading: false
+        loadingAll: false,
+        loadingNewer: false,
+        loadingOlder: false
       });
     } else {
       this.setState({
-        loading: false
+        loadingAll: false,
+        loadingOlder: false
       });
     }
   }
@@ -34,14 +39,9 @@ class CommentFeed extends React.Component {
     const lastId = comments[comments.length - 1].id;
 
     return (e) => {
-      e.preventDefault();
-      const button = e.currentTarget;
-      button.disabled = true;
+      this.setState({ loadingOlder: true })
       this.props.getOlderComments(lastId)
-        .then(comments => {
-          this.additionalCommentCheck(comments);
-          button.disabled = false;
-        });
+        .then(this.additionalCommentCheck);
     };
   }
 
@@ -49,19 +49,19 @@ class CommentFeed extends React.Component {
     const firstId = comments[0] ? comments[0].id : 0;
 
     return (e) => {
-      const button = e.currentTarget;
-      button.disabled = true;
+      this.setState({ loadingNewer: true })
       e.preventDefault();
       this.props.getNewerComments(firstId)
-        .then(() => button.disabled = false);
+        .then(() => this.setState({ loadingNewer: false }));
     };
   }
 
   render() {
     const { comments } = this.props;
+    const loadingSpinner = <div className="loading-spinner"></div>;
 
-    if (this.state.loading) {
-      return <p>Loading...</p>
+    if (this.state.loadingAll) {
+      return loadingSpinner;
     }
 
     const olderCommentsButton = this.state.hasAllComments ? (
@@ -74,11 +74,15 @@ class CommentFeed extends React.Component {
 
     return (
       <div>
-        <button onClick={this.fetchNewerComments(comments)}>
-          Refresh Comments
-        </button>
+        {this.state.loadingNewer ? (
+            loadingSpinner
+          ) : (
+            <button onClick={this.fetchNewerComments(comments)}>
+              Refresh Comments
+            </button>
+        )}
         <CommentList comments={comments} />
-        {olderCommentsButton}
+        {this.state.loadingOlder ? loadingSpinner : olderCommentsButton}
       </div>
     );
   };
