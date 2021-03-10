@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :articles, only: [:index, :show] do
+      resources :comments, only: [:index, :create]
       member do 
         post 'favorite'
         post 'unfavorite'

@@ -38,6 +38,12 @@ class Article < ApplicationRecord
     through: :favorites,
     source: :user
 
+  has_many :comments,
+    class_name: :Comment,
+    foreign_key: :article_id,
+    primary_key: :id,
+    dependent: :destroy
+
   # for pagination
   BUCKET_SIZE = 5
 

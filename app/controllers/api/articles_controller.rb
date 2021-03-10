@@ -92,8 +92,4 @@ class Api::ArticlesController < ApplicationController
       render json: { error: 'must be logged in' }, status: 400 
     end
   end
-
-  def simulate_loading
-    sleep(0.5)
-  end
 end

@@ -71,3 +71,22 @@ export const postFavorite = articleId => {
 export const deleteFavorite = articleId => {
   return changeFavoriteStatus(articleId, 'unfavorite');
 };
+
+export const postComment = formComment => {
+  console.log(formComment);
+
+  return $.ajax({
+    url: `api/articles/${formComment.articleId}/comments`,
+    method: 'POST',
+    dataType: 'json',
+    data: { comment: formComment }
+  });
+};
+
+export const getComments = (articleId, filter) => {
+  return $.ajax({
+    url: `api/articles/${articleId}/comments?${$.param(filter)}`,
+    method: 'GET',
+    dataType: 'json'
+  });
+};

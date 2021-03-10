@@ -37,6 +37,12 @@ class User < ApplicationRecord
     through: :favorites,
     source: :article
 
+  has_many :comments,
+    class_name: :Comment,
+    foreign_key: :user_id,
+    primary_key: :id,
+    dependent: :destroy
+
   def self.generate_session_token
     SecureRandom.urlsafe_base64
   end

@@ -1,10 +1,13 @@
 import React from 'react';
 import ArticleList from './article_list';
 
-class ListFeed extends React.Component {
+class ArticleFeed extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasAllArticles: false };
+    this.state = { 
+      hasAllArticles: false,
+      loading: true 
+    };
     this.bucketSize = 5;
     this.handleClick = this.handleClick.bind(this);
     this.additionalArticleCheck = this.additionalArticleCheck.bind(this);
@@ -12,7 +15,14 @@ class ListFeed extends React.Component {
 
   additionalArticleCheck(articleIds) {
     if (articleIds.length < this.bucketSize) {
-      this.setState({ hasAllArticles: true });
+      this.setState({ 
+        hasAllArticles: true,
+        loading: false
+      });
+    } else {
+      this.setState({
+        loading: false
+      });
     }
   }
 
@@ -38,7 +48,7 @@ class ListFeed extends React.Component {
   render() {
     const { articles } = this.props;
 
-    if (articles.length === 0) {
+    if (this.state.loading) {
       return <p>Loading...</p>;
     }
 
@@ -57,4 +67,4 @@ class ListFeed extends React.Component {
   }
 };
 
-export default ListFeed;
+export default ArticleFeed;

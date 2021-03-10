@@ -1,5 +1,5 @@
 import React from 'react';
-import ListFeed from '../articles/list_feed';
+import ArticleFeed from '../articles/article_feed';
 
 class Author extends React.Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class Author extends React.Component {
         <p>Education: {author.education}</p>
         <p>Bio: {author.bio}</p>
         <h2>Articles from {author.name}</h2>
-        <ListFeed
+        <ArticleFeed
           getInitialArticles={getAuthor}
           getMoreArticles={getMoreArticles}
           articleIds={articleIds}
