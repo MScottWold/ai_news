@@ -21,7 +21,7 @@ aside {
   flex: 1 1 25%;
 }
 
-article {
+article, .front-page {
   flex: 2 1 50%;
   border-left: 1px solid gray;
   border-right: 1px solid gray;
@@ -213,6 +213,76 @@ footer ul li {
   height: 100px;
 }
 
+/* Highlighted Articles */
+#highlighted-articles {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.highlighted-article {
+  position: relative;
+  padding: 20px 10px;
+  width: 33%;
+}
+
+.highlighted-article > a {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.highlighted-article > p {
+  margin-top: 3px 0;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(95, 95, 95);
+}
+
+.highlighted-article:hover,
+.latest-art:hover {
+  background-color: rgba(136, 136, 136, 0.1);
+}
+
+.highlighted-article:nth-of-type(4),
+.highlighted-article:nth-of-type(5),
+.highlighted-article:nth-of-type(6) {
+  border-top: 1px solid gray;
+}
+
+
+.highlighted-article:nth-of-type(1)::before,
+.highlighted-article:nth-of-type(2)::before,
+.highlighted-article:nth-of-type(4)::before,
+.highlighted-article:nth-of-type(5)::before {
+  content: "";
+  display: block;
+  height: 90%;
+  border-right: 1px solid gray;
+  position: absolute;
+  right: 0;
+  top: 5%;
+}
+
+
+.highlighted-article:nth-last-of-type(1),
+.highlighted-article:nth-last-of-type(2),
+.highlighted-article:nth-last-of-type(3),
+.highlighted-article:nth-last-of-type(4) {
+  border-top: 1px solid gray;
+  border-bottom: none;
+  border-right: none;
+  width: 100%;
+}
+
+/* Featured Article */
+#featured-article {
+  border-bottom: 1px solid gray;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
 /* Trending Articles */
 
 .trending-articles > div {

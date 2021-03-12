@@ -13,9 +13,6 @@ const articlesReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_ARTICLES:
-      if (action.filter.featured) {
-        return Object.assign({}, state, action.articles)
-      }
       return Object.assign({}, action.articles, state);
     case RECEIVE_ADDITIONAL_ARTICLES:
       return Object.assign({}, action.articles, state);

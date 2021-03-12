@@ -5,7 +5,7 @@ import { ProtectedRoute } from '../util/route_util';
 import Footer from '../components/navigation/footer';
 import Masthead from '../components/navigation/masthead';
 import LatestArticlesContainer from './articles/latest_articles_container';
-import FeaturedArticleContainer from './articles/featured_article_container';
+import FrontPageContainer from './articles/front_page_container';
 import TrendingArticlesContainer from './articles/trending_articles_container';
 import ArticleContainer from './articles/article_container';
 import AuthorContainer from './authors/author_container';
@@ -22,6 +22,9 @@ class App extends React.Component {
       <div id="app">
         <Masthead />
         <main>
+          <Route exact path={["/", "/articles/:articleId"]} component={LatestArticlesContainer} />
+          <Route exact path="/" component={FrontPageContainer} />
+          <Route exact path="/articles/:articleId" component={ArticleContainer} />
           <Route path={"/us"}  component={CollectionContainer} />
           <Route path={"/politics"}  component={CollectionContainer} />
           <Route path={"/business"}  component={CollectionContainer} />
@@ -30,11 +33,8 @@ class App extends React.Component {
           <ProtectedRoute exact path="/favorites" 
             component={(props) => (
               <CollectionContainer {...props} />
-            )} />
+              )} />
           <Route path="/authors/:authorId" component={AuthorContainer} />
-          <Route exact path={["/", "/articles/:articleId"]} component={LatestArticlesContainer} />
-          <Route exact path="/" component={FeaturedArticleContainer} />
-          <Route exact path="/articles/:articleId" component={ArticleContainer} />
           <TrendingArticlesContainer />
         </main>
         <Footer />

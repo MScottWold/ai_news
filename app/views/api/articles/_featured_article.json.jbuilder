@@ -1,5 +1,8 @@
-json.partial! "api/articles/article_list_item", article: article
-json.body article.body
+json.extract! article, :id, :section, :title
+json.photo do
+  json.partial! 'api/photos/photo', photo: article.photo
+  # remove when AWS is set up
+  json.photoUrl asset_path("article_photos/#{article.section}.jpg")
+end
 json.authorName article.author.name
-json.authorId article.author.id
 json.createdAt article.created_at
