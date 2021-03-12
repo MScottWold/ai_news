@@ -3,26 +3,28 @@ class Api::ArticlesController < ApplicationController
   before_action :simulate_loading
 
   def index
-    if collection = params[:collection]
-      if collection == "archives"
-        @articles = Article.get_latest(params[:after])
-        @filter = "collection"
-      elsif collection == "featured"
-        @articles = Article.get_featured_article
-        @filter = "featured"
-      elsif collection == "trending"
-        @articles = Article.order(created_at: :asc).limit(5).eager_load(:photo)
-        @filter = "trending"
-      elsif %w(us sports politics business).include?(collection)
-        @articles = Article.get_section(collection, params[:after])
-        @filter = "collection"
-      elsif collection == "favorites"
-        @articles = Article.get_user_favorites(current_user, params[:after])
-        @filter = "collection"
-      end
-    else
-      @filter = 'latest'
+    case params[:collection]
+    when "archives"
       @articles = Article.get_latest(params[:after])
+      @filter = "collection"
+    when "latest"
+      @filter = 'latest'
+      @articles = Article.get_latest
+    when "featured"
+      @articles = Article.get_featured_article
+      @filter = "featured"
+    when "trending"
+      @articles = Article.get_trending_articles
+      @filter = "trending"
+    when "us", "sports", "politics", "business"
+      @articles = Article.get_section(params[:collection], params[:after])
+      @filter = "collection"
+    when "favorites"
+      @articles = Article.get_user_favorites(current_user, params[:after])
+      @filter = "collection"
+    else
+      @filter = 'none'
+      @articles = Article.limit(5)
     end
 
     render :index
@@ -46,12 +48,14 @@ class Api::ArticlesController < ApplicationController
   end
 
   def show
-    @article = logged_in? ? 
-      Article.with_user_favorite(current_user.id, params[:id]) : 
-      Article.find_by(id: params[:id])
-
-    # @article = Article.find_by(id: params[:id])
-
+    @article = Article.where(id: params[:id]).eager_load(:author, :photo)[0]
+    if logged_in? 
+      @favorite = Favorite.find_by(
+        article_id: params[:id], 
+        user_id: current_user.id
+      )
+    end
+    
     if @article
       render :show
     else

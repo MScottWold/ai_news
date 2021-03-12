@@ -32,8 +32,8 @@ class Article extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    this.checkForArticleBody();
     if (this.props.article.id !== prevProps.article.id) {
+      this.checkForArticleBody();
       this.setState({ showComments: false });
     }
   }

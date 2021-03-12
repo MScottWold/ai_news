@@ -96,27 +96,36 @@ class Article < ApplicationRecord
       .eager_load(:author, :photo)
   end
 
-  def self.with_user_favorite(user_id, article_id)
-    query = <<-SQL
-      SELECT
-        articles.*,
-        CASE
-          WHEN b.article_id IS NULL THEN false
-          ELSE true
-        END AS favorited
+  def self.get_trending_articles
+    favorites_join = <<-SQL
+    LEFT OUTER JOIN
+      (SELECT
+        favorites.article_id as fav_art_id, COUNT(favorites.id) as fav_num
       FROM
-        articles
-      LEFT OUTER JOIN (
-        SELECT
-          favorites.*
-        FROM
-          favorites
-        WHERE
-          favorites.user_id = ?
-      ) AS b ON articles.id = b.article_id 
-      WHERE
-        articles.id = ?
+        favorites
+      GROUP BY
+        favorites.article_id) AS fav ON fav.fav_art_id = articles.id
     SQL
-    Article.find_by_sql([query, user_id, article_id])[0]
+
+    comments_join = <<-SQL
+      LEFT OUTER JOIN
+        (SELECT
+          comments.article_id as com_art_id, COUNT(comments.id) as com_num
+        FROM
+          comments
+        GROUP BY
+          comments.article_id) AS com ON com.com_art_id = articles.id
+    SQL
+
+    Article
+      .joins(favorites_join)
+      .joins(comments_join)
+      .select([
+        "articles.*",
+        "COALESCE(fav.fav_num * 5, 0) + COALESCE(com.com_num, 0) AS trend_val"
+      ])
+      .order("trend_val DESC")
+      .limit(5)
+      .eager_load(:photo)
   end
 end

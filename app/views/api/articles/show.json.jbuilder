@@ -5,7 +5,7 @@ json.set! @article.id do
   json.authorName @article.author.name
   json.authorId @article.author.id
   if logged_in?
-    json.favorited @article.favorited
+    json.favorited !!@favorite
   else
     json.favorited false
   end
