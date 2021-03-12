@@ -345,7 +345,7 @@ li[class^="business"] {
   margin: 10px auto;
   border-radius: 50%;
   border: 5px solid gray;
-  border-top: 5px solid rgb(76, 76, 255) ;
+  border-top: 5px solid rgb(76, 76, 255);
   background-color: transparent;
   -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;

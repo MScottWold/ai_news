@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getLatestArticles: () => dispatch(getArticles({ filter: 'latest' }))
+  getLatestArticles: () => dispatch(getArticles({ collection: 'latest' }))
 });
 
 const LatestArticlesContainer = connect(

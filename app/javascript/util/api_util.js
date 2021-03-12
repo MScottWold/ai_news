@@ -73,8 +73,6 @@ export const deleteFavorite = articleId => {
 };
 
 export const postComment = formComment => {
-  console.log(formComment);
-
   return $.ajax({
     url: `api/articles/${formComment.articleId}/comments`,
     method: 'POST',
