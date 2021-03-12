@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
 
   def simulate_loading
-    sleep(1.5)
+    # sleep(1.5)
   end
 
   def current_user

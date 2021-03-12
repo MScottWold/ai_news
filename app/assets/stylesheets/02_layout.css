@@ -138,8 +138,91 @@ header {
 
 .greeting {
   position: absolute;
+  padding: 25px 25px 25px 25px;
   align-self: flex-end;
-  margin: 25px 25px 0 0;
+  display: flex;
+  flex-direction: column;
+  /* margin: 25px 25px 0 0; */
+}
+
+#avatar {
+  display: inline-block;
+  margin-left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("/assets/sprite.svg");
+  background-repeat: no-repeat;
+  background-size: 40px 120px;
+  background-position: 0 -80px;
+  cursor: pointer;
+}
+
+#avatar:hover {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.dropdown {
+  width: 100px;
+  position: absolute;
+  top: 90%;
+  right: 35%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -19px;
+  right: 5px;
+  border: 10px solid black;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.dropdown::after {
+  content: "";
+  position: absolute;
+  top: -18px;
+  right: 5px;
+  border: 10px solid white;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.menu-item {
+  color: black;
+  padding: 5px;
+  cursor: pointer;
+  border-top: 1px solid black;
+}
+
+.menu-item:hover {
+  background-color: lightslategray;
+}
+
+#login-buttons {
+  position: absolute;
+  top: 30px;
+  padding: 25px 25px 25px 25px;
+  align-self: flex-end;
+  display: flex;
+}
+
+.session-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: rgb(46, 132, 189);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: sans-serif;
+  cursor: pointer;
 }
 
 #logo {
@@ -310,7 +393,6 @@ footer ul li {
 /* comments */
 
 #comments {
-  /* background-color: rgba(100, 148, 237, 0.418); */
   padding: 0;
 }
 
@@ -363,15 +445,15 @@ footer ul li {
   margin-right: 10px;
   border-radius: 50%;
   overflow: hidden;
-  background-image: url("/assets/favorite.svg");
+  background-image: url("/assets/sprite.svg");
   background-repeat: no-repeat;
-  background-size: 40px 80px;
+  background-size: 40px 120px;
   background-position: 0 0;
 }
 
 [class^="star"]:hover {
   background-color: hsla(225, 100%, 50%, 0.1);
-  background-image: url("/assets/favorite.svg");
+  background-image: url("/assets/sprite.svg");
   cursor: pointer;
 }
 
