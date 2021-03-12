@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_logged_in?
-    self.current_user.admin
+    self.current_user.try(:admin)
   end
 
   def validate_admin_login

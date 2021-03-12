@@ -10,9 +10,6 @@ class Api::ArticlesController < ApplicationController
     when "latest"
       @filter = 'latest'
       @articles = Article.get_latest
-    when "featured"
-      @articles = Article.get_featured_article
-      @filter = "featured"
     when "trending"
       @articles = Article.get_trending_articles
       @filter = "trending"
@@ -28,6 +25,23 @@ class Api::ArticlesController < ApplicationController
     end
 
     render :index
+  end
+
+  def front_page
+    # Added for more specific control of front page
+    @highlighted_articles = Article
+      .where(highlighted: true)
+      .limit(10)
+      .eager_load(:author)
+
+    @featured_article = Article
+      .where(featured: true)
+      .order(id: :desc)
+      .limit(1)
+      .eager_load(:author)
+      .first
+
+    render :front_page
   end
 
   def author_articles

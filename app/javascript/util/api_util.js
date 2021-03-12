@@ -6,6 +6,14 @@ export const getArticles = (filter) => {
   });
 }
 
+export const getFrontPage = () => {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/articles/front_page',
+    dataType: 'json'
+  });
+};
+
 export const getSingleArticle = id => {
   return $.ajax({
     method: 'GET',

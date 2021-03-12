@@ -59,10 +59,27 @@
     </label>
   </label>
   <br>
+  <label>Highlighted: 
+    <label>
+      <input 
+        type="radio" 
+        name="article[highlighted]" 
+        value="true" 
+        <%= article.highlighted ? "checked" : "" %>>
+      yes
+    </label>
+    <label>
+      <input 
+        type="radio" 
+        name="article[highlighted]" 
+        value="false" 
+        <%= article.highlighted ? "" : "checked" %>>
+      no
+    </label>
+  </label>
+  <br>
   <label>Article: 
-    <textarea name="article[body]" id="ai-generated-article" cols="80" rows="25">
-      <%= article.body %>
-    </textarea>
+    <textarea name="article[body]" id="ai-generated-article" cols="80" rows="25"><%= article.body %></textarea>
   </label>
   <input type="submit" value="<%= submit_text %>">
 </form>
