@@ -6,7 +6,7 @@ const ArticleList = ({ articles }) => {
     const { photo, section, title, id, createdAt } = article;
 
     return (
-      <li key={id} className="latest-art">
+      <li key={id} className="article-list-item">
         <img
           className="small-photo"
           src={photo.photoUrl}
@@ -18,7 +18,7 @@ const ArticleList = ({ articles }) => {
           <li>
             <a className="list-headline" href={`#/articles/${id}`}>{title}</a>
           </li>
-          <li>
+          <li className="headline-info">
             {new Date(createdAt).toDateString().slice(4)}
           </li>
         </ul>

@@ -20,36 +20,37 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
+    if (!this.state.username || !this.state.password) return
     this.props.submitFormData({ user: this.state });
   }
 
   render() {
-    const { errors, hideModal } = this.props;
-    const errorList = errors.map((error, idx) => (
-      <p key={idx} className="error-message">{error}</p>
-    ));
+    const { errors } = this.props;
+    let errorList;
+    if (errors.length > 0) {
+      errorList = (
+        <ul id="error-messages">
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+      )
+    }
 
     return (
-      <div id="modal-mask" onClick={() => hideModal()}>
-        <div id="modal-container" onClick={(e) => e.stopPropagation()}>
-          <div id="hide-modal" onClick={() => hideModal()}>x</div>
-          <form id="session-form" onSubmit={this.handleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input 
-              type="text" 
-              id="username" 
-              value={this.state.username}
-              onChange={this.handleChange('username')}/>
-            <label htmlFor="password">Password</label>
-            <input type="password" 
-              id="password"
-              value={this.state.password}
-              onChange={this.handleChange('password')}/>
-            <input type="submit" value={this.props.submitText}/>
-          </form>
-          {errorList}
-        </div>
-      </div>
+      <form id="session-form" onSubmit={this.handleSubmit}>
+        <input 
+          type="text" 
+          id="username" 
+          placeholder="username"
+          value={this.state.username}
+          onChange={this.handleChange('username')}/>
+        <input type="password" 
+          id="password"
+          placeholder="password"
+          value={this.state.password}
+          onChange={this.handleChange('password')}/>
+        <input type="submit" value={this.props.submitText}/>
+        {errorList}
+      </form>
     );
   }
 }

@@ -11,8 +11,12 @@ const FeaturedArticle = ({ article }) => {
       <div className={`${section}-tag`}>{sectionNames[section]}</div>
       <a href={`#/articles/${id}`} className="article-headline">{title}</a>
       <div className="byline">
-        <div>By <span className="author-name">{authorName}</span></div>
-        <div>{new Date(createdAt).toUTCString()}</div>
+          <div>
+            By {authorName}
+          </div>
+          <div>
+            {new Date(createdAt).toDateString().slice(4)}
+          </div>
       </div>
     </div>      
   );

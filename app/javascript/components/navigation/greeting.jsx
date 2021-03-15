@@ -1,35 +1,42 @@
 import React, { useState } from 'react';
 
 const Greeting = ({ loggedIn, username, showModal, logout }) => {
-  if (!loggedIn) {
-    return (
-      <div id="login-buttons">
-        <button className="session-button" onClick={() => showModal('login')}>log in</button>
-        <button className="session-button" onClick={() => showModal('signup')}>sign up</button>
-      </div>
+  const [showDropdown, setDropdown ] = useState(false);
+
+  let menu;
+  if (showDropdown) {
+    menu = loggedIn ? (
+      <ul id="login-dropdown" 
+        onClick={() => setDropdown(false)}
+        onMouseLeave={() => setDropdown(false)}>
+        <li className="login-dropdown-item"
+          onClick={() => window.location.hash = '/favorites'}>
+          favorites
+        </li>
+        <li className="login-dropdown-item" onClick={logout}>
+          log out
+        </li>
+      </ul>
+    ) : (
+      <ul id="login-dropdown" 
+        onClick={() => setDropdown(false)}
+        onMouseLeave={() => setDropdown(false)}>
+        <li className="login-dropdown-item" onClick={() => showModal('login')}>
+          log in
+        </li>
+        <li className="login-dropdown-item" onClick={() => showModal('signup')}>
+          sign up
+        </li>
+      </ul>
     );
   }
-
-  const [dropdown, setDropdown ] = useState(false);
-
-  const menu = dropdown ? (
-    <ul className="dropdown" 
-      onClick={() => setDropdown(false)}>
-      <li className="menu-item"
-        onClick={() => window.location.hash = '/favorites'}
-        >favorites</li>
-      <li className="menu-item" onClick={logout}>log out</li>
-    </ul>
-  ) : (
-    null
-  );
   
   return (
-    <div className="greeting" onMouseLeave={() => setDropdown(false)}>
+    <div id="greeting-box">
       <div>{username}</div>
       <div
-        id="avatar"
-        onMouseEnter={() => setDropdown(true)}>
+        id={`avatar-${ loggedIn ? 'login' : 'logout'}`}
+        onClick={() => setDropdown(!showDropdown)}>
       </div>
       {menu}
     </div>

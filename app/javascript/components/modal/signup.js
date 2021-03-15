@@ -9,7 +9,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  hideModal: () => dispatch(hideModal()),
   submitFormData: (formUser) => dispatch(createUser(formUser))
 });
 

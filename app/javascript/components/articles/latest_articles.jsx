@@ -12,13 +12,13 @@ class LatestArticles extends React.Component {
     const { articles } = this.props;
 
     return articles.length === 0 ? (
-      <aside className="latest-articles">
-        <h2>Latest</h2>
+      <aside id="latest-articles">
+        <h2 className="section-title">Latest</h2>
         <div className="loading-spinner"></div>
       </aside>
     ) : (
-      <aside className="latest-articles">
-        <h2>Latest</h2>
+      <aside id="latest-articles">
+        <h2 className="section-title">Latest</h2>
         <ArticleList articles={articles} />
         <a href="#/archives">See more...</a>
       </aside>

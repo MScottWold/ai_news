@@ -1,0 +1,105 @@
+@import "./00_colors_and_fonts.scss";
+
+// Layout
+
+#app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  position: relative;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  width: 80%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+aside {
+  flex: 1 1 25%;
+}
+
+section {
+  flex: 3 1 75%;
+  border-right: 1px solid $gray;
+  padding-right: 25px;
+}
+
+// General Style
+
+body {
+  font-family: $sans-serif;
+  background-color: #f7f4f4;
+}
+
+img {
+  width: 100%;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+figcaption {
+  color: $gray;
+  font-size: 10px;
+}
+
+figcaption a {
+  text-decoration: underline;
+}
+
+[class$="-headline"] {
+  font-family: $serif;
+  font-weight: bold;
+}
+
+input[type="submit"],
+button {
+  position: relative;
+  display: block;
+  // margin: 0 auto 25px auto;
+  margin: 25px auto;
+  padding: 10px 25px;
+  line-height: 16px;
+  border-radius: 5px;
+  background-image: linear-gradient(180deg, rgb(30, 100, 225), rgb(32, 80, 166));
+  color: #F7F4F4;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0px 0px 5px 0px rgb(182, 182, 182);
+}
+
+button:active {
+  background-image: none;
+  background-color: rgb(32, 80, 166);
+}
+
+
+/* loading spinner */
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  margin: 25px auto;
+  border-radius: 50%;
+  border: 5px solid $gray;
+  border-top: 5px solid $blue;
+  background-color: transparent;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

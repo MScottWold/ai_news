@@ -1,0 +1,16 @@
+@import "./00_colors_and_fonts.scss";
+
+// Author
+
+.author-name {
+  color: $blue;
+  text-decoration: underline;
+}
+
+#author-bio {
+  margin: 25px 0;
+}
+
+#author-bio p {
+  margin: 10px 0;
+}

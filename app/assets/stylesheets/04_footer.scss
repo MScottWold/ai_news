@@ -1,0 +1,25 @@
+@import "./00_colors_and_fonts.scss";
+// Footer
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid $gray;
+  font-size: 10px;
+  color: $gray;
+  background-color: $lightgray;
+}
+
+#footer-nav {
+  display: flex;
+}
+
+.footer-nav-item {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.footer-nav-item:hover {
+  text-decoration: underline;
+}

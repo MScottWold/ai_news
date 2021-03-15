@@ -10,8 +10,8 @@ class TrendingArticles extends React.Component {
 
     if (articles.length === 0) {
       return (
-        <aside className="trending-articles">
-          <h2>Trending</h2>
+        <aside id="trending-articles">
+          <h2 className="section-title">Popular</h2>
           <div className="loading-spinner"></div>
         </aside>
       );
@@ -19,20 +19,26 @@ class TrendingArticles extends React.Component {
 
     const trendingArticles = articles.map(article => {
       return (
-        <div key={article.id}>
-          <img 
-            className="trend-art-photo"
-            src={article.photo.photoUrl} 
-            alt={article.photo.altText}/>
-          <a className="list-headline" href={`#/articles/${article.id}`}>{article.title}</a>
-        </div>
+        <li className="trending-item" key={article.id}>
+          <a href={`#/articles/${article.id}`}>
+            <img 
+              className="trend-art-photo"
+              src={article.photo.photoUrl} 
+              alt={article.photo.altText}/>
+          </a>
+          <a className="list-headline" href={`#/articles/${article.id}`}>
+            {article.title}
+          </a>
+        </li>
       );
     })
 
     return (
-      <aside className="trending-articles">
-        <h2>Trending</h2>
-        {trendingArticles}
+      <aside id="trending-articles">
+        <h2 className="section-title">Popular</h2>
+        <ul>
+          {trendingArticles}
+        </ul>
       </aside>
     );
   }

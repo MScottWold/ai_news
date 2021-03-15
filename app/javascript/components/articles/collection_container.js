@@ -3,7 +3,6 @@ import { getArticles } from '../../actions/article_actions';
 import { clearCollectionFilter } from '../../actions/filter_actions';
 import { selectArticles } from '../../reducers/selectors';
 import Collection from './collection';
-import { sectionNames } from '../../util/ui_util';
 
 const mapStateToProps = (state, { location }) => {
   const section = location.pathname.slice(1);
@@ -11,7 +10,7 @@ const mapStateToProps = (state, { location }) => {
   const articles = selectArticles(state.entities, articleIds);
 
   return {
-    sectionTitle: `${sectionNames[section]} Articles`,
+    section,
     articleIds,
     articles
   };

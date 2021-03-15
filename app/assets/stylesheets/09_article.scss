@@ -1,0 +1,131 @@
+@import "./00_colors_and_fonts.scss";
+
+// Article
+
+.article {
+  flex: 3 1 75%;
+  padding: 0 25px;
+}
+
+.article figure {
+  margin: 25px 50px;
+}
+
+.article > .byline {
+  padding-left: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $lightgray;
+}
+
+.main-article-image {
+  height: auto;
+}
+
+.article-headline {
+  font-size: 48px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.article-body {
+  margin: 50px;
+}
+
+.article-body > p {
+  margin: 25px 0;
+}
+
+// Favorite button 
+
+[class^="star"] {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("/assets/sprite.svg");
+  background-repeat: no-repeat;
+  background-size: 40px 280px;
+  background-position: 0 0;
+}
+
+[class^="star"]:hover {
+  background-color: $blue-opac;
+  background-image: url("/assets/sprite.svg");
+  cursor: pointer;
+}
+
+[class$="favorite"] {
+  background-position: 0 -40px;
+}
+
+// Comments
+#comments {
+  margin: 0 50px;
+}
+
+#comment-feed {
+  margin: 35px 0;
+}
+
+#no-comments {
+  padding: 10px 0;
+}
+
+#comments > p {
+  padding-bottom: 10px;
+  border-bottom: 1px solid $gray;
+}
+
+.comment {
+  padding: 10px 0;
+  border-top: 1px solid $gray;
+}
+
+.comment:first-of-type {
+  border: none;
+}
+
+.comment-author, .comment-date {
+  padding: 3px 0;
+  font-size: 12px;
+  color: $slate;
+}
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  margin: 15px 5px;
+}
+
+.comment-form textarea {
+  resize: none;
+  flex: 1 1 60%;
+  height: 50px;
+}
+.comment-form input[type='submit'],
+.refresh-comments {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("/assets/sprite.svg");
+  background-repeat: no-repeat;
+  background-size: 40px 280px;
+  background-position: 0 -200px;
+}
+
+.spin {
+  -webkit-animation: spin 1s linear infinite forwards;
+  animation: spin 1s linear infinite;
+}
+
+.comment-form input[type='submit'] {
+  border: none;
+  background-position: 0 -240px;
+  margin-left: 10px;
+}

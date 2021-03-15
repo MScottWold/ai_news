@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticleFeed from './article_feed';
+import { titleHelper } from '../../util/ui_util';
 
 class Section extends React.Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class Section extends React.Component {
 
   render() {
     const { 
-      sectionTitle, 
+      section, 
       articles, 
       articleIds, 
       getInitialArticles,
@@ -20,8 +21,8 @@ class Section extends React.Component {
     } = this.props;
 
     return (
-      <section className="section-archive">
-        <h2>{sectionTitle}</h2>
+      <section className="section-archive" id={section}>
+        <h2 className="section-title">{titleHelper[section]}</h2>
         <ArticleFeed 
         getInitialArticles={getInitialArticles}
         getMoreArticles={getMoreArticles}

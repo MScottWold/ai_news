@@ -68,19 +68,15 @@ class CommentFeed extends React.Component {
         null
       ) : (
         <button onClick={this.fetchOlderComments(comments)}>
-          Get More Comments
+          Load More Comments
         </button>
       );
 
     return (
-      <div>
-        {this.state.loadingNewer ? (
-            loadingSpinner
-          ) : (
-            <button onClick={this.fetchNewerComments(comments)}>
-              Refresh Comments
-            </button>
-        )}
+      <div id="comment-feed">
+        <button 
+          className={`refresh-comments ${this.state.loadingNewer ? "spin" : ""}`} 
+          onClick={this.fetchNewerComments(comments)}></button>
         <CommentList comments={comments} />
         {this.state.loadingOlder ? loadingSpinner : olderCommentsButton}
       </div>

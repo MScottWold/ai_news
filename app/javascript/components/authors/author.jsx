@@ -18,7 +18,7 @@ class Author extends React.Component {
     if (!author) {
       return (
         <section>
-          <h2>Author Page</h2>
+          <h2 className="section-title">Author Page</h2>
           <div className="loading-spinner"></div>
         </section>
       )
@@ -26,10 +26,12 @@ class Author extends React.Component {
 
     return (
       <section>
-        <h2>{author.name}</h2>
-        <p>Education: {author.education}</p>
-        <p>Bio: {author.bio}</p>
-        <h2>Articles from {author.name}</h2>
+        <h2 className="section-title">{author.name}</h2>
+        <div id="author-bio">
+          <p>Education: {author.education}</p>
+          <p>Bio: {author.bio}</p>
+        </div>
+        <h3 className="subsection-title">Articles from {author.name}</h3>
         <ArticleFeed
           getInitialArticles={getAuthor}
           getMoreArticles={getMoreArticles}
