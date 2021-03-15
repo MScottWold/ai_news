@@ -6,3 +6,12 @@ export const sectionNames = {
   archives: 'Archived',
   favorites: 'Favorite'
 };
+
+export const titleHelper = {
+  us: 'Latest U.S. News Headlines',
+  politics: 'Latest Political Headlines',
+  sports: 'Latest Sports Headlines',
+  business: 'Latest Business Headlines',
+  archives: 'Archives',
+  favorites: 'Favorite Articles'
+};

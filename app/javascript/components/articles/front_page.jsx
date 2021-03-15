@@ -16,16 +16,16 @@ class FrontPage extends React.Component {
 
     if (highlightedArticles.length === 0) {
       return (
-        <article>
-          <h2>Featured</h2>
+        <section id="front-page">
+          <h2 className="section-title">Featured</h2>
           <div className="loading-spinner"></div>
-        </article>
+        </section>
       );
     }
 
     return (
-      <section className="front-page">
-        <h2>Featured</h2>
+      <section id="front-page">
+        <h2 className="section-title">Featured</h2>
         <FeaturedArticle article={featuredArticle} />
         <HighlightedArticles articles={highlightedArticles} />
       </section>

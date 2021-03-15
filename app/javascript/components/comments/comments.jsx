@@ -23,7 +23,7 @@ class Comments extends React.Component {
 
     return (
       <aside id="comments">
-        <h2>Comments</h2>
+        <h3 className="subsection-title">Comments</h3>
         {newCommentForm}
         <CommentFeed 
           comments={comments} 

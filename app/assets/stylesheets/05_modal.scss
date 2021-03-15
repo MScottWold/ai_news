@@ -1,0 +1,81 @@
+@import "./00_colors_and_fonts.scss";
+
+// Modal 
+
+#modal-mask {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: $black-opac;
+}
+
+#modal-container {
+  top: 20%;
+  position: fixed;
+}
+
+#error-messages {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 400px;
+  margin: 10px;
+  transform: translateX(-50%);
+  color: $white;
+  text-align: center;
+}
+
+#hide-modal {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border: 2px solid $gray;
+  border-radius: 15px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: bold;
+  color: $white;
+  background-color: $black;
+  cursor: pointer;
+}
+
+#hide-modal:hover {
+  background-color: #1d1d1d;
+}
+
+#session-form {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 50px;
+  width: 100%;
+  border-radius: 25px;
+  background-color: $white;
+}
+
+#session-form > input[type="text"],
+#session-form > input[type="password"] {
+  padding: 3px 0;
+  margin-bottom: 15px;
+  border-bottom: 3px solid $blue;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+#session-form > input[type="text"]:focus,
+#session-form > input[type="password"]:focus {
+  background-color: $blue-opac;
+}
+
+#session-form > input[type="submit"] {
+  margin-bottom: 0;
+  margin-top: 10px;
+}

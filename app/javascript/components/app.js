@@ -10,7 +10,7 @@ import TrendingArticlesContainer from './articles/trending_articles_container';
 import ArticleContainer from './articles/article_container';
 import AuthorContainer from './authors/author_container';
 import CollectionContainer from './articles/collection_container';
-import Modal from './modal/modal';
+import ModalContainer from './modal/modal_container';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class App extends React.Component {
       <div id="app">
         <Masthead />
         <main>
-          <Route exact path={["/", "/articles/:articleId"]} component={LatestArticlesContainer} />
+          <Route exact path="/" component={LatestArticlesContainer} />
           <Route exact path="/" component={FrontPageContainer} />
           <Route exact path="/articles/:articleId" component={ArticleContainer} />
           <Route path={"/us"}  component={CollectionContainer} />
@@ -38,7 +38,7 @@ class App extends React.Component {
           <TrendingArticlesContainer />
         </main>
         <Footer />
-        <Modal />
+        <ModalContainer />
       </div>
     );
   }

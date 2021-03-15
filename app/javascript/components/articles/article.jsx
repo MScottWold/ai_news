@@ -65,15 +65,11 @@ class Article extends React.Component {
     );
 
     const showComments = this.state.showComments ? (
-      <button 
-        className="comments-button"
-        onClick={() => this.setState({ showComments: false })}>
+      <button onClick={() => this.setState({ showComments: false })}>
         Hide Comments
       </button>
     ) : (
-      <button 
-        className="comments-button"
-        onClick={() => this.setState({ showComments: true })}>
+      <button onClick={() => this.setState({ showComments: true })}>
         Show Comments
       </button>
     );
@@ -90,7 +86,9 @@ class Article extends React.Component {
           <div>{publishDate}</div>
         </div>
         <ArticlePhoto photo={article.photo} />
-        {paragraphs}
+        <div className="article-body">
+          {paragraphs}
+        </div>
         {showComments}
         {this.state.showComments 
           ? <CommentsContainer articleId={article.id} loggedIn={loggedIn} />

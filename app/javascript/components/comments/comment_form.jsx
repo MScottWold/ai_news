@@ -21,6 +21,7 @@ class CommentForm extends React.Component {
     e.preventDefault();
     
     const form = e.currentTarget;
+    if (!this.state.body) return
     const button = form.querySelector('input[type="submit"]');
     
     button.disabled = true;
@@ -39,7 +40,7 @@ class CommentForm extends React.Component {
         <textarea 
           onChange={this.updateBody}
           placeholder="comment..."></textarea>
-        <input type="submit" value="post comment" />
+        <input type="submit" value=""/>
       </form>
     );
   }

@@ -1,0 +1,143 @@
+@import "./00_colors_and_fonts.scss";
+
+// Header
+
+header {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #111111;
+  color: $white;
+}
+
+#masthead {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 15px;
+  width: 100%;
+}
+
+[id^="hamburger-"],
+[id^="greeting-"] {
+  flex: 1;
+}
+
+#logo {
+  font-size: 55px;
+  font-family: $serif;
+  border-bottom: 4px solid $aqua;
+  cursor: pointer;
+}
+
+#logo > span {
+  font-size: 75px;
+}
+
+#logo:hover {
+  text-decoration: none;
+}
+
+
+#hamburger-icon,
+[id^="avatar"] {
+  margin: 0 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("/assets/sprite.svg");
+  background-repeat: no-repeat;
+  background-size: 40px 280px;
+  cursor: pointer;
+}
+
+#hamburger-icon {
+  border-radius: 4px;
+  background-position: 0 -160px;
+}
+
+#greeting-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+#avatar-login {
+  background-position: 0 -80px;
+}
+
+#avatar-logout {
+  background-position: 0 -120px;
+}
+
+#sections {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#sections > a {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#sections > a::before {
+  content: "|";
+  margin-right: 20px;
+}
+
+#sections > a:first-child::before {
+  content: none;
+}
+
+#hamburger-icon:hover,
+[id^="avatar"]:hover {
+  background-color: $gray-opac;
+}
+
+#login-dropdown {
+  width: 100px;
+  position: absolute;
+  top: 55px;
+  right: 24px;
+  background-color: $white;
+  border: 1px solid $black;
+  border-radius: 5px;
+  box-shadow: 0 0 4px #555555;
+}
+
+#login-dropdown::after,
+#login-dropdown::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -20px;
+  right: 5px;
+  border-bottom: 10px solid $black;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+#login-dropdown::after {
+  top: -19px;
+  right: 5px;
+  border-bottom: 10px solid $white;
+}
+
+.login-dropdown-item {
+  color: $black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.login-dropdown-item:first-of-type {
+  border-bottom: 1px solid $black;
+  border: none;
+}
+
+.login-dropdown-item:hover {
+  background-color: $gray-opac;
+}
