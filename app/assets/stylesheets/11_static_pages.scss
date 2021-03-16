@@ -1,0 +1,21 @@
+@import "./00_colors_and_fonts.scss";
+
+#static-asset {
+  flex-direction: column;
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+#static-asset p {
+  margin: 10px 0;
+}
+
+#static-asset a {
+  color: $blue;
+  text-decoration: underline;
+}
+
+.question {
+  font-size: larger;
+  font-weight: bold;
+}

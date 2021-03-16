@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "static_pages#root"
   
+  get '/about', to: "static_pages#about"
+  get '/privacy', to: "static_pages#privacy"
+
   namespace :admin do
     resources :articles, only: [:new, :edit, :show, :index, :create, :update, :destroy]
     resource :session, only: [:new, :create, :destroy]
