@@ -2,9 +2,10 @@ import React from 'react';
 import ArticleFeed from './article_feed';
 import { titleHelper } from '../../util/ui_util';
 
-class Section extends React.Component {
+class Collection extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
+    document.title = titleHelper[this.props.section];
   }
 
   componentWillUnmount() {
@@ -21,7 +22,7 @@ class Section extends React.Component {
     } = this.props;
 
     return (
-      <section className="section-archive" id={section}>
+      <section className="article-section" id={section}>
         <h2 className="section-title">{titleHelper[section]}</h2>
         <ArticleFeed 
         getInitialArticles={getInitialArticles}
@@ -33,4 +34,4 @@ class Section extends React.Component {
   }
 };
 
-export default Section;
+export default Collection;

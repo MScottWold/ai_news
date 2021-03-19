@@ -1,6 +1,6 @@
 @import "./00_colors_and_fonts.scss";
 
-/* Article Lists */
+// Article Lists
 
 .highlighted-article:hover,
 .trending-item:hover,
@@ -12,9 +12,9 @@
 .section-title {
   padding: 5px 0;
   margin-bottom: 5px;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  color: rgb(75, 75, 75);
+  color: rgb(17, 14, 9);
 }
 
 .section-title {
@@ -32,12 +32,11 @@
   margin-top: 3px;
   font-family: $sans-serif;
   font-size: 12px;
-  font-weight: 600;
   color: $gray;
 }
 
 #latest-articles {
-  padding-right: 25px;
+  padding: 10px;
 }
 
 #latest-articles > a {
@@ -66,7 +65,7 @@
   height: 120px;
 }
 
-.section-archive .small-photo {
+.article-section .small-photo {
   width: 100px;
   height: 100px;
 }

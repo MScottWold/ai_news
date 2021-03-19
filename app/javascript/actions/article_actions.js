@@ -60,7 +60,10 @@ export const getArticles = (filter) => dispatch => {
 
 export const getArticle = id => dispatch => {
   return API.getSingleArticle(id)
-    .then(payload => dispatch(receiveSingleArticle(payload)));
+    .then(payload => {
+      dispatch(receiveSingleArticle(payload));
+      return payload[id];
+    });
 };
 
 export const getAuthorArticles = (authorId, filter) => dispatch => {
