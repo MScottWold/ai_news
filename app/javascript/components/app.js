@@ -22,8 +22,8 @@ class App extends React.Component {
       <div id="app">
         <Masthead />
         <main>
-          <Route exact path="/" component={LatestArticlesContainer} />
           <Route exact path="/" component={FrontPageContainer} />
+          <Route exact path="/" component={LatestArticlesContainer} />
           <Route exact path="/articles/:articleId" component={ArticleContainer} />
           <Route path={"/us"}  component={CollectionContainer} />
           <Route path={"/politics"}  component={CollectionContainer} />

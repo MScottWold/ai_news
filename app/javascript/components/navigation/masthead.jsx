@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GreetingContainer from './greeting_container';
 import SectionDropdown from './section_dropdown';
 import { NavLink } from 'react-router-dom';
 
 const Masthead = () => {
+  const [sticky, setSticky] = useState(false);
+  
+  const handleScroll = (e) => {
+    if (window.scrollY > 107) {
+      setSticky(true);
+    } else {
+      setSticky(false);
+    }
+  };
+
+  useEffect(() => window.addEventListener('scroll', handleScroll));
+
   return (
-    <header>
+    <header id={sticky ? "header-sticky" : "header"}>
       <div id="masthead">
         <SectionDropdown />
         <div id="logo-box">
-          <a href="/" id="logo">
+          <a href="/" className="logo">
             <span>T</span>HE <span>D</span>IGITAL <span>H</span>ERALD
           </a>
         </div>

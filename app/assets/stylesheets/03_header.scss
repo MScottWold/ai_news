@@ -1,9 +1,8 @@
 @import "./00_colors_and_fonts.scss";
 
 // Header
-
 header {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +12,8 @@ header {
 
 #masthead {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  padding-top: 10px;
   padding-bottom: 15px;
   width: 100%;
 }
@@ -23,38 +23,23 @@ header {
   flex: 1;
 }
 
-#logo {
-  font-size: 55px;
+.logo {
+  font-size: 1rem;
   font-family: $serif;
-  border-bottom: 4px solid $aqua;
+  border-bottom: 1px solid $aqua;
   cursor: pointer;
 }
 
-#logo > span {
-  font-size: 75px;
+.logo > span {
+  font-size: 1.5rem;
 }
 
-#logo:hover {
+.logo:hover {
   text-decoration: none;
 }
 
-
-#hamburger-icon,
-[id^="avatar"] {
-  margin: 0 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  background-image: url("/assets/sprite.svg");
-  background-repeat: no-repeat;
-  background-size: 40px 280px;
-  cursor: pointer;
-}
-
-#hamburger-icon {
-  border-radius: 4px;
-  background-position: 0 -160px;
+#hamburger-box {
+  position: relative;
 }
 
 #greeting-box {
@@ -64,32 +49,34 @@ header {
   position: relative;
 }
 
-#avatar-login {
-  background-position: 0 -80px;
+#hamburger-icon,
+[id^="avatar"] {
+  margin: 0 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-image: url("/assets/sprite.svg");
+  background-repeat: no-repeat;
+  background-size: 30px 210px;
+  cursor: pointer;
 }
 
-#avatar-logout {
+#hamburger-icon {
+  border-radius: 4px;
   background-position: 0 -120px;
 }
 
-#sections {
-  display: flex;
-  margin-top: 10px;
-  margin-bottom: 10px;
+#hello-user {
+  display: none;
 }
 
-#sections > a {
-  padding-left: 10px;
-  padding-right: 10px;
+#avatar-login {
+  background-position: 0 -60px;
 }
 
-#sections > a::before {
-  content: "|";
-  margin-right: 20px;
-}
-
-#sections > a:first-child::before {
-  content: none;
+#avatar-logout {
+  background-position: 0 -90px;
 }
 
 #hamburger-icon:hover,
@@ -97,11 +84,30 @@ header {
   background-color: $gray-opac;
 }
 
+#section-dropdown {
+  position: absolute;
+  z-index: 1;
+  top: 45px;
+  left: 0;
+  background-color: $black-opac;
+  border: 1px solid $black;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  box-shadow: 0 0 4px #555555;
+}
+
+.section-dropdown-items a {
+  display: block;
+  font-weight: bold;
+  padding: 15px 40px 15px 20px;
+}
+
 #login-dropdown {
   width: 100px;
   position: absolute;
   top: 55px;
   right: 24px;
+  z-index: 1;
   background-color: $white;
   border: 1px solid $black;
   border-radius: 5px;
@@ -129,7 +135,8 @@ header {
 
 .login-dropdown-item {
   color: $black;
-  padding: 5px;
+  padding: 10px 0 10px 10px;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -140,4 +147,8 @@ header {
 
 .login-dropdown-item:hover {
   background-color: $gray-opac;
+}
+
+#sections {
+  display: none;
 }

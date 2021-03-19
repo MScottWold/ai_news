@@ -4,6 +4,7 @@ import ArticleFeed from '../articles/article_feed';
 class Author extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
+    document.title = "Journalists";
   }
 
   render() {
@@ -17,7 +18,7 @@ class Author extends React.Component {
 
     if (!author) {
       return (
-        <section>
+        <section className="article-section">
           <h2 className="section-title">Author Page</h2>
           <div className="loading-spinner"></div>
         </section>
@@ -25,7 +26,7 @@ class Author extends React.Component {
     }
 
     return (
-      <section>
+      <section className="article-section">
         <h2 className="section-title">{author.name}</h2>
         <div id="author-bio">
           <p>Education: {author.education}</p>

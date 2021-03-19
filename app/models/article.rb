@@ -125,7 +125,7 @@ class Article < ApplicationRecord
         "COALESCE(fav.fav_num * 5, 0) + COALESCE(com.com_num, 0) AS trend_val"
       ])
       .order("trend_val DESC")
-      .limit(5)
+      .limit(6)
       .eager_load(:photo)
   end
 end

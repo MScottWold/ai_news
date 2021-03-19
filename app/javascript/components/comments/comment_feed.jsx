@@ -68,7 +68,7 @@ class CommentFeed extends React.Component {
         null
       ) : (
         <button onClick={this.fetchOlderComments(comments)}>
-          Load More Comments
+          Load Older Comments
         </button>
       );
 

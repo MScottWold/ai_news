@@ -1,9 +1,15 @@
 @import "./00_colors_and_fonts.scss";
 
-/* Trending Articles */
+// Trending Articles
 
 #trending-articles {
-  padding-left: 25px;
+  padding: 10px;
+}
+
+#trending-articles > ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .trending-item {
@@ -12,6 +18,8 @@
   align-items: center;
   margin-bottom: 20px;
   padding-bottom: 10px;
+  min-width: 200px;
+  max-width: 350px;
   border-bottom: 1px solid $lightgray;
 }
 

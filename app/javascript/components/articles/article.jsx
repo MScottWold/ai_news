@@ -15,7 +15,10 @@ class Article extends React.Component {
     const { article, getArticle } = this.props;
 
     if (!article || !article.body) {
-      getArticle();
+      getArticle()
+        .then((receivedArticle) => document.title = receivedArticle.title);
+    } else {
+      document.title = article.title;
     }
   }
 
@@ -28,11 +31,13 @@ class Article extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.checkForArticleBody();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.article.id !== prevProps.article.id) {
+      window.scrollTo(0, 0);
       this.checkForArticleBody();
       this.setState({ showComments: false });
     }
@@ -56,12 +61,15 @@ class Article extends React.Component {
     const publishDate = new Date(article.createdAt).toUTCString();
 
     const favoriteButton = loggedIn ? (
-      <div 
-        className={`star${article.favorited ? "-favorite" : ""}`}
-        onClick={this.toggleFavoriteStatus}>
+      <div id="favorite-container">
+        <div 
+          className={`star${article.favorited ? "-favorite" : ""}`}
+          onClick={this.toggleFavoriteStatus}>
+        </div>
+        <div>{sectionNames[article.section]}</div>
       </div>
     ) : (
-        null
+        <div>{sectionNames[article.section]}</div>
     );
 
     const showComments = this.state.showComments ? (
@@ -76,9 +84,8 @@ class Article extends React.Component {
 
     return (
       <article className="article">
-        <div>{sectionNames[article.section]}</div>
+        {favoriteButton}
         <h1 className="article-headline">
-          {favoriteButton}
           {article.title}
         </h1>
         <div className="byline">
