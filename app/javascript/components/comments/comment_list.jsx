@@ -14,7 +14,7 @@ const CommentList = ({ comments }) => {
       </li>
     ))
   ) : (
-    <p id="no-comments">No comments yet</p>
+    <li id="no-comments">No comments yet</li>
   );
   
   return (

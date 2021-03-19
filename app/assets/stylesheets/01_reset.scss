@@ -1,4 +1,4 @@
-/* reset */
+// reset
 
 html, body, header, footer, section, main, article, aside,
 div, h1, h2, h3, ul, li, a, p, button, input,
@@ -15,6 +15,15 @@ figure, img, figcaption {
   background: transparent;
 }
 
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
 ul {
   list-style-type: none;
+}
+
+.profiler-results {
+  display: none;
 }

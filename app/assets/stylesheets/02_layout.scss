@@ -11,20 +11,11 @@
 
 main {
   display: flex;
+  flex-direction: column;
+  width: 100%;
   flex: 1;
-  width: 80%;
   margin: 0 auto;
   box-sizing: border-box;
-}
-
-aside {
-  flex: 1 1 25%;
-}
-
-section {
-  flex: 3 1 75%;
-  border-right: 1px solid $gray;
-  padding-right: 25px;
 }
 
 // General Style
@@ -32,6 +23,10 @@ section {
 body {
   font-family: $sans-serif;
   background-color: #f7f4f4;
+}
+
+.article-section {
+  padding: 10px;
 }
 
 img {
@@ -60,11 +55,10 @@ input[type="submit"],
 button {
   position: relative;
   display: block;
-  // margin: 0 auto 25px auto;
   margin: 25px auto;
   padding: 10px 25px;
   line-height: 16px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-image: linear-gradient(180deg, rgb(30, 100, 225), rgb(32, 80, 166));
   color: #F7F4F4;
   font-family: sans-serif;
@@ -81,7 +75,8 @@ button:active {
 }
 
 
-/* loading spinner */
+// loading spinner
+
 .loading-spinner {
   width: 30px;
   height: 30px;

@@ -30,10 +30,15 @@ const Greeting = ({ loggedIn, username, showModal, logout }) => {
       </ul>
     );
   }
+
+  let displayName = username;
+  if (loggedIn && username.length > 15){
+    displayName = username.slice(0, 12) + "...";
+  }
   
   return (
     <div id="greeting-box">
-      <div>{username}</div>
+      <div id="hello-user">{displayName}</div>
       <div
         id={`avatar-${ loggedIn ? 'login' : 'logout'}`}
         onClick={() => setDropdown(!showDropdown)}>
