@@ -1,0 +1,12 @@
+<h1>Photos</h1>
+<ul>
+  <% @photos.each do |photo| %>
+  <li>
+    <figcaption>
+      <a href="<%= admin_photo_path(photo) %>"><%= "#{photo.id} #{photo.title}" %></a>
+    </figcaption>
+    <a href=<%= edit_admin_photo_path(photo) %>>edit photo</a>
+    <%= image_tag photo.thumbnail %>
+  </li>
+  <% end %>
+</ul>

@@ -21,7 +21,7 @@ class Api::ArticlesController < ApplicationController
       @filter = "collection"
     else
       @filter = 'none'
-      @articles = Article.limit(5)
+      @articles = Article.limit(5).includes(photo: :thumbnail_blob)
     end
 
     render :index
@@ -52,7 +52,7 @@ class Api::ArticlesController < ApplicationController
         .where("articles.id < ?", last_id)
         .order("articles.id DESC")
         .limit(5)
-        .eager_load(:photo)
+        .includes(photo: :thumbnail_blob)
         
       render :author_articles
     else

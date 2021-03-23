@@ -17,6 +17,9 @@ class Photo < ApplicationRecord
   validates :alt_text, :title, :photographer_name, :photographer_url, :license_type,
     :license_url, presence: true
 
+  has_one_attached :thumbnail
+  has_one_attached :image
+
   has_many :articles,
     class_name: :Article,
     foreign_key: :photo_id,
