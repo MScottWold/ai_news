@@ -277,7 +277,7 @@
   }
 
   #front-page {
-    flex: 3 1 60%;
+    flex: 1 1 50%;
     order: 2;
   }
 
@@ -312,6 +312,7 @@
 
   #header-sticky .logo {
     font-size: 1rem;
+    line-height: 1rem;
     border-bottom: 1px solid $aqua;
   }
 
@@ -320,7 +321,7 @@
   }
 
   #header-sticky + main {
-    padding-top: 185px;
+    padding-top: 151px;
   }
 
   // non-sticky header
@@ -330,6 +331,7 @@
   
   .logo {
     font-size: 55px;
+    line-height: 55px;
   }
 
   .logo > span {

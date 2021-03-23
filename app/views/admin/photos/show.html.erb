@@ -1,0 +1,13 @@
+<a href="<%= edit_admin_photo_path(@photo) %>">Edit Photo</a>
+<h1><%= @photo.title %></h1>
+<%= form_for [:admin, @photo], method: :delete do |f| %>
+  <%= f.submit "Delete Photo" %>
+<% end %>
+<br>
+<a href="<%= @photo.source_url %>"><%= @photo.alt_text %></a>
+<% if @photo.thumbnail.attached? %>
+  <h3>Thumbnail</h3>
+  <%= image_tag @photo.thumbnail %>
+  <h3>Full Image</h3>
+  <%= image_tag @photo.image %>
+<% end %>

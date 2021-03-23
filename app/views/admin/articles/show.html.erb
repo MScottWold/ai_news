@@ -5,4 +5,6 @@
 <% end %>
 <a href="<%= edit_admin_article_url(@article.id) %>">Edit Article</a>
 <br>
-<a href="<%= admin_articles_url %>">Back to Index</a>
+<%= form_for [:admin, @article], method: :delete do |f| %>
+  <%= f.submit "Delete Article" %>
+<% end %>

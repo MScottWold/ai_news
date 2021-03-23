@@ -1,4 +1,6 @@
 class Admin::SessionsController < ApplicationController
+  layout 'admin' 
+  
   def new
     render :new
   end
@@ -11,7 +13,7 @@ class Admin::SessionsController < ApplicationController
 
     if user
       login(user)
-      redirect_to new_admin_article_url
+      redirect_to admin_articles_path
     else
       render json: ['Invalid Credentials'], status: 401
     end

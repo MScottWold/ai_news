@@ -7,7 +7,7 @@ const Masthead = () => {
   const [sticky, setSticky] = useState(false);
   
   const handleScroll = (e) => {
-    if (window.scrollY > 107) {
+    if (window.scrollY > 73) {
       setSticky(true);
     } else {
       setSticky(false);
@@ -22,7 +22,7 @@ const Masthead = () => {
         <SectionDropdown />
         <div id="logo-box">
           <a href="/" className="logo">
-            <span>T</span>HE <span>D</span>IGITAL <span>H</span>ERALD
+            <span>T</span>HE <span>E</span>RSATZ <span>T</span>RIBUNE
           </a>
         </div>
         <GreetingContainer />

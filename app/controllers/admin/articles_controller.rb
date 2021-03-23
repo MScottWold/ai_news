@@ -18,7 +18,6 @@ class Admin::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    # fail
     if @article.save
       redirect_to admin_article_url(@article)
     else
@@ -39,7 +38,7 @@ class Admin::ArticlesController < ApplicationController
     if @article
       render :edit
     else
-      redirect_to new_admin_article_url
+      redirect_to new_admin_article_path
     end
   end
 
@@ -47,10 +46,16 @@ class Admin::ArticlesController < ApplicationController
     @article = Article.find_by(id: self.params[:id])
 
     if @article.update(article_params)
-      redirect_to admin_article_url(@article)
+      redirect_to admin_article_path(@article)
     else
       render json: @article.errors.full_messages
     end
+  end
+
+  def destroy
+    @article = Article.find_by(id: self.params[:id])
+    @article.try(:destroy)
+    redirect_to admin_articles_path
   end
 
   private
