@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Admin: AiNews</title>
+    <title>Admin: Ersatz Tribune</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+
     <%= javascript_pack_tag 'application' %>
-    <%# if site_admin? %>
     <script type="text/javascript">
       window.deepApiKey = "<%= Rails.application.credentials.deepai[:api_key] %>"
     </script>
-    <%# end %>
     <style>
       .profiler-results {
         display: none;
@@ -21,7 +19,8 @@
   </head>
 
   <body>
-    <h1>Admin site</h1>
+    <h1>Admin Portal</h1>
+    <%= render "admin/shared/nav" %>
     <%= yield %>
   </body>
 </html>

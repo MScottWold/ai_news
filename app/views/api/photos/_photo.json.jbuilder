@@ -1,4 +1,5 @@
 json.id photo.id
+json.imageUrl url_for(photo.image)
 json.altText photo.alt_text
 json.title photo.title
 json.sourceUrl photo.source_url

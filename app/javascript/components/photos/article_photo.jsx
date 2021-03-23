@@ -3,7 +3,7 @@ import React from 'react';
 const ArticlePhoto = ({ photo }) => {
   return (
     <figure>
-      <img className="main-article-image" src={photo.photoUrl} alt={photo.altText} />
+      <img className="main-article-image" src={photo.imageUrl} alt={photo.altText} />
       <figcaption>
         &quot;
         <a href={photo.sourceUrl} target='_blank'>{photo.title}</a>

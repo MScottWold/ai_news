@@ -23,7 +23,7 @@ class TrendingArticles extends React.Component {
           <a href={`#/articles/${article.id}`}>
             <img 
               className="trend-art-photo"
-              src={article.photo.photoUrl} 
+              src={article.photo.thumbnailUrl} 
               alt={article.photo.altText}/>
           </a>
           <a className="list-headline" href={`#/articles/${article.id}`}>

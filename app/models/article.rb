@@ -59,7 +59,7 @@ class Article < ApplicationRecord
 
     article.order(id: :desc)
       .limit(BUCKET_SIZE)
-      .eager_load(:photo, :author)
+      .includes(:author, photo: :thumbnail_blob)
   end
 
   def self.get_latest(after = nil)
@@ -72,7 +72,7 @@ class Article < ApplicationRecord
 
     article.order(created_at: :desc)
       .limit(BUCKET_SIZE)
-      .eager_load(:photo, :author)
+      .includes(:author, photo: :thumbnail_blob)
   end
 
   def self.get_section(section, after = nil)
@@ -83,9 +83,10 @@ class Article < ApplicationRecord
       articles = Article
         .where(section: section)
     end
+
     articles.order(created_at: :desc)
       .limit(BUCKET_SIZE)
-      .includes(:photo, :author)
+      .includes(:author, photo: :thumbnail_blob)
   end
 
   def self.get_featured_article
@@ -118,6 +119,7 @@ class Article < ApplicationRecord
     SQL
 
     Article
+      .includes(photo: :thumbnail_blob)
       .joins(favorites_join)
       .joins(comments_join)
       .select([
@@ -126,6 +128,5 @@ class Article < ApplicationRecord
       ])
       .order("trend_val DESC")
       .limit(6)
-      .eager_load(:photo)
   end
 end

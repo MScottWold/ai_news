@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :articles, only: [:new, :edit, :show, :index, :create, :update, :destroy]
+    resources :photos, only: [:new, :edit, :show, :index, :create, :update, :destroy]
     resource :session, only: [:new, :create, :destroy]
   end
 

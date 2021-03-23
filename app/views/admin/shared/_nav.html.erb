@@ -1,0 +1,15 @@
+<nav>
+  <ul>
+    <li><a href="<%= admin_articles_path %>">Articles</a></li>
+    <li><a href="<%= new_admin_article_path %>">New Article</a></li>
+    <li><a href="<%= admin_photos_path %>">Photos</a></li>
+    <li><a href="<%= new_admin_photo_path %>">New Photo</a></li>
+    <li>
+      <form action=<%= admin_session_url %> method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
+        <input type="submit" value="Log Out">
+      </form>
+    </li>
+  </ul>
+</nav>

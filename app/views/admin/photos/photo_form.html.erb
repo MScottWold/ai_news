@@ -1,0 +1,29 @@
+<% if @photo.thumbnail.attached? %>
+  <%= image_tag @photo.thumbnail %>
+<% end %>
+
+<%= form_for [:admin, @photo] do |f| %>
+  Title: <%= f.text_field :title %>
+  <br>
+  Alt Text: <%= f.text_field :alt_text %>
+  <br>
+  Source Url: <%= f.text_field :source_url %>
+  <br>
+  Photographer Name: <%= f.text_field :photographer_name %>
+  <br>
+  Photographer Url: <%= f.text_field :photographer_url %>
+  <br>
+  License Type: <%= f.text_field :license_type %>
+  <br>
+  License Url: <%= f.text_field :license_url %>
+  <br>
+  Thumbnail: <%= f.file_field :thumbnail %>
+  <br>
+  Image: <%= f.file_field :image %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+<% flash[:errors].try(:each) do |err| %>
+<p><%= err %></p>
+<% end %>

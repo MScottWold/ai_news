@@ -2,15 +2,4 @@
 <%= render 'article_form', article: @article, action_type: :new %>
 <%= render 'name_swap' %>
 <%= javascript_pack_tag 'admin_portal' %>
-<br>
-<br>
-<br>
-<br>
-<form action=<%= admin_session_url %> method="POST">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
-  <input type="submit" value="Log Out">
-</form>
-<br>
-<a href="<%= admin_articles_url %>">Back to Index</a>
 <script src="https://cdnjs.deepai.org/deepai.min.js"></script>

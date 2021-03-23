@@ -11,7 +11,6 @@ json.set! @article.id do
   end
   json.photo do
     json.partial! 'api/photos/photo', photo: @article.photo
-    # remove when AWS is set up
-    json.photoUrl asset_path("article_photos/#{@article.section}.jpg")
+    json.thumbnailUrl url_for(@article.photo.image)
   end
 end

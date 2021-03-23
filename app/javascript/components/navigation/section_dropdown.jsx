@@ -7,7 +7,9 @@ const SectionDropdown = () => {
   let menu;
   if (showDropdown) {
     menu = (
-      <ul id="section-dropdown" onClick={() => setDropdown(false)}>
+      <ul id="section-dropdown" 
+        onMouseLeave={() => setDropdown(false)}
+        onClick={() => setDropdown(false)}>
         <li className="section-dropdown-items">
           <NavLink to="/us" activeStyle={{ textDecoration: "underline" }}>
             U.S.
