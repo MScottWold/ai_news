@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :articles, only: [:index, :show] do
-      resources :comments, only: [:index, :create]
       collection do
         get 'front_page'
       end
@@ -21,13 +20,14 @@ Rails.application.routes.draw do
         post 'favorite'
         post 'unfavorite'
       end
+      resources :comments, only: [:index, :create]
     end
     resources :authors, only: [:show] do 
       member do
         get :articles, to: 'articles#author_articles'
       end
     end
-    resources :users, only: [:create, :destroy]
+    resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
   end
 end

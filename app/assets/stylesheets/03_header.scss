@@ -26,12 +26,19 @@ header {
 .logo {
   font-size: 1rem;
   font-family: $serif;
-  border-bottom: 1px solid $aqua;
   cursor: pointer;
 }
 
 .logo > span {
   font-size: 1.5rem;
+}
+
+.logo::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: $aqua;
 }
 
 .logo:hover {
@@ -56,7 +63,7 @@ header {
   height: 30px;
   border-radius: 50%;
   overflow: hidden;
-  background-image: url("/assets/sprite.svg");
+  background-image: image-url("sprite.svg");
   background-repeat: no-repeat;
   background-size: 30px 210px;
   cursor: pointer;

@@ -9,7 +9,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def new
-    @photos = Photo.select(:id, :title)
+    @photos = Photo.select(:id, :alt_text)
     @authors = Author.select(:id, :name, :education)
     @article = Article.new
 
@@ -19,7 +19,7 @@ class Admin::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to admin_article_url(@article)
+      redirect_to admin_article_path(@article)
     else
       render json: @article.errors.full_messages
     end
@@ -34,7 +34,7 @@ class Admin::ArticlesController < ApplicationController
   def edit
     @article = Article.find_by(id: params[:id])
     @authors = Author.select(:id, :name, :education)
-    @photos = Photo.select(:id, :title)
+    @photos = Photo.select(:id, :alt_text)
     if @article
       render :edit
     else

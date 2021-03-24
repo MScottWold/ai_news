@@ -1,6 +1,5 @@
 class Api::CommentsController < ApplicationController
   before_action :require_login, only: [:create]
-  before_action :simulate_loading
 
   def index
     @comments = Comment.where(article_id: params[:article_id])

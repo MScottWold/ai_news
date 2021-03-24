@@ -21,6 +21,6 @@ class Admin::SessionsController < ApplicationController
 
   def destroy
     self.logout!
-    redirect_to new_admin_session_url
+    redirect_to new_admin_session_path
   end
 end

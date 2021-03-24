@@ -46,7 +46,7 @@
   margin-right: 10px;
   border-radius: 50%;
   overflow: hidden;
-  background-image: url("/assets/sprite.svg");
+  background-image: image-url("sprite.svg");
   background-repeat: no-repeat;
   background-size: 40px 280px;
   background-position: 0 0;
@@ -54,7 +54,7 @@
 
 [class^="star"]:hover {
   background-color: $blue-opac;
-  background-image: url("/assets/sprite.svg");
+  background-image: image-url("sprite.svg");
   cursor: pointer;
 }
 
@@ -121,7 +121,7 @@
   margin-bottom: 0;
   border-radius: 50%;
   overflow: hidden;
-  background-image: url("/assets/sprite.svg");
+  background-image: image-url("sprite.svg");
   background-repeat: no-repeat;
   background-size: 30px 210px;
   background-position: 0 -150px;

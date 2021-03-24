@@ -110,11 +110,15 @@
   
   .logo {
     font-size: 30px;
-    border-bottom: 4px solid $aqua;
   }
 
   .logo > span {
     font-size: 45px;
+  }
+
+  .logo::after {
+    height: 4px;
+    border-radius: 2px;
   }
 
   #hamburger-icon {
@@ -148,8 +152,8 @@
 
   #sections > a::before {
     content: "|";
+    display: inline-block;
     margin-right: 20px;
-    text-decoration: none;
   }
 
   #sections > a:first-child::before {
@@ -286,6 +290,10 @@
   }
 
   // 03_header
+  #section-dropdown {
+    display: none;
+  }
+
   // sticky header
   #header-sticky {
     position: fixed;
@@ -308,25 +316,40 @@
 
   #header-sticky > #masthead {
     padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   #header-sticky .logo {
     font-size: 1rem;
     line-height: 1rem;
-    border-bottom: 1px solid $aqua;
   }
 
   #header-sticky .logo > span {
     font-size: 1.5rem;
   }
 
+  #header-sticky .logo::after {
+    margin-top: 0px;
+    margin-bottom: 3px;
+    height: 2px;
+  }
+
   #header-sticky + main {
-    padding-top: 151px;
+    padding-top: 152px;
+  }
+
+  #header-sticky #section-dropdown {
+    top: 40px;
+    display: block;
+  }
+
+  #header-sticky #login-dropdown {
+    display: none;
   }
 
   // non-sticky header
   #masthead {
-    padding-bottom: 15px;
+    padding-bottom: 5px;
   }
   
   .logo {
@@ -336,6 +359,10 @@
 
   .logo > span {
     font-size: 75px;
+  }
+
+  .logo::after {
+    margin-top: 10px;
   }
 
   #hello-user {
@@ -353,7 +380,7 @@
   }  
 
   #featured-article > figure {
-    margin: 35px;
+    margin: 35px 5px;
   }
 
   // 07_article_lists
