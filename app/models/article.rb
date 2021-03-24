@@ -98,6 +98,7 @@ class Article < ApplicationRecord
   end
 
   def self.get_trending_articles
+    # "trending score" is a weighted score of total comments and user favorites
     favorites_join = <<-SQL
     LEFT OUTER JOIN
       (SELECT

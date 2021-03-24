@@ -48,7 +48,7 @@ class SessionForm extends React.Component {
           placeholder="password"
           value={this.state.password}
           onChange={this.handleChange('password')}/>
-        <input type="submit" value={this.props.submitText}/>
+        <input type="submit" tabIndex="0" value={this.props.submitText}/>
         {errorList}
       </form>
     );

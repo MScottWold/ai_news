@@ -14,11 +14,18 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "redux-logger": "^3.0.6",
     "webpack-dev-server": "^3.11.2"
+  },
+  "engines": {
+    "node": "14.15.4",
+    "yarn": "1.22.5"
+  },
+  "scripts": {
+    "postinstall": "webpack"
   }
 }

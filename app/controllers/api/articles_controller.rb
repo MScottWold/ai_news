@@ -1,6 +1,6 @@
 class Api::ArticlesController < ApplicationController
   before_action :protect_favorites, only: [:index]
-  before_action :simulate_loading
+  before_action :require_login, only: [:favorite, :unfavorite]
 
   def index
     case params[:collection]

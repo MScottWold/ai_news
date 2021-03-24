@@ -24,7 +24,7 @@
   <select name="article[photo_id]">
     <% @photos.each do |photo| %>
       <option value="<%= photo.id %>" <%= article.photo_id == photo.id ? "selected" : "" %>>
-        <%= "#{photo.id} - #{photo.title}" %>
+        <%= "#{photo.id} - #{photo.alt_text}" %>
       </option>
     <% end %>
   </select>

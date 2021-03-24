@@ -19,7 +19,7 @@ class Admin::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to admin_article_url(@article)
+      redirect_to admin_article_path(@article)
     else
       render json: @article.errors.full_messages
     end
