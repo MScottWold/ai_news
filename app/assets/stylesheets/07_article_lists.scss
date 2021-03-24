@@ -60,6 +60,7 @@
 }
 
 .small-photo {
+  flex-shrink: 0;
   margin-right: 7px;
   width: 140px;
   height: 105px;
