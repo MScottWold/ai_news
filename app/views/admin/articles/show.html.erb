@@ -1,9 +1,11 @@
 <h1><%= @article.title %></h1>
+<br>
+<a href="<%= edit_admin_article_url(@article.id) %>">Edit Article</a>
+<br>
 <p>Featured: <%= @article.featured ? "yes" : "no" %></p>
 <% @article.body.split("\r\n\r\n").each do |paragraph| %>
   <p><%= paragraph %></p>
 <% end %>
-<a href="<%= edit_admin_article_url(@article.id) %>">Edit Article</a>
 <br>
 <%= form_for [:admin, @article], method: :delete do |f| %>
   <%= f.submit "Delete Article" %>
