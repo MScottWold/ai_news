@@ -7,7 +7,7 @@ const Masthead = () => {
   const [sticky, setSticky] = useState(false);
   
   const handleScroll = (e) => {
-    if (window.scrollY > 73) {
+    if (window.scrollY > 82) {
       setSticky(true);
     } else {
       setSticky(false);

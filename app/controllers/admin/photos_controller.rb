@@ -46,7 +46,7 @@ class Admin::PhotosController < ApplicationController
       redirect_to admin_photo_path(@photo)
     else
       flash[:errors] = @photo.errors.full_messages
-      redirect_to edit_admin_photo(@photo)
+      redirect_to edit_admin_photo_path(@photo)
     end
   end
 
