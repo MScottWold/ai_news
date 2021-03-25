@@ -20,7 +20,9 @@
 
   <body>
     <h1>Admin Portal</h1>
-    <%= render "admin/shared/nav" %>
+    <% if logged_in? %>
+      <%= render "admin/shared/nav" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
