@@ -19,8 +19,8 @@ class User < ApplicationRecord
   validates :password, 
     length: { minimum: 8, allow_nil: true }, 
     format: { 
-      with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*-+])(?=.*[0-9]).{8,}\z/,
-      message: "password must contain at least: one lowercase letter, one uppercase letter, & one special character (!@#$%^&*-+)",
+      with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*-])(?=.*[0-9]).{8,}\z/,
+      message: "password must contain at least: one lowercase letter, one uppercase letter, & one special character (!@#$%^&*-)",
       allow_nil: true
     }
   validates :admin, inclusion: [true, false]

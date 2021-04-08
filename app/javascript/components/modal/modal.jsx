@@ -18,7 +18,7 @@ const Modal = ({ modalType, hideModal }) => {
   return (
     <div id="modal-mask" onClick={hideModal}>
       <div id="modal-container" onClick={(e) => e.stopPropagation()}>
-        <div id="hide-modal" onClick={hideModal}>X</div>
+        <button id="hide-modal" onClick={hideModal}>X</button>
         {modal}
       </div>
     </div>

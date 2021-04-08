@@ -33,7 +33,8 @@ img {
   width: 100%;
 }
 
-a:hover {
+.article-headline:hover,
+.list-headline:hover {
   text-decoration: underline;
 }
 
@@ -51,8 +52,7 @@ figcaption a {
   font-weight: bold;
 }
 
-input[type="submit"],
-button {
+.button {
   position: relative;
   display: block;
   margin: 25px auto;
@@ -65,12 +65,17 @@ button {
   cursor: pointer;
 }
 
-input[type="submit"]:hover,
-button:hover {
-  box-shadow: 0px 0px 5px 0px rgb(182, 182, 182);
+.comment-form input[type="submit"]:focus,
+button:focus,
+.button:focus {
+  box-shadow: 0px 0px 5px 0px rgb(109, 109, 109);
 }
 
-button:active {
+.button:hover {
+  box-shadow: 0px 0px 5px 0px rgb(161, 161, 161);
+}
+
+.button:active {
   background-image: none;
   background-color: rgb(32, 80, 166);
 }
