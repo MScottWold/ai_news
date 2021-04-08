@@ -19,7 +19,7 @@ Create a new account, or log in with 'Guest':'TheTribune2021!', to favorite/save
 
 Log in and discuss the articles
 
-![Comment](https://user-images.githubusercontent.com/10493350/113952498-a3aacd80-97ca-11eb-9ba4-c46c314c254f.gif)
+![Comment](https://user-images.githubusercontent.com/10493350/113967122-3a848380-97e5-11eb-8221-7d242d5b9102.gif)
 
 
 
