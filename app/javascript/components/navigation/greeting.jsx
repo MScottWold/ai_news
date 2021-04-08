@@ -9,23 +9,25 @@ const Greeting = ({ loggedIn, username, showModal, logout }) => {
       <ul id="login-dropdown" 
         onClick={() => setDropdown(false)}
         onMouseLeave={() => setDropdown(false)}>
-        <li className="login-dropdown-item"
-          onClick={() => window.location.hash = '/favorites'}>
-          favorites
+        <li>
+          <a href="#/favorites"
+            className="login-dropdown-item">favorites</a>
         </li>
-        <li className="login-dropdown-item" onClick={logout}>
-          log out
+        <li>
+          <a className="login-dropdown-item" onClick={logout}>log out</a>
         </li>
       </ul>
     ) : (
       <ul id="login-dropdown" 
         onClick={() => setDropdown(false)}
         onMouseLeave={() => setDropdown(false)}>
-        <li className="login-dropdown-item" onClick={() => showModal('login')}>
-          log in
+        <li>
+          <a className="login-dropdown-item" 
+            onClick={() => showModal('login')}>log in</a>
         </li>
-        <li className="login-dropdown-item" onClick={() => showModal('signup')}>
-          sign up
+        <li>
+          <a className="login-dropdown-item" 
+            onClick={() => showModal('signup')}>sign up</a>
         </li>
       </ul>
     );
@@ -39,10 +41,10 @@ const Greeting = ({ loggedIn, username, showModal, logout }) => {
   return (
     <div id="greeting-box">
       <div id="hello-user">{displayName}</div>
-      <div
+      <button
         id={`avatar-${ loggedIn ? 'login' : 'logout'}`}
         onClick={() => setDropdown(!showDropdown)}>
-      </div>
+      </button>
       {menu}
     </div>
   );

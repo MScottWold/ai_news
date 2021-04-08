@@ -4,7 +4,7 @@ export const selectArticles = ({ articles }, ids) => {
 
 export const selectArticle = ({ articles }, id) => {
   const article = articles[id];
-  return article ? article : {};
+  return article || {};
 }
 
 export const selectAuthor = ({ authors }, authorId) => {

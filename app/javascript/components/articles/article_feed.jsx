@@ -55,7 +55,7 @@ class ArticleFeed extends React.Component {
     const getMoreArticlesButton = this.state.hasAllArticles ? (
       null
     ) : (
-      <button onClick={this.handleClick}>More</button>
+      <button className="button" onClick={this.handleClick}>More</button>
     );
 
     return (

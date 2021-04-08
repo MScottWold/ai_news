@@ -150,6 +150,10 @@
     padding-right: 10px;
   }
 
+  #sections > a:hover {
+    text-decoration: underline;
+  }
+
   #sections > a::before {
     content: "|";
     display: inline-block;
@@ -448,6 +452,7 @@
 
   main {
     flex-wrap: nowrap;
+    max-width: 1500px;
   }
 
   .article-section {

@@ -6,7 +6,7 @@ import Collection from './collection';
 
 const mapStateToProps = (state, { location }) => {
   const section = location.pathname.slice(1);
-  const articleIds = state.ui.filters.collection ? state.ui.filters.collection : [];
+  const articleIds = state.ui.filters.collection || [];
   const articles = selectArticles(state.entities, articleIds);
 
   return {

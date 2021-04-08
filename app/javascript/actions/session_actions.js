@@ -35,8 +35,23 @@ export const logout = () => dispatch => {
     });
 };
 
-export const createUser = user => dispatch => {
-  return API.postUser(user)
+function validatePassword(password) {
+  let pswReg = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*-])(?=.*[0-9]).{8,}');
+  return pswReg.test(password);
+}
+
+export const createUser = formUser => dispatch => {
+  if (formUser.user.password.length < 8) {
+    dispatch(receiveLoginErrors(['Password must be at least 8 characters long']));
+    return;
+  } 
+  
+  if (!validatePassword(formUser.user.password)) {
+    dispatch(receiveLoginErrors(['Password must contain at least: one lowercase letter, one uppercase letter, & one special character (!@#$%^&*-)']));
+    return;
+  }
+
+  return API.postUser(formUser)
     .then(
       payload => dispatch(receieveCurrentUser(payload.username)),
       errors => dispatch(receiveLoginErrors(errors.responseJSON)) 
