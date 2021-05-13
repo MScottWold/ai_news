@@ -68,7 +68,7 @@ figcaption a {
 .comment-form input[type="submit"]:focus,
 button:focus,
 .button:focus {
-  box-shadow: 0px 0px 5px 0px rgb(109, 109, 109);
+  outline: gray thin dotted;
 }
 
 .button:hover {
