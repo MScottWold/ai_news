@@ -87,7 +87,7 @@ class Article extends React.Component {
     return (
       <article className="article">
         {favoriteButton}
-        <h1 className="article-headline">
+        <h1 className="main-article-headline">
           {article.title}
         </h1>
         <div className="byline">
