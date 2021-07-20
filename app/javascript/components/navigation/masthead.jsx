@@ -22,7 +22,7 @@ const Masthead = () => {
         <SectionDropdown />
         <div id="logo-box">
           <a href="/" className="logo">
-            <span>T</span>HE <span>E</span>RSATZ <span>T</span>RIBUNE
+            <span>T</span>HE <span>B</span>ANNER <span>W</span>EEKLY
           </a>
         </div>
         <GreetingContainer />
