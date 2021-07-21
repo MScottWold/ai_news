@@ -13,19 +13,19 @@ Since the model was trained on a dataset from the past, there are many outdated 
 ## User Features
 Create a new account, or log in with 'Guest':'TheBanner2021!', to favorite/save articles
 
-![Save Favorites](https://user-images.githubusercontent.com/10493350/113952227-24b59500-97ca-11eb-9166-2d8a9e3f688f.gif)
+![Save Favorites](https://user-images.githubusercontent.com/10493350/126433733-4701ff3b-9f91-4e36-944e-cdb307d7a22f.gif)
 
 
 
 Log in and discuss the articles
 
-![Comment](https://user-images.githubusercontent.com/10493350/113967122-3a848380-97e5-11eb-8221-7d242d5b9102.gif)
+![Comment](https://user-images.githubusercontent.com/10493350/126433763-178c6ff6-4ed6-4341-b345-c508352a58cf.gif)
 
 
 
-View the archives and your favorite section
+Visit all articles in the archives
 
-![Archives](https://user-images.githubusercontent.com/10493350/113954252-5df00400-97ce-11eb-9a4c-657722572bdb.gif)
+![Archives](https://user-images.githubusercontent.com/10493350/126433814-d1fa69a2-2634-4a79-9c55-df712454fb90.gif)
 
 
 ## Technologies
