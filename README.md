@@ -1,4 +1,4 @@
-<img width="1085" alt="Masthead" src="https://user-images.githubusercontent.com/10493350/113954436-ac050780-97ce-11eb-8e31-08e65d30b21c.png">
+<img width="1050" alt="Masthead" src="https://user-images.githubusercontent.com/10493350/126410749-2ac6d03a-904c-45dc-95eb-7e122a3a29d1.png">
 
 # The Banner Weekly
 [The Banner Weekly](https://banner-weekly.herokuapp.com) is a an online publication where all the articles are generated using OpenAI's [GPT-2](https://en.wikipedia.org/wiki/GPT-2). 
