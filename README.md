@@ -1,7 +1,7 @@
 <img width="1050" alt="Masthead" src="https://user-images.githubusercontent.com/10493350/126410749-2ac6d03a-904c-45dc-95eb-7e122a3a29d1.png">
 
 # The Banner Weekly
-[The Banner Weekly](https://banner-weekly.herokuapp.com) is a an online publication where all the articles are generated using OpenAI's [GPT-2](https://en.wikipedia.org/wiki/GPT-2). 
+The Banner Weekly ([live site](https://www.bannerweekly.com)) is a an online publication where all the articles are generated using OpenAI's [GPT-2](https://en.wikipedia.org/wiki/GPT-2). 
 
 The Banner's purpose is as an educational tool and a place for readers to examine the role of artifial intelligence in online news and disinformation. It is a concrete example of how mass-produced, computer-generated content can be dressed up to mimic the look and feel of traditional publications. Hopefully, it will inspire a dialogue about the online information we consume and the influence of Presentation on perceived truth and credibility.
 
