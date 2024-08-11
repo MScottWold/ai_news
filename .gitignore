@@ -7,6 +7,10 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore all environment files (except templates).
+/.env*
+!/.env*.erb
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -18,12 +22,15 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
-# Ignore uploaded files in development.
+# Ignore storage (uploaded files in development and any SQLite databases).
 /storage/*
 !/storage/.keep
+/tmp/storage/*
+tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
 
 /public/assets
-.byebug_history
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
@@ -35,9 +42,13 @@
 yarn-debug.log*
 .yarn-integrity
 
-# .DS_Store
-.DS_Store
-app/.DS_Store
-config/.DS_Store
-lib/.DS_Store
-test/.DS_Store
+.temp
+.yarn/*
+.yarn/install-state.gz
+.yarn/cache/
+.yarn/unplugged/
+
+.pnp.cjs
+.pnp.loader.mjs
+.editorconfig
+*.DS_Store

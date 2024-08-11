@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  get "up" => "rails/health#show", as: :rails_health_check
+
+  # Defines the root path route ("/")
   root to: "static_pages#root"
-  
-  get '/about', to: "static_pages#about"
-  get '/privacy', to: "static_pages#privacy"
+
+  get "/about", to: "static_pages#about"
+  get "/privacy", to: "static_pages#privacy"
 
   namespace :admin do
     resources :articles, only: [:new, :edit, :show, :index, :create, :update, :destroy]
@@ -14,19 +20,20 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :articles, only: [:index, :show] do
       collection do
-        get 'front_page'
+        get "front_page"
       end
-      member do 
-        post 'favorite'
-        post 'unfavorite'
-      end
+
       resources :comments, only: [:index, :create]
+      post :favorites, to: "favorites#create"
+      delete :favorites, to: "favorites#destroy"
     end
-    resources :authors, only: [:show] do 
+
+    resources :authors, only: [:show] do
       member do
-        get :articles, to: 'articles#author_articles'
+        get :articles, to: "articles#author_articles"
       end
     end
+
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
   end

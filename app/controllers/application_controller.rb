@@ -15,20 +15,20 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !!self.current_user
+    !!current_user
   end
 
   def require_login
     unless logged_in?
-      render json: { error: 'must be logged in' }, status: 400 
+      render json: { error: "must be logged in" }, status: 400
     end
   end
 
   def admin_logged_in?
-    self.current_user.try(:admin)
+    current_user.try(:admin)
   end
 
   def validate_admin_login
-    redirect_to '/' unless self.admin_logged_in?
+    redirect_to "/" unless admin_logged_in?
   end
 end

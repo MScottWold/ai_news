@@ -1,0 +1,208 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+
+AllCops:
+  CacheRootDirectory: tmp/cache
+  MaxFilesInCache: 20000
+  NewCops: enable
+  TargetRailsVersion: 6.0
+  TargetRubyVersion: 3.0.0
+  UseCache: true
+  Exclude:
+    - ".git/**/*"
+    - "app/assets/**/*"
+    - "bin/*"
+    - "config/*.yml"
+    - "coverage/**/*"
+    - "db/migrate/*"
+    - "Gemfile.lock"
+    - "log/**/*"
+    - "node_modules/**/*"
+    - "public/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "**/**/schema.rb"
+
+# Custom/DeclaredEnvironmentVariables:
+#   ReferenceFile: .sample.env
+
+Gemspec/RequireMFA:
+  Enabled: false
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/LineEndStringConcatenationIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
+Lint/ConstantDefinitionInBlock:
+  Enabled: false
+
+Lint/DuplicateBranch:
+  IgnoreLiteralBranches: true
+
+Lint/EmptyClass:
+  Exclude:
+    - "spec/**/*"
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/UselessMethodDefinition:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*.gemspec"
+    - "lib/tasks/**/*"
+    - "app/views/admin/**/*"
+    - "app/admin/*"
+    - "spec/**/*"
+    - "config/**/*"
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/MethodLength:
+  AllowedMethods:
+    - "permitted_params"
+  Max: 25
+
+Metrics/ModuleLength:
+  Max: 200
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
+Naming/MethodParameterName:
+  AllowedNames: [as, at, by, db, id, in, io, ip, 'on', to]
+
+Naming/PredicateName:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Performance/RedundantMerge:
+  Exclude:
+    - "spec/**/*"
+
+Performance/BigDecimalWithNumericArgument:
+  Enabled: false
+
+Performance/BlockGivenWithExplicitBlock:
+  Enabled: false
+
+Performance/MethodObjectAsBlock:
+  Enabled: false
+
+Performance/RedundantSplitRegexpArgument:
+  Enabled: false
+
+Performance/StringInclude:
+  Enabled: false
+
+Performance/Sum:
+  Enabled: false
+
+Rails/ApplicationController:
+  Enabled: false
+
+Rails/FilePath:
+  EnforcedStyle: arguments
+
+Rails/HttpStatus:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: true
+
+Rails/RequestReferer:
+  EnforcedStyle: referrer
+
+Rails/TimeZone:
+  EnforcedStyle: flexible
+
+Rails/I18nLocaleAssignment:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  EnforcedStyle: assign_inside_condition
+  IncludeTernaryExpressions: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FormatStringToken:
+  EnforcedStyle: template
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/KeywordParametersOrder:
+  Enabled: false
+
+Style/NumberedParametersLimit:
+  Max: 2
+
+Style/NumericLiterals:
+  MinDigits: 7
+
+Style/OptionalBooleanParameter:
+  AllowedMethods:
+    - "perform"
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '()'
+    '%I': '()'
+    '%r': '{}'
+    '%w': '()'
+    '%W': '()'
+
+Style/RedundantFetchBlock:
+  SafeForConstants: true
+
+Style/RegexpLiteral:
+  EnforcedStyle: mixed
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/WordArray:
+  Enabled: false

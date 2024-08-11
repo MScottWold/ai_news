@@ -1,5 +1,5 @@
 class Admin::ArticlesController < ApplicationController
-  layout 'admin' 
+  layout "admin"
   before_action :validate_admin_login
 
   def index
@@ -8,27 +8,18 @@ class Admin::ArticlesController < ApplicationController
     render :index
   end
 
+  def show
+    @article = Article.find_by(id: params[:id])
+
+    render :show
+  end
+
   def new
     @photos = Photo.select(:id, :alt_text)
     @authors = Author.select(:id, :name, :education)
     @article = Article.new
 
     render :new
-  end
-
-  def create
-    @article = Article.new(article_params)
-    if @article.save
-      redirect_to admin_article_path(@article)
-    else
-      render json: @article.errors.full_messages
-    end
-  end
-
-  def show
-    @article = Article.find_by(id: params[:id])
-
-    render :show
   end
 
   def edit
@@ -42,8 +33,17 @@ class Admin::ArticlesController < ApplicationController
     end
   end
 
+  def create
+    @article = Article.new(article_params)
+    if @article.save
+      redirect_to admin_article_path(@article)
+    else
+      render json: @article.errors.full_messages
+    end
+  end
+
   def update
-    @article = Article.find_by(id: self.params[:id])
+    @article = Article.find_by(id: params[:id])
 
     if @article.update(article_params)
       redirect_to admin_article_path(@article)
@@ -53,7 +53,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find_by(id: self.params[:id])
+    @article = Article.find_by(id: params[:id])
     @article.try(:destroy)
     redirect_to admin_articles_path
   end
@@ -61,16 +61,16 @@ class Admin::ArticlesController < ApplicationController
   private
 
   def article_params
-    self.params
-      .require(:article)
-      .permit(
-        :title, 
-        :body, 
-        :section, 
-        :author_id, 
-        :photo_id, 
-        :featured, 
-        :highlighted
+    params.
+      require(:article).
+      permit(
+        :title,
+        :body,
+        :section,
+        :author_id,
+        :photo_id,
+        :featured,
+        :highlighted,
       )
   end
 end

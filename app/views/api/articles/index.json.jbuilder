@@ -1,10 +1,14 @@
 article_ids = []
 
 json.articles do
-  @articles.each do |article|
-    article_ids.push(article.id)
-    json.set! article.id do
-      json.partial! "api/articles/article_list_item", article: article
+  if @articles.empty?
+    json.articles({})
+  else
+    @articles.each do |article|
+      article_ids.push(article.id)
+      json.set! article.id do
+        json.partial! "api/articles/article_list_item", article: article
+      end
     end
   end
 end

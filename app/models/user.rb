@@ -12,17 +12,19 @@
 #
 class User < ApplicationRecord
   attr_reader :password
-  
+
   validates :username, presence: true, uniqueness: true
   validates :password_digest, presence: true
   validates :session_token, presence: true, uniqueness: true
-  validates :password, 
-    length: { minimum: 8, allow_nil: true }, 
-    format: { 
+  validates(
+    :password,
+    length: { minimum: 8, allow_nil: true },
+    format: {
       with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*-])(?=.*[0-9]).{8,}\z/,
       message: "password must contain at least: one lowercase letter, one uppercase letter, & one special character (!@#$%^&*-)",
-      allow_nil: true
-    }
+      allow_nil: true,
+    },
+  )
   validates :admin, inclusion: [true, false]
 
   before_validation :ensure_session_token
@@ -49,8 +51,10 @@ class User < ApplicationRecord
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
+
     return nil unless user
-    return user.is_password?(password) ? user : nil
+
+    user.is_password?(password) ? user : nil
   end
 
   def password=(password)

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_233345) do
-
+ActiveRecord::Schema[7.1].define(version: 2021_03_21_233345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_03_21_233345) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -33,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_03_21_233345) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -49,8 +48,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_233345) do
     t.string "section", null: false
     t.integer "author_id", null: false
     t.integer "photo_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "featured", default: false
     t.boolean "highlighted", default: false
     t.index ["author_id"], name: "index_articles_on_author_id"
@@ -61,16 +60,16 @@ ActiveRecord::Schema.define(version: 2021_03_21_233345) do
     t.string "name", null: false
     t.string "bio", null: false
     t.string "education", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
     t.integer "user_id", null: false
     t.integer "article_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -78,8 +77,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_233345) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "article_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id", "article_id"], name: "index_favorites_on_user_id_and_article_id", unique: true
   end
 
@@ -91,8 +90,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_233345) do
     t.string "photographer_url", null: false
     t.string "license_type", null: false
     t.string "license_url", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -100,8 +99,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_233345) do
     t.string "password_digest", null: false
     t.string "session_token", null: false
     t.boolean "admin", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

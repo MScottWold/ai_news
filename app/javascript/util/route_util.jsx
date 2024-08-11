@@ -1,19 +1,12 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../features/session/session_slice';
 
-const Protected = ({ component: Component, path, exact, loggedIn }) => (
-  <Route exact={exact} path={path} render={(props) => (
-    loggedIn ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to="/" />
-    )
-  )}/>
-);
+const ProtectedRoute = ({protected: Protected}) => {
+  const currentUser = useSelector(selectCurrentUser);
 
-const mapStateToProps = state => ({
-  loggedIn: Boolean(state.ui.currentUser)
-});
+  return (currentUser ? <Protected /> : <Navigate to="/" />);
+};
 
-export const ProtectedRoute = connect(mapStateToProps)(Protected);
+export default ProtectedRoute;

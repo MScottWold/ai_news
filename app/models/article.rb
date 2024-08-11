@@ -15,86 +15,82 @@
 class Article < ApplicationRecord
   validates :title, :body, :author_id, :photo_id, presence: true
   validates :section, presence: true, inclusion: { in: %w(us politics sports business),
-    message: "Can only be in the following sections: us politics sports business"}
+                                                   message: "Can only be in the following sections: us politics sports business" }
   validates :featured, inclusion: { in: [true, false] }
 
   belongs_to :author,
-    class_name: :Author,
-    foreign_key: :author_id,
-    primary_key: :id
+             class_name: :Author,
+             primary_key: :id
 
   belongs_to :photo,
-    class_name: :Photo,
-    foreign_key: :photo_id,
-    primary_key: :id
+             class_name: :Photo,
+             primary_key: :id
 
   has_many :favorites,
-    class_name: :Favorite,
-    foreign_key: :article_id,
-    primary_key: :id,
-    dependent: :destroy
+           class_name: :Favorite,
+           primary_key: :id,
+           dependent: :destroy
 
   has_many :readers,
-    through: :favorites,
-    source: :user
+           through: :favorites,
+           source: :user
 
   has_many :comments,
-    class_name: :Comment,
-    foreign_key: :article_id,
-    primary_key: :id,
-    dependent: :destroy
+           class_name: :Comment,
+           primary_key: :id,
+           dependent: :destroy
 
   # for pagination
   BUCKET_SIZE = 5
 
   def self.get_user_favorites(user, after = nil)
     if after
-      article = user
-        .favorite_articles
-        .where('articles.id < ?', after)
+      article = user.
+        favorite_articles.
+        where("articles.id < ?", after)
     else
-      article = user
-        .favorite_articles
+      article = user.
+        favorite_articles
     end
 
-    article.order(id: :desc)
-      .limit(BUCKET_SIZE)
-      .includes(:author, photo: :thumbnail_blob)
+    article.order(id: :desc).
+      limit(BUCKET_SIZE).
+      includes(:author, photo: :thumbnail_blob)
   end
 
   def self.get_latest(after = nil)
     if after
-      article = Article
-        .where('articles.id < ?', after)
+      article = Article.
+        where("articles.id < ?", after)
     else
       article = Article
     end
 
-    article.order(created_at: :desc)
-      .limit(BUCKET_SIZE)
-      .includes(:author, photo: :thumbnail_blob)
+    article.order(created_at: :desc).
+      limit(BUCKET_SIZE).
+      includes(:author, photo: :thumbnail_blob)
   end
 
   def self.get_section(section, after = nil)
     if after
-      articles = Article
-        .where("articles.section = ? AND articles.id < ?", section, after)
+      articles = Article.
+        where("articles.section = ? AND articles.id < ?", section, after)
     else
-      articles = Article
-        .where(section: section)
+      articles = Article.
+        where(section: section)
     end
 
-    articles.order(created_at: :desc)
-      .limit(BUCKET_SIZE)
-      .includes(:author, photo: :thumbnail_blob)
+    articles.order(created_at: :desc).
+      limit(BUCKET_SIZE).
+      includes(:author, photo: :thumbnail_blob)
   end
 
   def self.get_featured_article
-    Article
-      .where(featured: true)
-      .order(id: :desc)
-      .limit(1)
-      .eager_load(:author, :photo)
+    Article.
+      where(featured: true).
+      order(id: :desc).
+      limit(1).
+      eager_load(:author, :photo)
   end
 
   def self.get_trending_articles
@@ -119,15 +115,15 @@ class Article < ApplicationRecord
           comments.article_id) AS com ON com.com_art_id = articles.id
     SQL
 
-    Article
-      .includes(photo: :thumbnail_blob)
-      .joins(favorites_join)
-      .joins(comments_join)
-      .select([
+    Article.
+      includes(photo: :thumbnail_blob).
+      joins(favorites_join).
+      joins(comments_join).
+      select([
         "articles.*",
-        "COALESCE(fav.fav_num * 5, 0) + COALESCE(com.com_num, 0) AS trend_val"
-      ])
-      .order("trend_val DESC")
-      .limit(6)
+        "COALESCE(fav.fav_num * 5, 0) + COALESCE(com.com_num, 0) AS trend_val",
+      ]).
+      order("trend_val DESC").
+      limit(6)
   end
 end

@@ -32,10 +32,10 @@ Visit all articles in the archives
 
 
 ## Technologies
-* Rails 6.1
-* React 17.0
-* Redux 4.0
-* React-router 5.2
+* Rails 7.1.2
+* React 18.2
+* Redux Toolkit 2.2
+* React-router 6.21
 * HTML/CSS/Ruby 3.0/Javascript ES6
 * Amazon S3 (image hosting)
 

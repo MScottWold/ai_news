@@ -1,28 +1,34 @@
 {
-  "name": "ai-news",
+  "name": "app",
   "private": true,
   "dependencies": {
-    "@babel/preset-react": "^7.12.13",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.2.1",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-redux": "^7.2.2",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "@babel/core": "7",
+    "@babel/plugin-transform-runtime": "7",
+    "@babel/preset-env": "7",
+    "@babel/runtime": "7",
+    "@reduxjs/toolkit": "^2.2.7",
+    "@types/babel__core": "7",
+    "@types/webpack": "5",
+    "babel-loader": "8",
+    "compression-webpack-plugin": "9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.3",
+    "react-router-dom": "^6.21.1",
+    "shakapacker": "7.1.0",
+    "terser-webpack-plugin": "5",
+    "webpack": "5",
+    "webpack-assets-manifest": "5",
+    "webpack-cli": "4",
+    "webpack-merge": "5"
   },
   "version": "0.1.0",
+  "browserslist": [
+    "defaults"
+  ],
   "devDependencies": {
+    "@babel/preset-react": "^7.23.3",
     "redux-logger": "^3.0.6",
-    "webpack-dev-server": "^3.11.2"
-  },
-  "engines": {
-    "node": "14.15.4",
-    "yarn": "1.22.5"
+    "webpack-dev-server": "4"
   }
 }

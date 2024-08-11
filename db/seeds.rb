@@ -1,16 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
+# This file should ensure the existence of records required to run the application in every environment (production,
+# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
+# Example:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
+#     MovieGenre.find_or_create_by!(name: genre_name)
+#   end
 
+# rubocop:disable Metrics/BlockLength
 ActiveRecord::Base.transaction do
   admin = User.create!(
     username: Rails.application.credentials.site_admin[:username],
     password: Rails.application.credentials.site_admin[:password],
-    admin: true
+    admin: true,
   )
 
   author_1 = Author.create!(
@@ -18,7 +21,7 @@ ActiveRecord::Base.transaction do
     bio: "Sleve covers sports for the AI Times.",
     education: "B.S. Sports History, Blue Mountain State",
     created_at: "2021-02-13 00:07:02 UTC",
-    updated_at: "2021-02-13 00:07:02 UTC"
+    updated_at: "2021-02-13 00:07:02 UTC",
   )
 
   author_2 = Author.create!(
@@ -26,7 +29,7 @@ ActiveRecord::Base.transaction do
     bio: "Onson covers politics for the Times. Onson is also a distinguished chair at the Center for Resources and American Politics.",
     education: "Ph.D. Political Scientology, Greendale Community College",
     created_at: "2021-02-13 00:07:02 UTC",
-    updated_at: "2021-02-13 00:07:02 UTC"
+    updated_at: "2021-02-13 00:07:02 UTC",
   )
 
   author_3 = Author.create!(
@@ -34,7 +37,7 @@ ActiveRecord::Base.transaction do
     bio: "Rey covers all thing business and tech.",
     education: "M.Bs.A, Pennbrook University",
     created_at: "2021-02-13 00:07:02 UTC",
-    updated_at: "2021-02-25 22:44:36 UTC"
+    updated_at: "2021-02-25 22:44:36 UTC",
   )
 
   author_4 = Author.create!(
@@ -42,7 +45,7 @@ ActiveRecord::Base.transaction do
     bio: "Willie reports on U.S. news",
     education: "Studied Journalism on YouTube",
     created_at: "2021-02-13 00:07:02 UTC",
-    updated_at: "2021-02-13 00:07:02 UTC"
+    updated_at: "2021-02-13 00:07:02 UTC",
   )
 
   photo_1 = Photo.create!(
@@ -54,7 +57,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY 2.0",
     license_url: "https://creativecommons.org/licenses/by/2.0/",
     created_at: "2021-02-13 00:07:02 UTC",
-    updated_at: "2021-03-22 23:35:18 UTC"
+    updated_at: "2021-03-22 23:35:18 UTC",
   )
 
   photo_2 = Photo.create!(
@@ -66,7 +69,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY-SA 2.0",
     license_url: "https://creativecommons.org/licenses/by-sa/2.0/",
     created_at: "2021-03-22 04:28:07 UTC",
-    updated_at: "2021-03-23 00:25:19 UTC"
+    updated_at: "2021-03-23 00:25:19 UTC",
   )
 
   photo_3 = Photo.create!(
@@ -90,7 +93,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY-SA 2.0",
     license_url: "https://creativecommons.org/licenses/by-sa/2.0/",
     created_at: "2021-03-22 04:41:21 UTC",
-    updated_at: "2021-03-23 00:26:30 UTC"
+    updated_at: "2021-03-23 00:26:30 UTC",
   )
 
   photo_5 = Photo.create!(
@@ -102,7 +105,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY-SA 2.0",
     license_url: "https://creativecommons.org/licenses/by-sa/2.0/",
     created_at: "2021-03-22 04:47:18 UTC",
-    updated_at: "2021-03-23 00:18:42 UTC"
+    updated_at: "2021-03-23 00:18:42 UTC",
   )
 
   photo_6 = Photo.create!(
@@ -114,7 +117,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY 2.0",
     license_url: "https://creativecommons.org/licenses/by/2.0/",
     created_at: "2021-03-22 04:50:51 UTC",
-    updated_at: "2021-03-23 00:03:16 UTC"
+    updated_at: "2021-03-23 00:03:16 UTC",
   )
 
   photo_7 = Photo.create!(
@@ -126,7 +129,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY 2.0",
     license_url: "https://creativecommons.org/licenses/by/2.0/",
     created_at: "2021-03-22 05:08:20 UTC",
-    updated_at: "2021-03-23 00:01:58 UTC"
+    updated_at: "2021-03-23 00:01:58 UTC",
   )
 
   photo_8 = Photo.create!(
@@ -138,7 +141,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY 2.0",
     license_url: "https://creativecommons.org/licenses/by/2.0/",
     created_at: "2021-03-22 05:11:49 UTC",
-    updated_at: "2021-03-23 00:25:03 UTC"
+    updated_at: "2021-03-23 00:25:03 UTC",
   )
 
   photo_9 = Photo.create!(
@@ -150,7 +153,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY 2.0",
     license_url: "https://creativecommons.org/licenses/by/2.0/",
     created_at: "2021-03-22 05:14:36 UTC",
-    updated_at: "2021-03-23 00:12:30 UTC"
+    updated_at: "2021-03-23 00:12:30 UTC",
   )
 
   photo_10 = Photo.create!(
@@ -162,7 +165,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY-SA 2.0",
     license_url: "https://creativecommons.org/licenses/by-sa/2.0/",
     created_at: "2021-03-22 05:17:29 UTC",
-    updated_at: "2021-03-23 00:18:42 UTC"
+    updated_at: "2021-03-23 00:18:42 UTC",
   )
 
   photo_11 = Photo.create!(
@@ -174,7 +177,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY 2.0",
     license_url: "https://creativecommons.org/licenses/by/2.0/",
     created_at: "2021-03-22 05:21:45 UTC",
-    updated_at: "2021-03-23 00:02:51 UTC"
+    updated_at: "2021-03-23 00:02:51 UTC",
   )
 
   photo_12 = Photo.create!(
@@ -186,7 +189,7 @@ ActiveRecord::Base.transaction do
     license_type: "Public Domain",
     license_url: "https://creativecommons.org/publicdomain/mark/1.0/",
     created_at: "2021-03-22 05:26:38 UTC",
-    updated_at: "2021-03-23 00:04:50 UTC"
+    updated_at: "2021-03-23 00:04:50 UTC",
   )
 
   photo_13 = Photo.create!(
@@ -198,7 +201,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY 2.0",
     license_url: "https://creativecommons.org/licenses/by/2.0/",
     created_at: "2021-03-23 00:40:01 UTC",
-    updated_at: "2021-03-23 00:40:01 UTC"
+    updated_at: "2021-03-23 00:40:01 UTC",
   )
 
   photo_14 = Photo.create!(
@@ -210,7 +213,7 @@ ActiveRecord::Base.transaction do
     license_type: "Public Domain",
     license_url: "https://creativecommons.org/publicdomain/zero/1.0/",
     created_at: "2021-03-23 00:50:39 UTC",
-    updated_at: "2021-03-23 00:50:39 UTC"
+    updated_at: "2021-03-23 00:50:39 UTC",
   )
 
   photo_15 = Photo.create!(
@@ -222,7 +225,7 @@ ActiveRecord::Base.transaction do
     license_type: "CC BY 2.0",
     license_url: "https://creativecommons.org/licenses/by/2.0/",
     created_at: "2021-03-23 00:56:21 UTC",
-    updated_at: "2021-03-23 00:56:21 UTC"
+    updated_at: "2021-03-23 00:56:21 UTC",
   )
 
   article_1 = Article.create!(
@@ -234,7 +237,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-15 00:53:06 UTC",
-    updated_at: "2021-03-23 00:40:25 UTC"
+    updated_at: "2021-03-23 00:40:25 UTC",
   )
 
   article_2 = Article.create!(
@@ -246,7 +249,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-02-15 18:13:56 UTC",
-    updated_at: "2021-03-22 04:48:30 UTC"
+    updated_at: "2021-03-22 04:48:30 UTC",
   )
 
   article_3 = Article.create!(
@@ -258,7 +261,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-15 18:38:20 UTC",
-    updated_at: "2021-03-22 04:30:55 UTC"
+    updated_at: "2021-03-22 04:30:55 UTC",
   )
 
   article_4 = Article.create!(
@@ -270,7 +273,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-02-15 19:21:10 UTC",
-    updated_at: "2021-03-22 05:05:15 UTC"
+    updated_at: "2021-03-22 05:05:15 UTC",
   )
 
   article_5 = Article.create!(
@@ -282,7 +285,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-02-17 01:53:50 UTC",
-    updated_at: "2021-03-22 04:47:55 UTC"
+    updated_at: "2021-03-22 04:47:55 UTC",
   )
 
   article_6 = Article.create!(
@@ -294,7 +297,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-19 22:09:26 UTC",
-    updated_at: "2021-02-19 22:09:26 UTC"
+    updated_at: "2021-02-19 22:09:26 UTC",
   )
 
   article_7 = Article.create!(
@@ -306,7 +309,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-19 22:13:43 UTC",
-    updated_at: "2021-03-22 04:37:42 UTC"
+    updated_at: "2021-03-22 04:37:42 UTC",
   )
 
   article_8 = Article.create!(
@@ -318,7 +321,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-02-21 01:44:32 UTC",
-    updated_at: "2021-03-23 00:56:33 UTC"
+    updated_at: "2021-03-23 00:56:33 UTC",
   )
 
   article_9 = Article.create!(
@@ -330,7 +333,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-24 00:11:17 UTC",
-    updated_at: "2021-03-22 05:21:53 UTC"
+    updated_at: "2021-03-22 05:21:53 UTC",
   )
 
   article_10 = Article.create!(
@@ -342,7 +345,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-24 03:58:54 UTC",
-    updated_at: "2021-03-22 04:48:56 UTC"
+    updated_at: "2021-03-22 04:48:56 UTC",
   )
 
   article_11 = Article.create!(
@@ -354,7 +357,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-24 20:10:25 UTC",
-    updated_at: "2021-03-23 00:51:24 UTC"
+    updated_at: "2021-03-23 00:51:24 UTC",
   )
 
   article_12 = Article.create!(
@@ -366,7 +369,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-02-25 20:45:52 UTC",
-    updated_at: "2021-03-23 00:51:12 UTC"
+    updated_at: "2021-03-23 00:51:12 UTC",
   )
 
   article_13 = Article.create!(
@@ -378,7 +381,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-26 05:49:59 UTC",
-    updated_at: "2021-03-23 00:51:01 UTC"
+    updated_at: "2021-03-23 00:51:01 UTC",
   )
 
   article_14 = Article.create!(
@@ -390,7 +393,7 @@ ActiveRecord::Base.transaction do
     featured: true,
     highlighted: false,
     created_at: "2021-02-26 05:55:06 UTC",
-    updated_at: "2021-03-22 05:05:42 UTC"
+    updated_at: "2021-03-22 05:05:42 UTC",
   )
 
   article_15 = Article.create!(
@@ -402,7 +405,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-26 20:48:36 UTC",
-    updated_at: "2021-03-22 05:27:04 UTC"
+    updated_at: "2021-03-22 05:27:04 UTC",
   )
 
   article_16 = Article.create!(
@@ -414,7 +417,7 @@ ActiveRecord::Base.transaction do
     featured: true,
     highlighted: false,
     created_at: "2021-02-26 22:04:38 UTC",
-    updated_at: "2021-02-26 22:04:38 UTC"
+    updated_at: "2021-02-26 22:04:38 UTC",
   )
 
   article_17 = Article.create!(
@@ -426,7 +429,7 @@ ActiveRecord::Base.transaction do
     featured: true,
     highlighted: false,
     created_at: "2021-02-26 22:11:31 UTC",
-    updated_at: "2021-03-22 05:17:39 UTC"
+    updated_at: "2021-03-22 05:17:39 UTC",
   )
 
   article_18 = Article.create!(
@@ -438,7 +441,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-02-26 23:49:58 UTC",
-    updated_at: "2021-03-22 05:08:32 UTC"
+    updated_at: "2021-03-22 05:08:32 UTC",
   )
 
   article_19 = Article.create!(
@@ -450,7 +453,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: false,
     created_at: "2021-02-27 00:00:04 UTC",
-    updated_at: "2021-03-22 05:14:43 UTC"
+    updated_at: "2021-03-22 05:14:43 UTC",
   )
 
   article_20 = Article.create!(
@@ -462,7 +465,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-03-02 02:16:30 UTC",
-    updated_at: "2021-03-22 04:42:30 UTC"
+    updated_at: "2021-03-22 04:42:30 UTC",
   )
 
   article_21 = Article.create!(
@@ -474,7 +477,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-03-02 02:23:10 UTC",
-    updated_at: "2021-03-22 04:30:16 UTC"
+    updated_at: "2021-03-22 04:30:16 UTC",
   )
 
   article_22 = Article.create!(
@@ -486,7 +489,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-03-10 22:51:26 UTC",
-    updated_at: "2021-03-22 04:48:40 UTC"
+    updated_at: "2021-03-22 04:48:40 UTC",
   )
 
   article_23 = Article.create!(
@@ -498,7 +501,7 @@ ActiveRecord::Base.transaction do
     featured: false,
     highlighted: true,
     created_at: "2021-03-12 00:45:21 UTC",
-    updated_at: "2021-03-22 05:11:58 UTC"
+    updated_at: "2021-03-22 05:11:58 UTC",
   )
 
   placeholder_photo = Photo.create!(
@@ -512,12 +515,12 @@ ActiveRecord::Base.transaction do
   )
 
   admin.favorite_articles = [
-    article_3, 
-    article_4, 
-    article_7, 
-    article_8, 
+    article_3,
+    article_4,
+    article_7,
+    article_8,
     article_12,
-    article_17
+    article_17,
   ]
 
   placeholder_photo.image.attach(io: File.open("app/assets/images/no_image.png"), filename: "no_image.png")
@@ -526,3 +529,4 @@ ActiveRecord::Base.transaction do
     photo.thumbnail.attach(placeholder_photo.image.blob)
   end
 end
+# rubocop:enable Metrics/BlockLength
