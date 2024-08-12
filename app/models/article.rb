@@ -13,35 +13,26 @@
 #  featured   :boolean          default(FALSE)
 #
 class Article < ApplicationRecord
-  validates :title, :body, :author_id, :photo_id, presence: true
-  validates :section, presence: true, inclusion: { in: %w(us politics sports business),
-                                                   message: "Can only be in the following sections: us politics sports business" }
-  validates :featured, inclusion: { in: [true, false] }
-
-  belongs_to :author,
-             class_name: :Author,
-             primary_key: :id
-
-  belongs_to :photo,
-             class_name: :Photo,
-             primary_key: :id
-
-  has_many :favorites,
-           class_name: :Favorite,
-           primary_key: :id,
-           dependent: :destroy
-
-  has_many :readers,
-           through: :favorites,
-           source: :user
-
-  has_many :comments,
-           class_name: :Comment,
-           primary_key: :id,
-           dependent: :destroy
-
   # for pagination
   BUCKET_SIZE = 5
+
+  validates :title, :body, presence: true
+  validates(
+    :section,
+    presence: true,
+    inclusion: {
+      in: %w(us politics sports business),
+      message: I18n.t("models.article.errors.section.inclusion"),
+    },
+  )
+  validates :featured, inclusion: { in: [true, false] }
+
+  belongs_to :author
+  belongs_to :photo
+
+  has_many :favorites, dependent: :destroy
+  has_many :readers, through: :favorites, source: :user
+  has_many :comments, dependent: :destroy
 
   def self.get_user_favorites(user, after = nil)
     if after

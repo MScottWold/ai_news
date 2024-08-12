@@ -12,9 +12,5 @@
 class Author < ApplicationRecord
   validates :name, :bio, :education, presence: true
 
-  has_many :articles,
-    class_name: :Article,
-    foreign_key: :author_id,
-    primary_key: :id,
-    dependent: :destroy
+  has_many :articles, dependent: :destroy
 end

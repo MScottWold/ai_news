@@ -28,4 +28,12 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  models:
+    article:
+      errors:
+        section:
+          inclusion: "Can only be in the following sections: us politics sports business"
+    user:
+      errors:
+        password:
+          format: "password must contain at least: one lowercase letter, one uppercase letter, & one special character (!@#$%^&*-)"

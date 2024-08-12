@@ -21,7 +21,7 @@ class User < ApplicationRecord
     length: { minimum: 8, allow_nil: true },
     format: {
       with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*-])(?=.*[0-9]).{8,}\z/,
-      message: "password must contain at least: one lowercase letter, one uppercase letter, & one special character (!@#$%^&*-)",
+      message: I18n.t("models.user.errors.password.format"),
       allow_nil: true,
     },
   )
@@ -29,21 +29,13 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
-  has_many :favorites,
-    class_name: :Favorite,
-    foreign_key: :user_id,
-    primary_key: :id,
-    dependent: :destroy
-
-  has_many :favorite_articles,
+  has_many :favorites, dependent: :destroy
+  has_many(
+    :favorite_articles,
     through: :favorites,
-    source: :article
-
-  has_many :comments,
-    class_name: :Comment,
-    foreign_key: :user_id,
-    primary_key: :id,
-    dependent: :destroy
+    source: :article,
+  )
+  has_many :comments, dependent: :destroy
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64
@@ -68,13 +60,11 @@ class User < ApplicationRecord
 
   def reset_session_token!
     self.session_token = User.generate_session_token
-    self.save!
+    save!
     self.session_token
   end
 
-  # private
-
   def is_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?(password)
+    BCrypt::Password.new(password_digest).is_password?(password)
   end
 end
