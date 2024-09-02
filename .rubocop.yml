@@ -14,7 +14,6 @@ AllCops:
     - "app/assets/**/*"
     - "bin/*"
     - "config/*.yml"
-    - "coverage/**/*"
     - "db/migrate/*"
     - "Gemfile.lock"
     - "log/**/*"
@@ -23,12 +22,6 @@ AllCops:
     - "tmp/**/*"
     - "vendor/**/*"
     - "**/**/schema.rb"
-
-# Custom/DeclaredEnvironmentVariables:
-#   ReferenceFile: .sample.env
-
-Gemspec/RequireMFA:
-  Enabled: false
 
 Layout/DotPosition:
   EnforcedStyle: trailing
@@ -169,6 +162,9 @@ Style/NumberedParametersLimit:
 
 Style/NumericLiterals:
   MinDigits: 7
+
+Style/OpenStructUse:
+  Enabled: false
 
 Style/OptionalBooleanParameter:
   AllowedMethods:
