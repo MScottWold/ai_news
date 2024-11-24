@@ -13,8 +13,11 @@
 #  featured   :boolean          default(FALSE)
 #
 class Article < ApplicationRecord
+  include StringEnum
+
   # for pagination
   BUCKET_SIZE = 5
+  SECTIONS = %i(us politics sports business).freeze
 
   validates :title, :body, presence: true
   validates(
@@ -33,6 +36,8 @@ class Article < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :readers, through: :favorites, source: :user
   has_many :comments, dependent: :destroy
+
+  string_enum :section, SECTIONS
 
   def self.get_user_favorites(user, after = nil)
     if after

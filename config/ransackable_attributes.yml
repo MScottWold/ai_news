@@ -1,0 +1,19 @@
+article:
+  attributes:
+    - section
+    - featured
+    - highlighted
+  associations:
+    - author
+    - photo
+author:
+  attributes:
+    - name
+  associations:
+    - article
+comment:
+  attributes:
+  associations:
+    - user
+    - article
+

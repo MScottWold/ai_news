@@ -1,21 +1,19 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  ActiveAdmin.routes(self)
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
+
+  # OAuth authentication
+  get "auth/google_oauth2/callback", to: "admin/oauth_sessions#google"
+  get "auth/destroy", to: "admin/oauth_sessions#destroy"
 
   # Defines the root path route ("/")
   root to: "static_pages#root"
 
   get "/about", to: "static_pages#about"
   get "/privacy", to: "static_pages#privacy"
-
-  namespace :admin do
-    resources :articles, only: [:new, :edit, :show, :index, :create, :update, :destroy]
-    resources :photos, only: [:new, :edit, :show, :index, :create, :update, :destroy]
-    resource :session, only: [:new, :create, :destroy]
-  end
 
   namespace :api, defaults: { format: :json } do
     resources :articles, only: [:index, :show] do

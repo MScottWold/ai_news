@@ -41,6 +41,9 @@ gem "bootsnap", require: false
 gem "aws-sdk-s3", require: false
 gem "dotenv-rails"
 
+gem "activeadmin"
+gem "omniauth-google-oauth2"
+
 # HTTP Requests
 gem "faraday"
 

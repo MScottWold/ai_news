@@ -49,6 +49,10 @@ class User < ApplicationRecord
     user.is_password?(password) ? user : nil
   end
 
+  def reset_oauth_token!
+    update(oauth_token: nil)
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

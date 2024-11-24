@@ -13,6 +13,7 @@ ActiveRecord::Base.transaction do
   admin = User.create!(
     username: Rails.application.credentials.site_admin[:username],
     password: Rails.application.credentials.site_admin[:password],
+    email: Rails.application.credentials.site_admin[:email],
     admin: true,
   )
 

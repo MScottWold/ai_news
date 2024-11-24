@@ -27,5 +27,5 @@ class Photo < ApplicationRecord
   has_one_attached :thumbnail
   has_one_attached :image
 
-  has_many :articles
+  has_many :articles, dependent: :nullify
 end
