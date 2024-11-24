@@ -39,7 +39,7 @@ class Article < ApplicationRecord
 
   string_enum :section, SECTIONS
 
-  def self.get_user_favorites(user, after = nil)
+  def self.user_favorites(user, after = nil)
     if after
       article = user.
         favorite_articles.
@@ -54,7 +54,7 @@ class Article < ApplicationRecord
       includes(:author, photo: :thumbnail_blob)
   end
 
-  def self.get_latest(after = nil)
+  def self.latest(after = nil)
     if after
       article = Article.
         where("articles.id < ?", after)
@@ -67,7 +67,7 @@ class Article < ApplicationRecord
       includes(:author, photo: :thumbnail_blob)
   end
 
-  def self.get_section(section, after = nil)
+  def self.section(section, after = nil)
     if after
       articles = Article.
         where("articles.section = ? AND articles.id < ?", section, after)
@@ -81,7 +81,7 @@ class Article < ApplicationRecord
       includes(:author, photo: :thumbnail_blob)
   end
 
-  def self.get_featured_article
+  def self.featured_article
     Article.
       where(featured: true).
       order(id: :desc).
@@ -89,7 +89,7 @@ class Article < ApplicationRecord
       eager_load(:author, :photo)
   end
 
-  def self.get_trending_articles
+  def self.trending_articles
     # "trending score" is a weighted score of total comments and user favorites
     favorites_join = <<-SQL
     LEFT OUTER JOIN

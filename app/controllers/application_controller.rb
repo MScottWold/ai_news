@@ -23,12 +23,4 @@ class ApplicationController < ActionController::Base
       render json: { error: "must be logged in" }, status: 400
     end
   end
-
-  def admin_logged_in?
-    current_user.try(:admin)
-  end
-
-  def validate_admin_login
-    redirect_to "/" unless admin_logged_in?
-  end
 end

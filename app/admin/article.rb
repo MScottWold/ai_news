@@ -1,6 +1,6 @@
 ActiveAdmin.register Article do
   includes :author, :photo
-  actions :show, :index, :edit
+  actions :show, :index, :edit, :new, :create
 
   Article::SECTIONS.each { scope _1 }
   filter :featured, as: :select, collection: [true, false]

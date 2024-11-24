@@ -6,19 +6,19 @@ module Api
     def index
       case params[:collection]
       when "archives"
-        @articles = Article.get_latest(params[:after])
+        @articles = Article.latest(params[:after])
         @filter = "collection"
       when "latest"
         @filter = "latest"
-        @articles = Article.get_latest
+        @articles = Article.latest
       when "trending"
-        @articles = Article.get_trending_articles
+        @articles = Article.trending_articles
         @filter = "trending"
       when "us", "sports", "politics", "business"
-        @articles = Article.get_section(params[:collection], params[:after])
+        @articles = Article.section(params[:collection], params[:after])
         @filter = "collection"
       when "favorites"
-        @articles = Article.get_user_favorites(current_user, params[:after])
+        @articles = Article.user_favorites(current_user, params[:after])
         @filter = "collection"
       else
         @filter = "none"
