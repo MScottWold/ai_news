@@ -9,6 +9,8 @@
 #  admin           :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  email           :string
+#  oauth_token     :string
 #
 class User < ApplicationRecord
   attr_reader :password

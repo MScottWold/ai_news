@@ -2,11 +2,11 @@
 #
 # Table name: photos
 #
-#  id                :bigint           not null, primary key
-#  alt_text          :string           not null
-#  title             :string           not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id         :bigint           not null, primary key
+#  alt_text   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  article_id :bigint           not null
 #
 class Photo < ApplicationRecord
   has_one_attached :image do |attachable|

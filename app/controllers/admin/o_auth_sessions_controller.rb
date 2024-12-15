@@ -1,5 +1,5 @@
 module Admin
-  class OauthSessionsController < ApplicationController
+  class OAuthSessionsController < ApplicationController
     def google
       if oauth_admin_user
         sign_in

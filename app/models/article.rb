@@ -1,7 +1,21 @@
+# == Schema Information
+#
+# Table name: articles
+#
+#  id          :bigint           not null, primary key
+#  title       :string           not null
+#  body        :text
+#  section     :string           not null
+#  author_id   :integer          not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  featured    :boolean          default(FALSE)
+#  highlighted :boolean          default(FALSE)
+#  active      :boolean          default(FALSE)
+#
 class Article < ApplicationRecord
   include StringEnum
 
-  # for pagination
   BUCKET_SIZE = 5
   SECTIONS = %i(us politics sports business).freeze
 

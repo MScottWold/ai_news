@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # OAuth authentication
-  get "auth/google_oauth2/callback", to: "admin/oauth_sessions#google"
-  get "auth/destroy", to: "admin/oauth_sessions#destroy"
+  get "auth/google_oauth2/callback", to: "admin/o_auth_sessions#google"
+  get "auth/destroy", to: "admin/o_auth_sessions#destroy"
 
   # Defines the root path route ("/")
   root to: "static_pages#root"
