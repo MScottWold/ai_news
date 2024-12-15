@@ -9,7 +9,7 @@ const ArticleList = ({ articles }) => {
       <li key={id} className="article-list-item">
         <img
           className="small-photo"
-          src={photo.thumbnailUrl}
+          src={photo.thumbUrl}
           alt={photo.altText} />
         <ul>
           <li className={`${section}-tag`}>

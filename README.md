@@ -34,6 +34,8 @@ Visit all articles in the archives
 * React-router 6.21
 * HTML/CSS/Ruby 3.2.2/Javascript ES6
 * Amazon S3 (image hosting)
+* Google Gemini
+* OpenAI Dall-E 2
 
 ## Live Site
 [The Banner Weekly](https://github.com/MScottWold/ai_news)

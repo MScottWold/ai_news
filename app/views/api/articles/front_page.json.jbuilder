@@ -1,4 +1,4 @@
-json.featured do 
+json.featured do
   json.partial! "api/articles/featured_article", article: @featured_article
 end
 

@@ -20,7 +20,9 @@ const Article = () => {
     toggleShowComments(false);
     if (!article || !article.body) {
       dispatch(fetchArticle(articleId))
-        .then((receivedArticle) => document.title = receivedArticle.title);
+        .then((response) => {
+          document.title = response.payload[articleId].title
+        });
     } else {
       document.title = article.title;
     }
@@ -35,7 +37,7 @@ const Article = () => {
   }
 
   const paragraphs = article.body
-    .split("\r\n\r\n")
+    .split("\n\n")
     .map((para, idx) => <p key={idx} >{para}</p>)
   const publishDate = new Date(article.createdAt).toUTCString();
   const favorited = article.favorited;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_09_055952) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_15_010742) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,16 +44,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_09_055952) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title", null: false
-    t.text "body", null: false
+    t.text "body"
     t.string "section", null: false
     t.integer "author_id", null: false
-    t.integer "photo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "featured", default: false
     t.boolean "highlighted", default: false
+    t.boolean "active", default: false
     t.index ["author_id"], name: "index_articles_on_author_id"
-    t.index ["photo_id"], name: "index_articles_on_photo_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -83,15 +82,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_09_055952) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string "alt_text", null: false
-    t.string "title", null: false
-    t.string "source_url", null: false
-    t.string "photographer_name", null: false
-    t.string "photographer_url", null: false
-    t.string "license_type", null: false
-    t.string "license_url", null: false
+    t.string "alt_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "article_id", null: false
+    t.index ["article_id"], name: "index_photos_on_article_id"
   end
 
   create_table "users", force: :cascade do |t|

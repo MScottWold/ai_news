@@ -1,9 +1,3 @@
 json.id photo.id
-json.imageUrl url_for(photo.image)
+json.imageUrl photo.image_attached? ? url_for(photo.image.variant(:large)) : nil
 json.altText photo.alt_text
-json.title photo.title
-json.sourceUrl photo.source_url
-json.photographerName photo.photographer_name
-json.photographerUrl photo.photographer_url
-json.licenseType photo.license_type
-json.licenseUrl photo.license_url

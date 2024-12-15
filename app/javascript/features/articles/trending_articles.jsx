@@ -27,7 +27,7 @@ const TrendingArticles = () => {
       <Link to={`/articles/${article.id}`}>
         <img
           className="trend-art-photo"
-          src={article.photo.thumbnailUrl}
+          src={article.photo.thumbUrl}
           alt={article.photo.altText} />
       </Link>
       <Link to={`/articles/${article.id}`} className="list-headline">

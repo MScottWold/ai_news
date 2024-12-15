@@ -1,5 +1,6 @@
 article:
   attributes:
+    - active
     - section
     - featured
     - highlighted

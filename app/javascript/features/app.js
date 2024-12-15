@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ProtectedRoute } from "../util/route_util";
 import Footer from "./navigation/footer";
 import Masthead from "./navigation/masthead";
 import TrendingArticles from "./articles/trending_articles";

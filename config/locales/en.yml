@@ -30,10 +30,21 @@
 en:
   models:
     article:
+      body_generated: "Article Body Created"
       errors:
         section:
           inclusion: "Can only be in the following sections: us politics sports business"
+      generate_body: "Generate Article Body"
+    photo:
+      delete_images: "Delete Images"
+      generate_photo: "Generate Photo"
+      photo_generated: "Photo Generated"
+      photos_deleted: "Photos Deleted"
     user:
       errors:
         password:
           format: "password must contain at least: one lowercase letter, one uppercase letter, & one special character (!@#$%^&*-)"
+  prompts:
+      article: "You are a journalist. Write an article, with <= 500 words, based on the following headline: %{headline}. Only return the article body and a one sentence summary of it that a photographer could use to take a photo, titled: Photo Caption."
+      image: "A photograph of: %{image_prompt}"
+

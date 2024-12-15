@@ -5,7 +5,7 @@ ActiveAdmin.register Photo do
 
   index do
     column :id
-    column :title
+    column :article
     column :created_at
     column :updated_at
 
@@ -16,19 +16,13 @@ ActiveAdmin.register Photo do
     attributes_table do
       row :id
       row :alt_text
-      row :title
-      row :source_url
-      row :photographer_name
-      row :photographer_url
-      row :license_type
-      row :license_url
+      row :article
       row :created_at
       row :updated_at
-      row :thumbnail do
-        image_tag resource.thumbnail.url
-      end
       row :image do
-        image_tag resource.image.url
+        if resource.image.attached?
+          image_tag resource.image.variant(:thumb)
+        end
       end
     end
   end
@@ -36,28 +30,48 @@ ActiveAdmin.register Photo do
   form do |f|
     f.inputs do
       f.input :alt_text
-      f.input :title
-      f.input :source_url
-      f.input :photographer_name
-      f.input :photographer_url
-      f.input :license_type
-      f.input :license_url
-      f.input :thumbnail
-      f.input :image
+      f.input :article
+      f.input :image, as: :file
     end
 
     f.actions
   end
 
+  action_item :purge, only: :show do
+    if resource.image_attached?
+      button_to(
+        I18n.t("models.photo.delete_images"),
+        purge_photo_admin_photo_path(resource),
+        method: :put,
+      )
+    end
+  end
+
+  action_item :generate_photo, only: :show do
+    if resource.alt_text.present? && !resource.image.attached?
+      button_to(
+        I18n.t("models.photo.generate_photo"),
+        generate_photo_admin_photo_path(resource),
+        method: :put,
+      )
+    end
+  end
+
+  member_action :purge_photo, method: :put do
+    resource.image.purge
+
+    redirect_to resource_path, notice: I18n.t("models.photo.photos_deleted")
+  end
+
+  member_action :generate_photo, method: :put do
+    AiPhotoGenerator.generate_photo(resource)
+
+    redirect_to resource_path, notice: I18n.t("models.photo.photo_generated")
+  end
+
   permit_params(
     :alt_text,
-    :title,
-    :source_url,
-    :photographer_name,
-    :photographer_url,
-    :license_type,
-    :license_url,
-    :thumbnail,
+    :article_id,
     :image,
   )
 end

@@ -3,10 +3,11 @@ module Api
     def show
       @author = Author.find_by(id: params[:id])
       if @author
-        @articles = @author.articles.
-          limit(5).
+        @articles = @author.
+          articles.
+          includes(photo: :thumbnail_blob).
           order("articles.id DESC").
-          includes(photo: :thumbnail_blob)
+          limit(5)
       end
 
       if @author

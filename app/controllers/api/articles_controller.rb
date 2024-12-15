@@ -4,56 +4,24 @@ module Api
     before_action :require_login, only: [:favorite, :unfavorite]
 
     def index
-      case params[:collection]
-      when "archives"
-        @articles = Article.latest(params[:after])
-        @filter = "collection"
-      when "latest"
-        @filter = "latest"
-        @articles = Article.latest
-      when "trending"
-        @articles = Article.trending_articles
-        @filter = "trending"
-      when "us", "sports", "politics", "business"
-        @articles = Article.section(params[:collection], params[:after])
-        @filter = "collection"
-      when "favorites"
-        @articles = Article.user_favorites(current_user, params[:after])
-        @filter = "collection"
-      else
-        @filter = "none"
-        @articles = Article.limit(5).includes(photo: :thumbnail_blob)
-      end
+      @filter, @articles = Article::CollectionFinder.
+        filter_and_articles(params[:collection], params[:after], current_user)
 
       render :index
     end
 
     def front_page
       # Added for more specific control of front page
-      @highlighted_articles = Article.
-        where(highlighted: true).
-        limit(10).
-        eager_load(:author)
-
-      @featured_article = Article.
-        where(featured: true).
-        order(id: :desc).
-        limit(1).
-        eager_load(:author).
-        first
+      @highlighted_articles = Article.highlighted_articles
+      @featured_article = Article.featured_article
 
       render :front_page
     end
 
     def author_articles
-      if (last_id = params[:after])
+      if params[:after].present?
         @author_id = params[:id]
-        @articles = Article.
-          where(author_id: @author_id).
-          where("articles.id < ?", last_id).
-          order("articles.id DESC").
-          limit(5).
-          includes(photo: :thumbnail_blob)
+        @articles = Article.author_articles(@author_id, params[:after])
 
         render :author_articles
       else
@@ -67,7 +35,7 @@ module Api
         @favorite = Favorite.find_by(
           article_id: params[:id],
           user_id: current_user.id,
-        )
+        ).present?
       end
 
       if @article
