@@ -9,17 +9,17 @@ local:
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon:
   service: S3
-  access_key_id: <%= ENV.fetch("AWS_ACCESS_KEY") %>
-  secret_access_key: <%= ENV.fetch("AWS_SECRET_ACCESS_KEY") %>
-  region: <%= ENV.fetch("AWS_REGION") %>
-  bucket: <%= ENV.fetch("AWS_BUCKET") %>
+  access_key_id: <%= ENV.fetch("AWS_S3_ACCESS_KEY") %>
+  secret_access_key: <%= ENV.fetch("AWS_S3_SECRET_ACCESS_KEY") %>
+  region: <%= ENV.fetch("AWS_S3_REGION") %>
+  bucket: <%= ENV.fetch("AWS_S3_BUCKET") %>
 
 amazon_dev:
   service: S3
-  access_key_id: <%= ENV.fetch("AWS_ACCESS_KEY") %>
-  secret_access_key: <%= ENV.fetch("AWS_SECRET_ACCESS_KEY") %>
-  region: <%= ENV.fetch("AWS_REGION") %>
-  bucket: <%= ENV.fetch("AWS_BUCKET") %>
+  access_key_id: <%= ENV.fetch("AWS_S3_ACCESS_KEY") %>
+  secret_access_key: <%= ENV.fetch("AWS_S3_SECRET_ACCESS_KEY") %>
+  region: <%= ENV.fetch("AWS_S3_REGION") %>
+  bucket: <%= ENV.fetch("AWS_S3_BUCKET") %>
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
@@ -39,3 +39,10 @@ amazon_dev:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+tigris:
+  service: S3
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_SECRET_ACCESS_KEY"] %>
+  endpoint: <%= ENV["AWS_ENDPOINT_URL_S3"] %>
+  bucket: <%= ENV["BUCKET_NAME"] %>

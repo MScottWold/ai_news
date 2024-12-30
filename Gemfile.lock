@@ -144,6 +144,8 @@ GEM
       reline (>= 0.3.8)
     debug_inspector (1.2.0)
     diff-lcs (1.5.1)
+    dockerfile-rails (1.6.25)
+      rails (>= 3.0.0)
     dotenv (3.1.2)
     dotenv-rails (3.1.2)
       dotenv (= 3.1.2)
@@ -453,6 +455,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  dockerfile-rails (>= 1.6)
   dotenv-rails
   faraday
   image_processing (~> 1.2)

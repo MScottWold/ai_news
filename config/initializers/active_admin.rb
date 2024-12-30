@@ -1,4 +1,4 @@
-require_relative "../../app/controllers/admin/o_auth_methods"
+require_relative "../../app/controllers/admin/oauth_methods"
 
 ActiveAdmin.setup do |config|
   # == Site Title
@@ -362,5 +362,5 @@ ActiveAdmin.setup do |config|
 end
 
 ActiveSupport.on_load(:active_admin_controller) do
-  ActiveAdmin::BaseController.include Admin::OAuthMethods
+  ActiveAdmin::BaseController.include Admin::OauthMethods
 end

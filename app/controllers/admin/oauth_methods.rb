@@ -1,8 +1,8 @@
 module Admin
-  module OAuthMethods
+  module OauthMethods
     def authenticate_admin_user!
       if current_admin_user.nil?
-        redirect_to "/auth/google_o_auth2"
+        redirect_to "/auth/google_oauth2"
       end
     end
 

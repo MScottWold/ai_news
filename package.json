@@ -30,5 +30,6 @@
     "@babel/preset-react": "^7.23.3",
     "redux-logger": "^3.0.6",
     "webpack-dev-server": "4"
-  }
+  },
+  "packageManager": "yarn@3.6.4"
 }
