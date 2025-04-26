@@ -5,7 +5,7 @@ module OpenAi
 
   class DalleGateway
     URL = "https://api.openai.com/v1/images/generations"
-    MODEL = "dall-e-2"
+    MODEL = "dall-e-3"
     SIZE = "1024x1024"
 
     def self.generate_image(prompt:)
@@ -59,6 +59,7 @@ module OpenAi
         model: MODEL,
         n: 1,
         size: SIZE,
+        style: :natural,
       }.to_json
     end
 
