@@ -1,13 +1,3 @@
-# == Schema Information
-#
-# Table name: photos
-#
-#  id         :bigint           not null, primary key
-#  alt_text   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  article_id :bigint           not null
-#
 class Photo < ApplicationRecord
   has_one_attached :image do |attachable|
     attachable.variant :thumb, resize_to_fill: [360, 270, { crop: :centre }]

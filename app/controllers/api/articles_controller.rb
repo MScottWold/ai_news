@@ -1,27 +1,30 @@
 module Api
   class ArticlesController < ApplicationController
-    before_action :protect_favorites, only: [:index]
-    before_action :require_login, only: [:favorite, :unfavorite]
+    before_action :require_login_for_favorites, only: [:index]
 
     def index
-      @filter, @articles = Article::CollectionFinder.
-        filter_and_articles(params[:collection], params[:after], current_user)
+      @filter, @articles = ArticleQuery.by_filter(
+        params[:collection],
+        params[:after],
+        current_user,
+      )
 
       render :index
     end
 
     def front_page
       # Added for more specific control of front page
-      @highlighted_articles = Article.highlighted_articles
-      @featured_article = Article.featured_article
+      @highlighted_articles = ArticleQuery.highlighted
+      @featured_article = ArticleQuery.featured
 
       render :front_page
     end
 
     def author_articles
+      # TODO: This param should be "before"
       if params[:after].present?
         @author_id = params[:id]
-        @articles = Article.author_articles(@author_id, params[:after])
+        @articles = ArticleQuery.by_author(@author_id, params[:after])
 
         render :author_articles
       else
@@ -30,7 +33,8 @@ module Api
     end
 
     def show
-      @article = Article.where(id: params[:id]).eager_load(:author, :photo)[0]
+      @article = Article.where(id: params[:id]).eager_load(:author, :photo).first
+
       if logged_in?
         @favorite = Favorite.find_by(
           article_id: params[:id],
@@ -38,42 +42,16 @@ module Api
         ).present?
       end
 
-      if @article
+      if @article.present?
         render :show
       else
         render json: { message: "not found" }, status: 404
       end
     end
 
-    def favorite
-      favorite = Favorite.new(
-        user_id: current_user.id,
-        article_id: params[:id],
-      )
-
-      if favorite.save!
-        render json: favorite.article_id
-      else
-        render json: favorite.errors.full_messages, status: 422
-      end
-    end
-
-    def unfavorite
-      favorite = Favorite.find_by(
-        user_id: current_user.id,
-        article_id: params[:id],
-      )
-
-      if favorite.destroy
-        render json: favorite.article_id
-      else
-        render json: favorite.errors.full_messages, status: 422
-      end
-    end
-
     private
 
-    def protect_favorites
+    def require_login_for_favorites
       if params[:collection] == "favorites" && !logged_in?
         render json: { error: "must be logged in" }, status: 400
       end

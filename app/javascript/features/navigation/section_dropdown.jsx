@@ -7,7 +7,7 @@ const SectionDropdown = () => {
   let menu;
   if (showDropdown) {
     menu = (
-      <ul id="section-dropdown" 
+      <ul id="section-dropdown"
         onMouseLeave={() => setDropdown(false)}
         onClick={() => setDropdown(false)}>
         <li className="section-dropdown-item">
@@ -40,8 +40,8 @@ const SectionDropdown = () => {
   }
   return (
     <div id="hamburger-box">
-      <button 
-        id="hamburger-icon" 
+      <button
+        id="hamburger-icon"
         onClick={() => setDropdown(!showDropdown)}></button>
       {menu}
     </div>

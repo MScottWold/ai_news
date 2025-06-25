@@ -8,7 +8,7 @@ module Api
 
       if user
         login(user)
-        cookies[""]
+
         render json: { username: user.username }
       else
         render json: { errors: ["Invalid Credentials"] }, status: 401

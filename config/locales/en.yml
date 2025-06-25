@@ -31,9 +31,6 @@ en:
   models:
     article:
       body_generated: "Article Body Created"
-      errors:
-        section:
-          inclusion: "Can only be in the following sections: us politics sports business"
       generate_body: "Generate Article Body"
     photo:
       delete_images: "Delete Images"

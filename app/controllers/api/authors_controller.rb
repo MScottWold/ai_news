@@ -1,20 +1,21 @@
 module Api
   class AuthorsController < ApplicationController
     def show
-      @author = Author.find_by(id: params[:id])
-      if @author
-        @articles = @author.
-          articles.
-          includes(photo: :thumbnail_blob).
-          order("articles.id DESC").
-          limit(5)
-      end
+      @author = Author.find_by(id: author_id)
 
-      if @author
+      if @author.present?
+        @articles = ArticleQuery.by_author(author_id)
+
         render :show
       else
         render json: { error: "author not found" }, status: 404
       end
+    end
+
+    private
+
+    def author_id
+      params[:id]
     end
   end
 end

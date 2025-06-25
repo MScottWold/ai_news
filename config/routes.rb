@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       end
 
       resources :comments, only: [:index, :create]
+      # TODO: redo routes and front-end slice
       post :favorites, to: "favorites#create"
       delete :favorites, to: "favorites#destroy"
     end
