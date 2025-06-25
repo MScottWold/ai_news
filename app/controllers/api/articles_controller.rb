@@ -5,11 +5,7 @@ module Api
     before_action :require_login_for_favorites, only: [:index]
 
     def index
-      @filter, @articles = ArticleQuery.by_filter(
-        params[:collection],
-        params[:after],
-        current_user,
-      )
+      @filter, @articles = ArticleQuery.by_filter(**collection_query_params)
 
       render :index
     end
@@ -45,6 +41,14 @@ module Api
     end
 
     private
+
+    def collection_query_params
+      {
+        filter: params[:collection],
+        after_id: params[:after],
+        current_user: params[:collection] == "favorites" ? current_user : nil,
+      }
+    end
 
     def require_login_for_favorites
       if params[:collection] == "favorites" && !logged_in?

@@ -1,7 +1,7 @@
 article_ids = []
 
 json.articles do
-  if @articles.empty?
+  if @articles.length.zero?
     json.articles({})
   else
     @articles.each do |article|

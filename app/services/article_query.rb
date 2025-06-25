@@ -43,7 +43,7 @@ class ArticleQuery
       last_id.present? ? article_query.where(id: ...last_id) : article_query
     end
 
-    def by_filter(filter, after_id, current_user)
+    def by_filter(filter:, after_id:, current_user:)
       case filter.to_sym
       when :archives
         [:collection, latest(after_id)]
@@ -77,7 +77,7 @@ class ArticleQuery
 
     def latest(after = nil)
       article_query = active_articles.
-        includes(:author, photo: :image_blob).
+        includes(photo: :image_blob).
         order(created_at: :desc).
         limit(BUCKET_SIZE)
 
