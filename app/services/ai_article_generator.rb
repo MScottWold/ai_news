@@ -23,7 +23,9 @@ class AiArticleGenerator
   attr_reader :article
 
   def update_photo(photo_caption)
-    if (photo = article.photo)
+    photo = article.photo
+
+    if photo.present?
       photo.update(alt_text: photo_caption)
     else
       article.create_photo!(alt_text: photo_caption)

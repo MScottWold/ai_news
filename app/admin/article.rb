@@ -14,6 +14,14 @@ ActiveAdmin.register Article do
   filter :featured, as: :select, collection: [true, false]
   filter :highlighted, as: :select, collection: [true, false]
 
+  controller do
+    before_update :remove_carriage_returns
+
+    def remove_carriage_returns(article)
+      article.body.delete!("\r")
+    end
+  end
+
   index do
     column :id
     column :active

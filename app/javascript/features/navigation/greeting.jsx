@@ -9,7 +9,7 @@ const Greeting = () => {
   const [showDropdown, setDropdown] = useState(false);
 
   let displayName = username;
-  if (loggedIn && username.length > 15){
+  if (loggedIn && username.length > 15) {
     displayName = username.slice(0, 12) + "...";
   }
 

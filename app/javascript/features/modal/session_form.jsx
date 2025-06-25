@@ -25,6 +25,9 @@ const SessionForm = ({ modalType }) => {
 
     if (modalType == "login") {
       dispatch(logIn({ user: { username: username, password: password } }))
+        .then(({ payload }) => {
+          if (!payload.errors) { location.reload() }
+        })
     } else if (modalType == "signup") {
       dispatch(signUp({ user: { username: username, password: password } }))
     }
