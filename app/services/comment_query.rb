@@ -1,6 +1,6 @@
 class CommentQuery
   def self.for_article(article_id:, after_id:, before_id:)
-    new(article_id, after_id, before_id).query
+    new(article_id, after_id, before_id).for_article
   end
 
   def initialize(article_id, after_id, before_id)

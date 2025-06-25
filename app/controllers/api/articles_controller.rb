@@ -19,10 +19,9 @@ module Api
     end
 
     def author_articles
-      # TODO: This param should be "before"
-      if params[:after].present?
+      if params[:before].present?
         @author_id = params[:id]
-        @articles = ArticleQuery.by_author(@author_id, params[:after])
+        @articles = ArticleQuery.by_author(@author_id, params[:before])
 
         render :author_articles
       else
@@ -45,7 +44,7 @@ module Api
     def collection_query_params
       {
         filter: params[:collection],
-        after_id: params[:after],
+        before_id: params[:before],
         current_user: params[:collection] == "favorites" ? current_user : nil,
       }
     end

@@ -43,18 +43,18 @@ class ArticleQuery
       last_id.present? ? article_query.where(id: ...last_id) : article_query
     end
 
-    def by_filter(filter:, after_id:, current_user:)
+    def by_filter(filter:, before_id:, current_user:)
       case filter.to_sym
       when :archives
-        [:collection, latest(after_id)]
+        [:collection, latest(before_id)]
       when :latest
         [:latest, latest]
       when :trending
         [:trending, ArticleQuery.trending]
       when *Article::SECTIONS
-        [:collection, section(filter, after_id)]
+        [:collection, section(filter, before_id)]
       when :favorites
-        [:collection, user_favorites(current_user, after_id)]
+        [:collection, user_favorites(current_user, before_id)]
       else
         [:none, default_query.includes(photo: :image_blob)]
       end
@@ -62,9 +62,9 @@ class ArticleQuery
 
     private
 
-    def user_favorites(user, after = nil)
-      if after
-        article_query = active_favorites(user).where(id: ...after)
+    def user_favorites(user, before_id = nil)
+      if before_id
+        article_query = active_favorites(user).where(id: ...before_id)
       else
         article_query = active_favorites(user)
       end
@@ -75,19 +75,19 @@ class ArticleQuery
         limit(BUCKET_SIZE)
     end
 
-    def latest(after = nil)
+    def latest(before_id = nil)
       article_query = active_articles.
         includes(photo: :image_blob).
         order(created_at: :desc).
         limit(BUCKET_SIZE)
 
-      after ? article_query.where(id: ...after) : article_query
+      before_id ? article_query.where(id: ...before_id) : article_query
     end
 
-    def section(section, after = nil)
-      if after
+    def section(section, before_id = nil)
+      if before_id
         article_query = active_articles.
-          where("articles.section = ? AND articles.id < ?", section, after)
+          where(section: section, id: ...before_id)
       else
         article_query = active_articles.
           where(section: section)

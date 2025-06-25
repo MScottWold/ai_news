@@ -34,7 +34,7 @@ const Author = () => {
   const getMoreArticles = () => (
     fetchAuthorArticles({
       id: authorId,
-      filter: { after: lastAuthorArticleId},
+      filter: { before: lastAuthorArticleId},
     })
   );
 

@@ -18,7 +18,7 @@ const Collection = ({ section }) => {
   const getInitialArticles = () => fetchArticles({ collection: section });
   const getMoreArticles = (lastArticleId) => fetchArticles({
     collection: section,
-    after: lastArticleId,
+    before: lastArticleId,
   });
 
   return (
