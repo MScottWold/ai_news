@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AiPhotoGenerator
   def self.generate_photo(photo)
     new(photo).generate_photo

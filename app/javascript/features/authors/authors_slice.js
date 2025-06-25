@@ -4,9 +4,9 @@ import { fetchAuthorArticles } from "../articles/articles_slice";
 
 export const fetchAuthor = createAsyncThunk(
   "authors/fetchAuthor",
-  async (authorId) => {
-    return await getAuthor(authorId).then((response) => response.json())
-  },
+  async (authorId) => (
+    await getAuthor(authorId).then((response) => response.json())
+  ),
 );
 
 const authorsSlice = createSlice({

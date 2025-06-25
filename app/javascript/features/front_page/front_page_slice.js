@@ -3,9 +3,7 @@ import { getFrontPage } from "../../util/api_util";
 
 export const fetchFrontPage = createAsyncThunk(
   "frontPage/fetchFrontPage",
-  async () => (
-    await getFrontPage().then((payload) => payload.json())
-  ),
+  async () => await getFrontPage().then((payload) => payload.json()),
 );
 
 export const frontPageSlice = createSlice({

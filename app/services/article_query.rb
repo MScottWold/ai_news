@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArticleQuery
   BUCKET_SIZE = 5
 

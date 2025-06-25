@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class ArticlesController < ApplicationController
     before_action :require_login_for_favorites, only: [:index]
@@ -34,13 +36,6 @@ module Api
 
     def show
       @article = Article.where(id: params[:id]).eager_load(:author, :photo).first
-
-      if logged_in?
-        @favorite = Favorite.find_by(
-          article_id: params[:id],
-          user_id: current_user.id,
-        ).present?
-      end
 
       if @article.present?
         render :show

@@ -22,18 +22,18 @@ Rails.application.routes.draw do
       end
 
       resources :comments, only: [:index, :create]
-      # TODO: redo routes and front-end slice
-      post :favorites, to: "favorites#create"
-      delete :favorites, to: "favorites#destroy"
+      resources :favorites, only: :create
     end
 
-    resources :authors, only: [:show] do
+    resources :favorites, only: :destroy
+
+    resources :authors, only: :show do
       member do
         get :articles, to: "articles#author_articles"
       end
     end
 
-    resources :users, only: [:create]
+    resources :users, only: :create
     resource :session, only: [:create, :destroy]
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Photo do
   before_action :skip_sidebar!
 

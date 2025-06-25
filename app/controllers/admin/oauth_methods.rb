@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   module OauthMethods
     def authenticate_admin_user!

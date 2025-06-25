@@ -20,4 +20,8 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   delegate :image_attached?, to: :photo
+
+  def user_favorite_id(user)
+    favorites.where(user_id: user.id).pick(:id)
+  end
 end

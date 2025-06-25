@@ -5,9 +5,7 @@ json.set! @article.id do
   json.authorName @article.author.name
   json.authorId @article.author.id
   if logged_in?
-    json.favorited @favorite
-  else
-    json.favorited false
+    json.favoriteId @article.user_favorite_id(current_user)
   end
   json.photo do
     json.partial! "api/photos/photo", photo: @article.photo

@@ -10,4 +10,4 @@ class StaticPagesController < ApplicationController
   def privacy
     render :privacy
   end
-end 
+end

@@ -9,9 +9,7 @@ import { fetchAuthor } from "../authors/authors_slice";
 
 export const fetchArticles = createAsyncThunk(
   "articles/fetchArticles",
-  async (params) => (
-    await getArticles(params).then((payload) => payload.json())
-  ),
+  async (params) => await getArticles(params).then((payload) => payload.json()),
 );
 
 export const fetchAuthorArticles = createAsyncThunk(
@@ -23,16 +21,14 @@ export const fetchAuthorArticles = createAsyncThunk(
 
 export const fetchArticle = createAsyncThunk(
   "acticles/fetchArticle",
-  async (id) => (
-    await getArticle(id).then((payload) => payload.json())
-  ),
+  async (id) => await getArticle(id).then((payload) => payload.json()),
 );
 
 export const toggleFavorite = createAsyncThunk(
   "articles/favorite",
-  async ({ articleId, favorite }) => {
-    return await favoriteRequest(articleId, favorite)
-  },
+  async ({ articleId, favoriteId }) => (
+    await favoriteRequest(articleId, favoriteId)
+  )
 );
 
 export const articlesSlice = createSlice({
@@ -56,9 +52,9 @@ export const articlesSlice = createSlice({
         })
       })
       .addCase(toggleFavorite.fulfilled, (state, action) => {
-        const { articleId, favorite } = action.payload;
+        const { articleId, favoriteId } = action.payload;
         const article = state[articleId];
-        article.favorited = favorite;
+        article.favoriteId = favoriteId;
       })
       .addCase(fetchAuthor.fulfilled, (state, action) => {
         Object.assign(state, action.payload.articles);

@@ -26,9 +26,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk(
   "session/logOut",
-  async () => (
-    await deleteSession().then((response) => response.json())
-  ),
+  async () => await deleteSession().then((response) => response.json()),
 )
 
 export const sessionSlice = createSlice({

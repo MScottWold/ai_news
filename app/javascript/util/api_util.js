@@ -19,24 +19,18 @@ export const getArticles = (params) => (
   fetch(`/api/articles${parameterizeQuery(params)}`)
 );
 
-export const getFrontPage = () => {
-  return fetch("api/articles/front_page");
-};
+export const getFrontPage = () => fetch("api/articles/front_page");
 
-export const getArticle = id => {
-  return fetch(`/api/articles/${id}`);
-};
+export const getArticle = (id) => fetch(`/api/articles/${id}`);
 
-export const getAuthor = (id) => {
-  return fetch(`/api/authors/${id}`);
-};
+export const getAuthor = (id) => fetch(`/api/authors/${id}`);
 
-export const getAuthorArticles = (authorId, filter = {}) => {
-  return fetch(`/api/authors/${authorId}/articles${parameterizeQuery(filter)}`);
-};
+export const getAuthorArticles = (authorId, filter = {}) => (
+  fetch(`/api/authors/${authorId}/articles${parameterizeQuery(filter)}`)
+);
 
-export const postSession = (user) => {
-  return fetch(
+export const postSession = (user) => (
+  fetch(
     "/api/session",
     {
       headers,
@@ -44,7 +38,7 @@ export const postSession = (user) => {
       body: JSON.stringify(user),
     },
   )
-};
+)
 
 export const deleteSession = () => (
   fetch(
@@ -67,14 +61,17 @@ export const postUser = user => (
   )
 );
 
-export const favoriteRequest = async (articleId, favorite) => {
-  const response = await fetch(
-    `api/articles/${articleId}/favorites`,
-    {
-      headers,
-      method: favorite ? "POST" : "DELETE",
-    },
-  );
+export const favoriteRequest = async (articleId, favoriteId) => {
+  const method = !!favoriteId ? "DELETE" : "POST";
+
+  let path;
+  if (!!favoriteId) {
+    path = `api/favorites/${favoriteId}`;
+  } else {
+    path = `api/articles/${articleId}/favorites`;
+  }
+
+  const response = await fetch(path, { headers, method });
 
   if (response.ok) {
     return await response.json();

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Article do
   includes :author, :photo
 

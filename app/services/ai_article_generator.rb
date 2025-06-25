@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AiArticleGenerator
   PHOTO_CAPTION_REGEX = /\**Photo Caption:\**/
 
