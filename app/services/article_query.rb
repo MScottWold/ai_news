@@ -20,7 +20,7 @@ class ArticleQuery
         joins(comments_join_sql).
         select([
           "articles.*",
-          "COALESCE(fav.fav_num * 5, 0) + COALESCE(com.com_num, 0) AS trend_val",
+          "COALESCE(fav.score, 0) + COALESCE(com.score, 0) AS trend_val",
         ]).
         order("trend_val DESC").
         limit(6)
@@ -112,27 +112,21 @@ class ArticleQuery
     end
 
     def favorites_join_sql
-      <<-SQL.squish
-      LEFT OUTER JOIN
-        (SELECT
-          favorites.article_id as fav_art_id, COUNT(favorites.id) as fav_num
-        FROM
-          favorites
-        GROUP BY
-          favorites.article_id) AS fav ON fav.fav_art_id = articles.id
-      SQL
+      sql_string = Favorite.
+        group(:article_id).
+        select("favorites.article_id, COUNT(*) * 5 AS score").
+        to_sql
+
+      "LEFT OUTER JOIN (#{sql_string}) AS fav ON fav.article_id = articles.id"
     end
 
     def comments_join_sql
-      <<-SQL.squish
-        LEFT OUTER JOIN
-          (SELECT
-            comments.article_id as com_art_id, COUNT(comments.id) as com_num
-          FROM
-            comments
-          GROUP BY
-            comments.article_id) AS com ON com.com_art_id = articles.id
-      SQL
+      sql_string = Comment.
+        group(:article_id).
+        select("comments.article_id, COUNT(*) AS score").
+        to_sql
+
+      "LEFT OUTER JOIN (#{sql_string}) AS com ON com.article_id = articles.id"
     end
   end
 end
