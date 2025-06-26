@@ -3,7 +3,7 @@ module Api
     before_action :require_login, only: [:create]
 
     def index
-      @comments = CommentQuery.for_article(
+      @comments = Comment.for_article(
         article_id: article_id,
         after_id: after_id,
         before_id: before_id,

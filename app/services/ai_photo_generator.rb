@@ -23,6 +23,6 @@ class AiPhotoGenerator
       "prompts.image",
       image_prompt: photo.alt_text,
     )
-    OpenAi::DalleGateway.generate_image(prompt: prompt)
+    OpenAi::Gateway.generate_image(prompt: prompt)
   end
 end
