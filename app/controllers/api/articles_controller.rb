@@ -5,15 +5,19 @@ module Api
     before_action :require_login_for_favorites, only: [:index]
 
     def index
-      @filter, @articles = ArticleQuery.by_filter(**collection_query_params)
+      if params[:filter].nil?
+        render json: { error: t(".errors.filter_missing") }, status: 400
+      else
+        @filter, @articles = ArticleQuery.by_filter(**filter_query_params)
 
-      render :index
+        render :index
+      end
     end
 
     def front_page
       # Added for more specific control of front page
-      @highlighted_articles = ArticleQuery.highlighted
-      @featured_article = ArticleQuery.featured
+      @highlighted_articles = Article.highlighted_articles
+      @featured_article = Article.featured_article
 
       render :front_page
     end
@@ -21,11 +25,11 @@ module Api
     def author_articles
       if params[:before].present?
         @author_id = params[:id]
-        @articles = ArticleQuery.by_author(@author_id, params[:before])
+        @articles = Article.from_author(@author_id, params[:before])
 
         render :author_articles
       else
-        render json: { error: "not found" }, status: 404
+        render json: { error: t(".errors.before_missing") }, status: 400
       end
     end
 
@@ -35,23 +39,23 @@ module Api
       if @article.present?
         render :show
       else
-        render json: { message: "not found" }, status: 404
+        render json: { message: t(".errors.not_found") }, status: 404
       end
     end
 
     private
 
-    def collection_query_params
+    def filter_query_params
       {
-        filter: params[:collection],
+        filter: params[:filter],
         before_id: params[:before],
-        current_user: params[:collection] == "favorites" ? current_user : nil,
+        current_user: params[:filter] == "favorites" ? current_user : nil,
       }
     end
 
     def require_login_for_favorites
-      if params[:collection] == "favorites" && !logged_in?
-        render json: { error: "must be logged in" }, status: 400
+      if params[:filter] == "favorites" && !logged_in?
+        render json: { error: t(".errors.user_not_logged_in") }, status: 401
       end
     end
   end

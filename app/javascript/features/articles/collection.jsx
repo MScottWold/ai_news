@@ -15,9 +15,9 @@ const Collection = ({ section }) => {
     dispatch(clearedCollection());
   }, [section]);
 
-  const getInitialArticles = () => fetchArticles({ collection: section });
+  const getInitialArticles = () => fetchArticles({ filter: section });
   const getMoreArticles = (lastArticleId) => fetchArticles({
-    collection: section,
+    filter: section,
     before: lastArticleId,
   });
 

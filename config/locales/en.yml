@@ -28,6 +28,16 @@
 #       enabled: "ON"
 
 en:
+  api:
+    articles:
+      errors:
+        before_missing: "missing param: before"
+        filter_missing: "missing param: filter"
+        not_found: "not found"
+        user_not_logged_in: "must be logged in"
+    authors:
+      errors:
+        not_found: "Not found"
   models:
     article:
       body_generated: "Article Body Created"

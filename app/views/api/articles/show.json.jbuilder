@@ -9,6 +9,6 @@ json.set! @article.id do
   end
   json.photo do
     json.partial! "api/photos/photo", photo: @article.photo
-    json.thumbUrl url_for(@article.photo.image.variant(:large))
+    json.thumbUrl url_for(@article.photo.image.variant(:thumb))
   end
 end

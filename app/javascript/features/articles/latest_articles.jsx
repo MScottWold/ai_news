@@ -8,7 +8,7 @@ const LatestArticles = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchArticles({ collection: "latest" }))
+    dispatch(fetchArticles({ filter: "latest" }))
   }, []);
 
   const articles = useSelector(selectArticles("latest"));

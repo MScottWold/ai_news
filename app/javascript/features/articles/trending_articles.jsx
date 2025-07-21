@@ -8,7 +8,7 @@ const TrendingArticles = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchArticles({ collection: "trending" }));
+    dispatch(fetchArticles({ filter: "trending" }));
   }, [])
 
   const articles = useSelector(selectArticles("trending"))
