@@ -1,7 +1,7 @@
 <img width="1050" alt="Masthead" src="https://user-images.githubusercontent.com/10493350/126410749-2ac6d03a-904c-45dc-95eb-7e122a3a29d1.png">
 
-!! [**under construction**]
-This site is currently undergoing construction
+!! [**Archived**]
+This site is not currently live
 
 # The Banner Weekly
 The Banner Weekly is an online publication where all the articles are generated using Google Gemini. The site originally used GPT-2 because GPT-3 wasn't available to the public, due to the fear of misuse. Originally, this site was intended to inspire a dialogue about the online information we consume and the influence of presentation on perceived truth and credibility. Now the site is just a place for me to be creative and try out new things in live, full-stack environment.
@@ -36,6 +36,3 @@ Visit all articles in the archives
 * Amazon S3 (image hosting)
 * Google Gemini
 * OpenAI Dall-E 2
-
-## Live Site
-[The Banner Weekly](https://ai-news.fly.dev/)
